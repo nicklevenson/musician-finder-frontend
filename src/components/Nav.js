@@ -44,7 +44,7 @@ class Nav extends React.Component {
           active={activeItem === 'messaging'}
           onClick={this.handleItemClick}
           as={NavLink}
-          to="/messages"
+          to="/messaging"
         >
           Messaging
         </Menu.Item>
