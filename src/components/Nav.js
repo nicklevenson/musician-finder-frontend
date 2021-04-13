@@ -10,7 +10,7 @@ class Nav extends React.Component {
 
     return (
       
-      <Menu borderless style={{paddingLeft: "10vw", paddingRight: "10vw"}}>
+      <Menu secondary pointing borderless style={{paddingLeft: "10vw", paddingRight: "10vw", paddingTop:"1vh", paddingBottom:"1vh"}}>
         <Menu.Item 
           header
           
