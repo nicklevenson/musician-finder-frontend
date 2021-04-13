@@ -8,7 +8,8 @@ class Nav extends React.Component {
     const { activeItem } = this.state
 
     return (
-      <Menu borderless>
+      
+      <Menu borderless style={{paddingLeft: "10vw", paddingRight: "10vw"}}>
         <Menu.Item 
           header
           
