@@ -1,5 +1,6 @@
 import React from 'react'
 import {Menu, Header} from 'semantic-ui-react'
+import {NavLink } from 'react-router-dom'
 class Nav extends React.Component {
   state = {}
 
@@ -15,28 +16,35 @@ class Nav extends React.Component {
           
         >Matchup Music
         </Menu.Item>
-
-        <Menu.Item
-          position="right"
-          name='feed'
-          active={activeItem === 'feed'}
-          onClick={this.handleItemClick}
-        >
-          Feed
-        </Menu.Item>
-
-        <Menu.Item
-          name='connections'
-          active={activeItem === 'connections'}
-          onClick={this.handleItemClick}
-        >
-          Connections
-        </Menu.Item>
+    
+          <Menu.Item
+            position="right"
+            name='home'
+            active={activeItem === 'home'}
+            onClick={this.handleItemClick}
+            as={NavLink}
+            to="/home"
+          >    
+             Home
+          </Menu.Item>
+       
+          <Menu.Item
+            name='connections'
+            active={activeItem === 'connections'}
+            onClick={this.handleItemClick}
+            as={NavLink}
+            to="/connections"
+          >
+            Connections
+          </Menu.Item>
+   
 
         <Menu.Item
           name='messaging'
           active={activeItem === 'messaging'}
           onClick={this.handleItemClick}
+          as={NavLink}
+          to="/messages"
         >
           Messaging
         </Menu.Item>
@@ -45,6 +53,8 @@ class Nav extends React.Component {
           name='notifications'
           active={activeItem === 'notifications'}
           onClick={this.handleItemClick}
+          as={NavLink}
+          to="/notifications"
         >
           Notifications
         </Menu.Item>
@@ -53,6 +63,8 @@ class Nav extends React.Component {
           name='Profile'
           active={activeItem === 'Profile'}
           onClick={this.handleItemClick}
+          as={NavLink}
+          to="/profile"
         >
           Profile
         </Menu.Item>
