@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {composeWithDevTools} from 'redux-devtools-extension'
 import {BrowserRouter as Router} from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
 import rootReducer from './reducers/rootReducer.js'
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 import 'semantic-ui-css/semantic.min.css'
+
+
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+
 
 ReactDOM.render(
   <React.StrictMode>
