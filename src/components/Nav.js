@@ -1,5 +1,5 @@
 import React from 'react'
-import {Menu} from 'semantic-ui-react'
+import {Menu, Header} from 'semantic-ui-react'
 class Nav extends React.Component {
   state = {}
 
@@ -8,8 +8,15 @@ class Nav extends React.Component {
     const { activeItem } = this.state
 
     return (
-      <Menu>
+      <Menu borderless>
+        <Menu.Item 
+          header
+          
+        >Matchup Music
+        </Menu.Item>
+
         <Menu.Item
+          position="right"
           name='feed'
           active={activeItem === 'feed'}
           onClick={this.handleItemClick}
