@@ -4,8 +4,8 @@ import {Card, Icon, Image} from 'semantic-ui-react'
 class UserCard extends React.Component {
   render(){
     return(
-        <Card>
-          <Card.Content>
+        <Card raised>
+          <Card.Content textAlign="center">
             <Image
               size='tiny'
               circular
@@ -20,7 +20,7 @@ class UserCard extends React.Component {
               {this.props.currentUser.bio || "No bio given"}
             </Card.Description>
           </Card.Content>
-          <Card.Content extra>
+          <Card.Content extra textAlign="center">
             <a>
               <Icon name='user' />
               {this.props.currentUser.connections || "0"} Connections
