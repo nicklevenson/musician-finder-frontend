@@ -1,4 +1,5 @@
-import logo from './logo.svg';
+import React from 'react'
+import {connect} from 'react-redux'
 import './App.css';
 import {Route} from 'react-router-dom'
 import Nav from './components/Nav'
@@ -9,19 +10,33 @@ import NotificationsContainer from './containers/NotificationsContainer'
 import ProfileContainer from './containers/ProfileContainer'
 import Login from './components/Login'
 import Logout from './components/Logout'
-function App() {
-  return (
-    <div className="App">
-      <Nav/>
-      <Route exact path="/home" component={HomeContainer}></Route>
-      <Route exact path="/connections" component={ConnectionsContainer}></Route>
-      <Route exact path="/messaging" component={MessagingContainer}></Route>
-      <Route exact path="/notifications" component={NotificationsContainer}></Route>
-      <Route exact path="/profile" component={ProfileContainer}></Route>
-      <Route exact path="/login" component={Login}></Route>
-      <Route exact path="/logout" component={Logout}></Route>
-    </div>
-  );
+
+import {fetchUser} from './actions/useractions'
+class App extends React.Component {
+  componentDidMount() {
+    this.props.fetchUser()
+  }
+  render(){
+    return (
+      <div className="App">
+        <Nav/>
+        <Route exact path="/home" component={HomeContainer}></Route>
+        <Route exact path="/connections" component={ConnectionsContainer}></Route>
+        <Route exact path="/messaging" component={MessagingContainer}></Route>
+        <Route exact path="/notifications" component={NotificationsContainer}></Route>
+        <Route exact path="/profile" component={ProfileContainer}></Route>
+        <Route exact path="/login" component={Login}></Route>
+        <Route exact path="/logout" component={Logout}></Route>
+      </div>
+    );
+  }
+  
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUser: () => dispatch(fetchUser())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);
