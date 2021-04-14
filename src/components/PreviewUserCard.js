@@ -7,7 +7,7 @@ class PreviewUserCard extends React.Component {
   renderSimilarTags = () => {
     if (this.props.similar_tags && this.props.similar_tags.length !== 0) {
       return (
-        <Card.Content>You both like: {this.props.similar_tags.slice(0, 5).map(t => <i>|{t}|</i>)}</Card.Content>
+        <Card.Content>You both like: {this.props.similar_tags.slice(0, 10).join(", ")}</Card.Content>
       )
     }
   }
@@ -33,7 +33,7 @@ class PreviewUserCard extends React.Component {
             </Card.Meta>
 
             <Card.Content>
-              {this.props.user.bio ?  this.props.user.bio.substring(0, 50) + "..." : "No bio given"}
+              {this.props.user.bio ?  this.props.user.bio.substring(0, 70) + "..." : "No bio given"}
             </Card.Content>
             <br></br>
             <Card.Meta>

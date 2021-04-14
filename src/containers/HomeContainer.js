@@ -5,6 +5,17 @@ import {Grid, Segment, Rail} from 'semantic-ui-react'
 import RecommendedUsersCarousel from './RecommendedUsersCarousel'
 import PreviewUserCard from '../components/PreviewUserCard'
 class HomeContainer extends React.Component {
+
+  renderUserConnections = () => {
+    if (this.props.currentUser.connected_users){
+      if (this.props.currentUser.connected_users.length !== 0){
+        return this.props.currentUser.connected_users.map(u=><PreviewUserCard user={u}/>)
+      }else{
+        return <h1>Go find some users to connect with!</h1>
+      }
+    }
+    
+  }
   render(){
     return(
       <>
@@ -16,11 +27,11 @@ class HomeContainer extends React.Component {
                 {this.props.currentUser.username ? <UserCard user={this.props.currentUser}/> : null}
               </Rail>
               
-              
-              {this.props.currentUser.username ? <RecommendedUsersCarousel/> : null}
+              <h2>Posts</h2>
+            
     
               <Rail dividing position="right">
-              {this.props.currentUser.connected_users ? this.props.currentUser.connected_users.map(u=><PreviewUserCard user={u}/>) : null}
+                {this.props.currentUser.username ? <RecommendedUsersCarousel/> : null}
               </Rail>
             </Segment>
           </Grid.Column>
