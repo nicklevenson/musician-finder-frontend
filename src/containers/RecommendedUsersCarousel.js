@@ -2,18 +2,19 @@ import React from 'react'
 import {connect} from 'react-redux'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import UserCard from '../components/UserCard';
+import PreviewUserCard from '../components/PreviewUserCard';
+import '../RecommendedUsers.css'
 class RecommendedUsersCarousel extends React.Component {
   render() {
     return(
       <>
       <i>Recommended Users</i>
       <hr/>
-      <Carousel infiniteLoop renderIndicator={false} useKeyboardArrows={true} showThumbs={false} centerMode={true}>
+      <div className="side-swipe">
         {this.props.currentUser.recommended_users.map(u => 
-            <div style={{padding: "2vw"}}><UserCard user={u.user} similar_tags={u.similar_tags}/></div>
+            <PreviewUserCard user={u.user} similar_tags={u.similar_tags}/>
           )}
-      </Carousel>
+      </div>
       </>
     )
   }
