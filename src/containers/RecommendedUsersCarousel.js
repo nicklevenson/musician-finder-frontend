@@ -9,8 +9,8 @@ class RecommendedUsersCarousel extends React.Component {
       <>
       <i>Recommended Users</i>
       <hr/>
-      <Carousel>
-        {this.props.currentUser.recommended_users.map(u => <UserCard user={u.user}/>)}
+      <Carousel infiniteLoop renderIndicator={false} useKeyboardArrows={true} showThumbs={false}>
+        {this.props.currentUser.recommended_users.map(u => <div style={{padding: "2vw"}}><UserCard user={u.user}/></div>)}
       </Carousel>
       </>
     )

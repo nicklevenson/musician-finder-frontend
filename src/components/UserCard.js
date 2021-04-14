@@ -4,6 +4,7 @@ import {Card, Icon, Image} from 'semantic-ui-react'
 class UserCard extends React.Component {
   render(){
     return(
+      <div style={{margin: "2vw"}}>
         <Card raised>
           <Card.Content textAlign="center">
             <Image
@@ -27,6 +28,7 @@ class UserCard extends React.Component {
             </a>
           </Card.Content>
         </Card>
+      </div>
     )
   }
 }
