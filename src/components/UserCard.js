@@ -14,8 +14,11 @@ class UserCard extends React.Component {
             />
             <br/><br/>
             <Card.Header>{this.props.user.username}</Card.Header>
-            <Card.Meta>
+            {/* <Card.Meta>
               <span className='date'>Joined {this.props.user.created_at.split("T")[0]}</span>
+            </Card.Meta> */}
+            <Card.Meta>
+              <span className='location'>Location: {this.props.user.location || "Earth"}</span>
             </Card.Meta>
             <Card.Description>
               {this.props.user.bio || "No bio given"}
@@ -27,6 +30,9 @@ class UserCard extends React.Component {
               {this.props.user.connections || "0"} Connections
             </a>
           </Card.Content>
+          <Card.Meta>
+            {this.props.user.similar_tags ? this.props.user.similar_tags.map(t => <i>t</i>) : null}
+          </Card.Meta>
         </Card>
       </div>
     )
