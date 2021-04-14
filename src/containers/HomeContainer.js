@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import UserCard from '../components/UserCard'
 import {Grid, Segment, Rail} from 'semantic-ui-react'
 import RecommendedUsersCarousel from './RecommendedUsersCarousel'
+import PreviewUserCard from '../components/PreviewUserCard'
 class HomeContainer extends React.Component {
   render(){
     return(
@@ -19,7 +20,7 @@ class HomeContainer extends React.Component {
               {this.props.currentUser.username ? <RecommendedUsersCarousel/> : null}
     
               <Rail dividing position="right">
-              {this.props.currentUser.username ? <UserCard user={this.props.currentUser}/> : null}
+              {this.props.currentUser.connected_users ? this.props.currentUser.connected_users.map(u=><PreviewUserCard user={u}/>) : null}
               </Rail>
             </Segment>
           </Grid.Column>
