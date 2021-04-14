@@ -14,7 +14,10 @@ import Logout from './components/Logout'
 import {fetchUser} from './actions/useractions'
 class App extends React.Component {
   componentDidMount() {
-    this.props.fetchUser()
+    if (sessionStorage.userId) {
+      this.props.fetchUser()
+    }
+  
   }
   render(){
     return (

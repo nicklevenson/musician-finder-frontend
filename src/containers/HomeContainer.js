@@ -12,14 +12,14 @@ class HomeContainer extends React.Component {
           <Grid.Column>
             <Segment>
               <Rail dividing position="left">
-                {this.props.currentUser.username ? <UserCard/> : null}
+                {this.props.currentUser.username ? <UserCard user={this.props.currentUser}/> : null}
               </Rail>
               
               
               {this.props.currentUser.username ? <RecommendedUsersCarousel/> : null}
     
               <Rail dividing position="right">
-              {this.props.currentUser.username ? <UserCard/> : null}
+              {this.props.currentUser.username ? <UserCard user={this.props.currentUser}/> : null}
               </Rail>
             </Segment>
           </Grid.Column>
