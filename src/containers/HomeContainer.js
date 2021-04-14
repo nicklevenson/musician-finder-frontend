@@ -1,24 +1,28 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import UserCard from '../components/UserCard'
-import {Grid} from 'semantic-ui-react'
+import {Grid, Segment, Rail} from 'semantic-ui-react'
 class HomeContainer extends React.Component {
   render(){
     return(
       <>
       <h1>Home</h1>
-        <Grid celled>
-        <Grid.Row>
-          <Grid.Column width={3}>
-            {this.props.currentUser.username ? <UserCard/> : null}
+        <Grid relaxed padded centered columns={3}>
+          <Grid.Column >
+            <Segment>
+              <Rail dividing position="left">
+                {this.props.currentUser.username ? <UserCard/> : null}
+              </Rail>
+              
+              Recommended Users
+              {this.props.currentUser.username ? <UserCard/> : null}
+    
+              <Rail dividing position="right">
+              {this.props.currentUser.username ? <UserCard/> : null}
+              </Rail>
+            </Segment>
           </Grid.Column>
-          <Grid.Column width={10}>
-            {this.props.currentUser.username ? <UserCard/> : null}
-          </Grid.Column>
-          <Grid.Column width={3}>
-            {this.props.currentUser.username ? <UserCard/> : null}
-          </Grid.Column>
-        </Grid.Row>
+  
         </Grid>
       </>
     )
