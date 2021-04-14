@@ -1,7 +1,7 @@
 
 
 .side-swipe {
-  height: 250px !important;
+  height: 60vh !important;
   width: min-content !important;
   overflow-x: hidden;
   overflow-y: scroll;

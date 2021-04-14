@@ -8,10 +8,10 @@ import ConnectionsContainer from './containers/ConnectionsContainer'
 import MessagingContainer from './containers/MessagingContainer'
 import NotificationsContainer from './containers/NotificationsContainer'
 import ProfileContainer from './containers/ProfileContainer'
-import Login from './components/Login'
 import Logout from './components/Logout'
 
 import {fetchUser} from './actions/useractions'
+import LoginContainer from './containers/LoginContainer';
 class App extends React.Component {
   componentDidMount() {
     if (sessionStorage.userId) {
@@ -28,7 +28,7 @@ class App extends React.Component {
         <Route exact path="/messaging" component={MessagingContainer}></Route>
         <Route exact path="/notifications" component={NotificationsContainer}></Route>
         <Route exact path="/profile" component={ProfileContainer}></Route>
-        <Route exact path="/login" component={Login}></Route>
+        <Route exact path="/login" component={LoginContainer}></Route>
         <Route exact path="/logout" component={Logout}></Route>
       </div>
     );

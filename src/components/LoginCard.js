@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {fetchUser} from '../actions/useractions.js'
 import { Redirect } from 'react-router-dom'
 import { Card} from 'semantic-ui-react'
-class Login extends React.Component {
+class LoginCard extends React.Component {
  
   componentDidMount() { 
     const urlParams = new URLSearchParams(window.location.search);
@@ -22,20 +22,22 @@ class Login extends React.Component {
   }
   render(){
     return(
-      <div className="login-page" style={{width: "300px", height: "50vh",margin: "auto", marginTop: "10vh"}}>
+      
         <Card fluid>
           <br></br>
+          <div style={{margin:"auto"}}>
           <Card.Header><h2>Please Login/Signup</h2></Card.Header>
           
           {this.props.heading ? <Card.Content><h5><i>{this.props.heading}</i></h5></Card.Content>: null}
           <br></br>
-          <Card.Content>
+          <Card.Content textAlign="center">
           <a href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-google`}><img src={googleLogin} alt="Login with Google" style={{width: "200px"}}/></a><br></br> <br></br>
-          <a href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-facebook`}><img src={facebookLogin} alt="Login with Facebook"  style={{width: "200px"}}></img></a> <br></br> <br></br>
+          <a href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-facebook`}><img src={facebookLogin} alt="Login with Facebook"  style={{width: "193px", height:"37px"}}></img></a> <br></br> <br></br>
           </Card.Content>
           {sessionStorage.jwt ? <Redirect to="/home" /> : null}
+          </div>
         </Card>
-      </div>
+
     )
   }
 }
@@ -46,4 +48,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(LoginCard)

@@ -12,7 +12,7 @@ class RecommendedUsersCarousel extends React.Component {
   render() {
     return(
       <>
-      <i>Recommended Users</i>
+      <i>Recommended Users For You</i>
       <hr/>
       <div className="side-swipe">
         {this.props.recommendedUsers.map(u => 

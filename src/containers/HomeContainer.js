@@ -4,6 +4,7 @@ import UserCard from '../components/UserCard'
 import {Grid, Segment, Rail} from 'semantic-ui-react'
 import RecommendedUsersCarousel from './RecommendedUsersCarousel'
 import PreviewUserCard from '../components/PreviewUserCard'
+import LoginCard from '../components/LoginCard'
 class HomeContainer extends React.Component {
 
   renderUserConnections = () => {
@@ -24,10 +25,12 @@ class HomeContainer extends React.Component {
           <Grid.Column>
             <Segment>
               <Rail dividing position="left">
-                {this.props.currentUser.username ? <UserCard user={this.props.currentUser}/> : null}
+                {this.props.currentUser.username ? <UserCard user={this.props.currentUser}/> : <LoginCard/>}
               </Rail>
               
-              <h2>Posts</h2>
+              <div style={{height: "70vh"}}>
+                <h2>Posts</h2>
+              </div>
             
     
               <Rail dividing position="right">
