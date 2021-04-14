@@ -14,7 +14,7 @@ class PreviewUserCard extends React.Component {
 
   render(){
     return(
-      <div style={{display:"inline-block", margin:"1vw"}}>
+      <div style={{display:"inline-block", margin:"1vw", whiteSpace:"normal"}}>
         <Card raised style={{height:"200px"}}>
           <Card.Content >
             <Image
