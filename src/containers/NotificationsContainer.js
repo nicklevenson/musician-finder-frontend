@@ -1,10 +1,17 @@
 import React from 'react'
-
+import {Redirect} from 'react-router-dom'
 class NotificationsContainer extends React.Component {
   render(){
-    return(
-      <h1>Notifications</h1>
-    )
+    if (sessionStorage.jwt){
+      return(
+        <h1>Notifications</h1>
+      )
+    }
+    else{
+      return(
+        <Redirect to="/login"></Redirect>
+      )
+    }
   }
 }
 
