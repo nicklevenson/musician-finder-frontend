@@ -2,6 +2,15 @@ import React from 'react'
 
 import {Card, Icon, Image} from 'semantic-ui-react'
 class UserCard extends React.Component {
+
+  renderSimilarTags = () => {
+    if (this.props.similar_tags && this.props.similar_tags.length !== 0) {
+      return (
+        <Card.Content>Similar Interests: <br/>{this.props.similar_tags.map(t => <i>|{t}|</i>)}</Card.Content>
+      )
+    }
+  }
+
   render(){
     return(
       <div style={{margin: "2vw"}}>
@@ -30,9 +39,7 @@ class UserCard extends React.Component {
               {this.props.user.connections || "0"} Connections
             </a>
           </Card.Content>
-          <Card.Meta>
-            {this.props.user.similar_tags ? this.props.user.similar_tags.map(t => <i>t</i>) : null}
-          </Card.Meta>
+          {this.renderSimilarTags()}
         </Card>
       </div>
     )
