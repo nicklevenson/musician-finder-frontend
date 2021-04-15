@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {Card, Icon, Image} from 'semantic-ui-react'
+import ConnectForm from './ConnectForm'
 
 class PreviewUserCard extends React.Component {
 
@@ -15,7 +16,7 @@ class PreviewUserCard extends React.Component {
   render(){
     return(
       <div style={{display:"inline-block", margin:"1vw", whiteSpace:"normal"}}>
-        <Card raised style={{height:"200px"}}>
+        <Card raised style={{height:"min-content"}}>
           <Card.Content >
             <Image
               size='mini'
@@ -47,7 +48,9 @@ class PreviewUserCard extends React.Component {
               {this.props.user.connections || "0"} Connections
             </a>
           </Card.Content>
-        
+          <Card.Content>
+            <ConnectForm focusedUser={this.props.user}/>
+          </Card.Content>
         </Card>
       </div>
     )

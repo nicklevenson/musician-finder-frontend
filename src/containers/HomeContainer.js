@@ -20,7 +20,7 @@ class HomeContainer extends React.Component {
   render(){
     return(
       <>
-      <h1>Home</h1>
+      
         <Grid relaxed padded centered columns={3}>
           <Grid.Column>
             <Segment>
@@ -28,7 +28,7 @@ class HomeContainer extends React.Component {
                 {this.props.currentUser.username ? <UserCard user={this.props.currentUser}/> : <LoginCard/>}
               </Rail>
               
-              <div style={{height: "70vh"}}>
+              <div style={{height: "70vh", textAlign:"center"}}>
                 <h2>Posts</h2>
               </div>
             
