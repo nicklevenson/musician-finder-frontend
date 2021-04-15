@@ -1,8 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Button, Icon} from 'semantic-ui-react'
+import {requestConnection} from '../actions/useractions.js'
 class ConnectForm extends React.Component{
+
+  handleConnectionRequest = () => {
+    //we need to send current user id and the requested id
+    this.props.requestConnection(this.props.focusedUser.id)
+  }
   render(){
+    console.log(this.props.currentUser.outgoing_pending_requests)
     //needs current user, current connections, and its pending connections
     //needs user to be requested
 
@@ -12,7 +19,7 @@ class ConnectForm extends React.Component{
       //render Remove Connection button
     //else
       //render connection request button
-      if (this.props.currentUser.outgoing_pending_requests.includes(this.props.focusedUser)){
+      if (this.props.currentUser.outgoing_pending_requests.map(u=>u.id).includes(this.props.focusedUser.id)){
         return(
           
           <h2>Pending</h2>
@@ -23,7 +30,7 @@ class ConnectForm extends React.Component{
         )
       }else {
         return(
-          <Button animated>
+          <Button animated onClick={this.handleConnectionRequest}>
             <Button.Content visible>Request Connection</Button.Content>
             <Button.Content hidden>
               Send? <Icon name='arrow right' />
@@ -34,10 +41,15 @@ class ConnectForm extends React.Component{
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    requestConnection: (requested_id) => dispatch(requestConnection(requested_id))
+  }
+}
 const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser.currentUser
   }
 }
 
-export default connect(mapStateToProps)(ConnectForm)
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectForm)

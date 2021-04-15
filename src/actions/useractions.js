@@ -41,3 +41,26 @@ export const fetchUserRecs = () => {
     })
   }
 }
+
+export const requestConnection = (requested_id) => {
+  return (dispatch) => {
+    let configObj = {
+      method: 'POST',
+      headers: {
+          Authorization: `Bearer ${sessionStorage.jwt}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({requested_id: requested_id})
+    }
+    const userId = sessionStorage.userId
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/request_connection`,configObj)
+    .then(res => res.json())
+    .then(json => {
+      fetchUser()
+    })
+    .catch(function(error) {
+        alert("Error requesting connection.")
+    })
+  }
+}
