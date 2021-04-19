@@ -8,6 +8,10 @@ class ConnectForm extends React.Component{
     //we need to send current user id and the requested id
     this.props.requestConnection(this.props.focusedUser.id)
   }
+
+  // handleRemoveConnection = () => {
+  //   this.props.removeConnection(thi)
+  // }
   render(){
     //needs current user, current connections, and its pending connections
     //needs user to be requested
@@ -27,11 +31,8 @@ class ConnectForm extends React.Component{
         )
       }else if(this.props.currentUser.connected_users.map(u=>u.id).includes(this.props.focusedUser.id)){
         return(
-          <Button animated onClick={this.handleRemoveConnection}>
-            <Button.Content visible>Remove Connection</Button.Content>
-            <Button.Content hidden>
-              Are you sure? <Icon name='arrow right' />
-            </Button.Content>
+          <Button disabled>
+            <Button.Content>You and {this.props.focusedUser.username} are connected</Button.Content>
           </Button>
         )
       }else {
