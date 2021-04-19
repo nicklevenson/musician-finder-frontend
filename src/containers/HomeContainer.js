@@ -29,6 +29,7 @@ class HomeContainer extends React.Component {
                 {this.props.currentUser.username ? 
                 <>
                   <UserCard user={this.props.currentUser}/> 
+                  <br/><br/>
                   <IncomingRequestsContainer/>
                 </>
                 : <LoginCard/>}
