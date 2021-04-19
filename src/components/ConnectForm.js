@@ -25,9 +25,14 @@ class ConnectForm extends React.Component{
           </Button>
           
         )
-      }else if(this.props.currentUser.connected_users.includes(this.props.focusedUser)){
+      }else if(this.props.currentUser.connected_users.map(u=>u.id).includes(this.props.focusedUser.id)){
         return(
-          <h2>Remove Connection :(</h2>
+          <Button animated onClick={this.handleRemoveConnection}>
+            <Button.Content visible>Remove Connection</Button.Content>
+            <Button.Content hidden>
+              Are you sure? <Icon name='arrow right' />
+            </Button.Content>
+          </Button>
         )
       }else {
         return(
