@@ -40,7 +40,7 @@ class ConnectForm extends React.Component{
             </Button.Content>
           </Button>
          )
-      }else if(this.props.currentUser.connected_users.map(u=>u.user.id).includes(this.props.focusedUser.id)){
+      }else if(this.props.currentUser.connected_users_with_tags.map(u=>u.user.id).includes(this.props.focusedUser.id)){
         return(
           <Button disabled>
             <Button.Content>You and {this.props.focusedUser.username} are connected</Button.Content>

@@ -9,9 +9,9 @@ import IncomingRequestsContainer from './IncomingRequestsContainer'
 class HomeContainer extends React.Component {
 
   renderUserConnections = () => {
-    if (this.props.currentUser.connected_users){
-      if (this.props.currentUser.connected_users.length !== 0){
-        return this.props.currentUser.connected_users.map(u=><PreviewUserCard user={u}/>)
+    if (this.props.currentUser.connected_users_with_tags){
+      if (this.props.currentUser.connected_users_with_tags.length !== 0){
+        return this.props.currentUser.connected_users_with_tags.map(u=><PreviewUserCard user={u}/>)
       }else{
         return <h1>Go find some users to connect with!</h1>
       }
