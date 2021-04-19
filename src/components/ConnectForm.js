@@ -9,7 +9,6 @@ class ConnectForm extends React.Component{
     this.props.requestConnection(this.props.focusedUser.id)
   }
   render(){
-    console.log(this.props.currentUser.outgoing_pending_requests)
     //needs current user, current connections, and its pending connections
     //needs user to be requested
 
@@ -21,8 +20,10 @@ class ConnectForm extends React.Component{
       //render connection request button
       if (this.props.currentUser.outgoing_pending_requests.map(u=>u.id).includes(this.props.focusedUser.id)){
         return(
+          <Button disabled>
+            <Button.Content>Pending</Button.Content>
+          </Button>
           
-          <h2>Pending</h2>
         )
       }else if(this.props.currentUser.connected_users.includes(this.props.focusedUser)){
         return(

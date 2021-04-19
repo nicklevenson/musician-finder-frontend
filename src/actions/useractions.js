@@ -57,7 +57,7 @@ export const requestConnection = (requested_id) => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/request_connection`,configObj)
     .then(res => res.json())
     .then(json => {
-      fetchUser()
+      dispatch(fetchUser())
     })
     .catch(function(error) {
         alert("Error requesting connection.")
