@@ -12,7 +12,7 @@ class ConnectForm extends React.Component{
   // handleRemoveConnection = () => {
   //   this.props.removeConnection(thi)
   // }
-  render(){
+
     //needs current user, current connections, and its pending connections
     //needs user to be requested
 
@@ -22,6 +22,8 @@ class ConnectForm extends React.Component{
       //render Remove Connection button
     //else
       //render connection request button
+
+  render(){
       if (this.props.currentUser.outgoing_pending_requests.map(u=>u.id).includes(this.props.focusedUser.id)){
         return(
           <Button disabled>
@@ -29,7 +31,16 @@ class ConnectForm extends React.Component{
           </Button>
           
         )
-      }else if(this.props.currentUser.connected_users.map(u=>u.id).includes(this.props.focusedUser.id)){
+      }else if (this.props.incomingRequests.map(u=>u.user.id).includes(this.props.focusedUser.id)) {
+         return(
+          <Button animated onClick={this.handleConnectionRequest}>
+            <Button.Content visible>Accept Connection</Button.Content>
+            <Button.Content hidden>
+              Accept <Icon name='arrow right' />
+            </Button.Content>
+          </Button>
+         )
+      }else if(this.props.currentUser.connected_users.map(u=>u.user.id).includes(this.props.focusedUser.id)){
         return(
           <Button disabled>
             <Button.Content>You and {this.props.focusedUser.username} are connected</Button.Content>
@@ -55,7 +66,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.currentUser.currentUser
+    currentUser: state.currentUser.currentUser,
+    incomingRequests: state.currentUser.incomingRequests
   }
 }
 
