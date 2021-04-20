@@ -3,6 +3,7 @@ export const setUser = (user) => ({type: "SET_USER", payload: user})
 export const setRecommendedUsers = (users) => ({type: "SET_RECOMMENDED_USERS", payload: users})
 export const setIncomingRequests = (users) => ({type: "SET_INCOMING_REQUESTS", payload: users})
 export const setConnections = (users) => ({type: "SET_CONNECTIONS", payload: users})
+
 export const fetchUser = () => {
   return (dispatch) => {
     const userId = sessionStorage.userId
@@ -16,7 +17,9 @@ export const fetchUser = () => {
     .then(json => {
       
         dispatch(setUser(json))
-       
+        dispatch(fetchUserRecs())
+        dispatch(fetchConnections())
+        dispatch(fetchIncomingRequests())
     })
     .catch(function(error) {
         alert("Error getting User.")
@@ -124,9 +127,7 @@ export const acceptConnection = (requesting_user_id) => {
     .then(res => res.json())
     .then(json => {
       dispatch(fetchUser())
-      dispatch(fetchIncomingRequests())
-      dispatch(fetchUserRecs())
-      dispatch(fetchConnections())
+    
     })
     .catch(function(error) {
         alert("Error requesting connection.")
@@ -150,9 +151,7 @@ export const rejectConnection = (requesting_user_id) => {
     .then(res => res.json())
     .then(json => {
       dispatch(fetchUser())
-      dispatch(fetchIncomingRequests())
-      dispatch(fetchUserRecs())
-      dispatch(fetchConnections())
+   
     })
     .catch(function(error) {
         alert("Error requesting connection.")
