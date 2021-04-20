@@ -23,14 +23,14 @@ class ConnectionsContainer extends React.Component {
             </Grid.Column>  
           </Grid.Row>
           <Grid.Column>
-              <div style={{height: "70vh", textAlign:"center", width:"min-content"}}>
+              <div style={{height: "70vh", width:"min-content"}}>
                 {this.props.currentUser.username ? <RecommendedUsersCarousel/> : null}
               </div>
           </Grid.Column>  
           
           
           <Grid.Column>
-            <div style={{textAlign:"center"}}>
+            <div >
               <i>Your Connections</i>
                 <hr/>
                 {this.props.connectedUsers.length > 0 ? 
@@ -39,7 +39,7 @@ class ConnectionsContainer extends React.Component {
                       <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcardconnections"}/>
                   )}
                 </div>
-                : null}  
+                : "No connected users"}  
            </div>
           </Grid.Column>
 
