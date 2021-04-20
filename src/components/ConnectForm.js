@@ -42,6 +42,7 @@ class ConnectForm extends React.Component{
       }else if (this.props.incomingRequests.map(u=>u.user.id).includes(this.props.focusedUser.id)) {
          return(
           <>
+            <h5>{this.props.focusedUser.username} has requested to connect</h5>
             <Button onClick={this.handleConnectionAccept}>
               <Button.Content>Accept</Button.Content>
             </Button>
