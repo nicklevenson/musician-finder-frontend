@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Button, Icon} from 'semantic-ui-react'
-import {requestConnection} from '../actions/useractions.js'
+import {requestConnection, acceptConnection, rejectConnection} from '../actions/useractions.js'
 class ConnectForm extends React.Component{
 
   handleConnectionRequest = () => {
@@ -10,11 +10,11 @@ class ConnectForm extends React.Component{
   }
 
   handleConnectionAccept = () => {
-
+    this.props.acceptConnection(this.props.focusedUser.id)
   }
 
   handleConnectionReject = () => {
-    
+    this.props.rejectConnection(this.props.focusedUser.id)
   }
 
   // handleRemoveConnection = () => {
@@ -71,7 +71,9 @@ class ConnectForm extends React.Component{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    requestConnection: (requested_id) => dispatch(requestConnection(requested_id))
+    requestConnection: (requested_id) => dispatch(requestConnection(requested_id)),
+    acceptConnection: (requesting_user_id) => dispatch(acceptConnection(requesting_user_id)),
+    rejectConnection: (requesting_user_id) => dispatch(rejectConnection(requesting_user_id))
   }
 }
 const mapStateToProps = (state) => {
