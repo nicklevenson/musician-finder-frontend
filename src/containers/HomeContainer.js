@@ -11,7 +11,7 @@ class HomeContainer extends React.Component {
   renderUserConnections = () => {
     if (this.props.currentUser.connected_users_with_tags){
       if (this.props.currentUser.connected_users_with_tags.length !== 0){
-        return this.props.currentUser.connected_users_with_tags.map(u=><PreviewUserCard user={u}/>)
+        return this.props.currentUser.connected_users_with_tags.map(u=><PreviewUserCard user={u} key={u.id + "previewcardconnected"}/>)
       }else{
         return <h1>Go find some users to connect with!</h1>
       }

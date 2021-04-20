@@ -15,7 +15,7 @@ class IncomingRequestsContainer extends React.Component {
         <hr/>
         <div className="side-swipe">
           {this.props.incomingRequests.map(u => 
-              <PreviewUserCard user={u.user} similar_tags={u.similar_tags}/>
+              <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcardrequest"}/>
             )}
         </div>
         </>

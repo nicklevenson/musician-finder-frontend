@@ -126,6 +126,7 @@ export const acceptConnection = (requesting_user_id) => {
       dispatch(fetchUser())
       dispatch(fetchIncomingRequests())
       dispatch(fetchUserRecs())
+      dispatch(fetchConnections())
     })
     .catch(function(error) {
         alert("Error requesting connection.")
@@ -151,6 +152,7 @@ export const rejectConnection = (requesting_user_id) => {
       dispatch(fetchUser())
       dispatch(fetchIncomingRequests())
       dispatch(fetchUserRecs())
+      dispatch(fetchConnections())
     })
     .catch(function(error) {
         alert("Error requesting connection.")

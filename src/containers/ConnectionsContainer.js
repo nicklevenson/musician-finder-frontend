@@ -36,7 +36,7 @@ class ConnectionsContainer extends React.Component {
                 {this.props.connectedUsers.length > 0 ? 
                 <div className="down-swipe">
                   {this.props.connectedUsers.map(u => 
-                      <PreviewUserCard user={u.user} similar_tags={u.similar_tags}/>
+                      <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcardconnections"}/>
                   )}
                 </div>
                 : null}  
