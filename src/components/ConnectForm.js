@@ -51,7 +51,7 @@ class ConnectForm extends React.Component{
             </Button>
           </>
          )
-      }else if(this.props.currentUser.connected_users_with_tags.map(u=>u.user.id).includes(this.props.focusedUser.id)){
+      }else if(this.props.connectedUsers.map(u=>u.user.id).includes(this.props.focusedUser.id)){
         return(
           <Button disabled>
             <Button.Content>You and {this.props.focusedUser.username} are connected</Button.Content>
@@ -80,7 +80,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser.currentUser,
-    incomingRequests: state.currentUser.incomingRequests
+    incomingRequests: state.currentUser.incomingRequests,
+    connectedUsers: state.currentUser.connectedUsers
   }
 }
 

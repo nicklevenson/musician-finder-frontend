@@ -1,5 +1,7 @@
 export default function userReducer(state={
-  currentUser: {},
+  currentUser: {
+    outgoing_pending_requests: []
+  },
   connectedUsers: [],
   recommendedUsers: [],
   incomingRequests: [],

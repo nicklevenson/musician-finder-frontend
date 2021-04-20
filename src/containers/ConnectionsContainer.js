@@ -17,13 +17,13 @@ class ConnectionsContainer extends React.Component {
       <Grid relaxed padded centered columns={3}>
           <Grid.Row>
             <Grid.Column>
-                <div style={{maxHeight: "40vh", textAlign:"center", maxWidth:"300px", margin:"auto"}}>
+                <div style={{maxHeight: "40vh", textAlign:"center", maxWidth:"300px", margin:"auto", width:"min-content"}}>
                   {this.props.currentUser.username ? <IncomingRequestsContainer/> : null}
                 </div>
             </Grid.Column>  
           </Grid.Row>
           <Grid.Column>
-              <div style={{height: "70vh", textAlign:"center"}}>
+              <div style={{height: "70vh", textAlign:"center", width:"min-content"}}>
                 {this.props.currentUser.username ? <RecommendedUsersCarousel/> : null}
               </div>
           </Grid.Column>  
@@ -34,7 +34,7 @@ class ConnectionsContainer extends React.Component {
               <i>Your Connections</i>
                 <hr/>
                 {this.props.connectedUsers.length > 0 ? 
-                <div className="down-swipe">
+                <div className="down-swipe"style={{width:"min-content"}} >
                   {this.props.connectedUsers.map(u => 
                       <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcardconnections"}/>
                   )}
