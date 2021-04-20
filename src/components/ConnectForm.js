@@ -9,6 +9,14 @@ class ConnectForm extends React.Component{
     this.props.requestConnection(this.props.focusedUser.id)
   }
 
+  handleConnectionAccept = () => {
+
+  }
+
+  handleConnectionReject = () => {
+    
+  }
+
   // handleRemoveConnection = () => {
   //   this.props.removeConnection(thi)
   // }
@@ -33,12 +41,14 @@ class ConnectForm extends React.Component{
         )
       }else if (this.props.incomingRequests.map(u=>u.user.id).includes(this.props.focusedUser.id)) {
          return(
-          <Button animated onClick={this.handleConnectionRequest}>
-            <Button.Content visible>Accept Connection</Button.Content>
-            <Button.Content hidden>
-              Accept <Icon name='arrow right' />
-            </Button.Content>
-          </Button>
+          <>
+            <Button onClick={this.handleConnectionAccept}>
+              <Button.Content>Accept</Button.Content>
+            </Button>
+            <Button onClick={this.handleConnectionReject}>
+              <Button.Content>Reject</Button.Content>
+            </Button>
+          </>
          )
       }else if(this.props.currentUser.connected_users_with_tags.map(u=>u.user.id).includes(this.props.focusedUser.id)){
         return(

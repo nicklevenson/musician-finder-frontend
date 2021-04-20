@@ -86,3 +86,49 @@ export const requestConnection = (requested_id) => {
     })
   }
 }
+
+export const acceptConnection = (requesting_user_id) => {
+  return (dispatch) => {
+    let configObj = {
+      method: 'POST',
+      headers: {
+          Authorization: `Bearer ${sessionStorage.jwt}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({requesting_user_id: requesting_user_id})
+    }
+    const userId = sessionStorage.userId
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/accept_connection`,configObj)
+    .then(res => res.json())
+    .then(json => {
+      dispatch(fetchUser())
+    })
+    .catch(function(error) {
+        alert("Error requesting connection.")
+    })
+  }
+}
+
+export const rejectConnection = (requesting_user_id) => {
+  return (dispatch) => {
+    let configObj = {
+      method: 'POST',
+      headers: {
+          Authorization: `Bearer ${sessionStorage.jwt}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({requesting_user_id: requesting_user_id})
+    }
+    const userId = sessionStorage.userId
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/reject_connection`,configObj)
+    .then(res => res.json())
+    .then(json => {
+      dispatch(fetchUser())
+    })
+    .catch(function(error) {
+        alert("Error requesting connection.")
+    })
+  }
+}
