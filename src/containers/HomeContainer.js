@@ -25,7 +25,7 @@ class HomeContainer extends React.Component {
         <Grid relaxed padded centered columns={3}>
           <Grid.Column>
             <Segment>
-              <Rail dividing position="left">
+              <Rail dividing position="left" >
                 {this.props.currentUser.username ? 
                 <>
                   <UserCard user={this.props.currentUser}/> 

@@ -1,5 +1,6 @@
 export default function userReducer(state={
   currentUser: {},
+  connectedUsers: [],
   recommendedUsers: [],
   incomingRequests: [],
   allUsers: []
@@ -7,6 +8,8 @@ export default function userReducer(state={
   switch(action.type){
     case "SET_USER":
       return {...state, currentUser: action.payload}
+    case "SET_CONNECTIONS":
+      return {...state, connectedUsers: action.payload}
     case "SET_RECOMMENDED_USERS":
       return {...state, recommendedUsers: action.payload}
     case "SET_INCOMING_REQUESTS":
