@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+
+.down-swipe {
+  height: min-content !important;
+  max-height: 100%;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+  /* white-space: nowrap !important; */
+}
+
+.side-swipe {
+  width: 100%;
+  overflow-x: scroll;
+  white-space: nowrap;
+}

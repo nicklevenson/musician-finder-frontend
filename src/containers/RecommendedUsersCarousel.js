@@ -14,7 +14,7 @@ class RecommendedUsersCarousel extends React.Component {
       <>
       <i>Recommended Users For You</i>
       <hr/>
-      <div className="side-swipe">
+      <div className="down-swipe">
         {this.props.recommendedUsers.map(u => 
             <PreviewUserCard user={u.user} similar_tags={u.similar_tags}/>
           )}
