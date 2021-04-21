@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {fetchUser} from '../actions/useractions'
 import {Notification} from '../components/Notification.js'
-import {Feed} from 'semantic-ui-react'
+import {Feed, Container} from 'semantic-ui-react'
 class NotificationsContainer extends React.Component {
   componentDidMount = () => {
     this.props.fetchUser()
@@ -11,14 +11,14 @@ class NotificationsContainer extends React.Component {
   render(){
     if (sessionStorage.jwt){
       return(
-        <>
+        <Container text textAlign="center">
         <h1>Notifications</h1>
-        <Feed>
+        <Feed >
           {this.props.currentUser.notifications.map(n => {
             return <Notification notification={n}/>
           })}
         </Feed>
-        </>
+        </Container>
       )
     }
     else{
