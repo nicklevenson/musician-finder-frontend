@@ -9,7 +9,14 @@ export const Notification = (props) => {
       <Feed.Content>
         <Feed.Summary style={{textAlign:"center"}}>
           {/* <Feed.User>Elliot Fu</Feed.User> added you as a friend */}
-          {props.notification.content}
+          {props.notification.involved_user_id ?
+            <>
+              <a href={"/users/" + props.notification.involved_user_id}>{props.notification.involved_username + " "}</a>
+              {props.notification.content}
+            </>
+            :
+           props.notification.content
+          }
           <Feed.Date>{props.notification.created_at.split("-").splice(0,2).join("-")}</Feed.Date>
         </Feed.Summary>
       </Feed.Content>
