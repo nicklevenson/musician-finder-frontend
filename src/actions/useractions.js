@@ -3,6 +3,25 @@ export const setUser = (user) => ({type: "SET_USER", payload: user})
 export const setRecommendedUsers = (users) => ({type: "SET_RECOMMENDED_USERS", payload: users})
 export const setIncomingRequests = (users) => ({type: "SET_INCOMING_REQUESTS", payload: users})
 export const setConnections = (users) => ({type: "SET_CONNECTIONS", payload: users})
+export const setAllUsers = (users) => ({type: "SET_ALL_USERS", payload: users})
+
+export const fetchAllUsers = () => {
+  return (dispatch) => {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users`,{
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.jwt}`
+      }
+    })
+    .then(res => res.json())
+    .then(json => {
+        dispatch(setAllUsers(json))
+    })
+    .catch(function(error) {
+        alert("Error getting User.")
+    })
+  }
+}
 
 export const fetchUser = () => {
   return (dispatch) => {

@@ -10,10 +10,11 @@ import NotificationsContainer from './containers/NotificationsContainer'
 import ProfileContainer from './containers/ProfileContainer'
 import Logout from './components/Logout'
 
-import {fetchUser} from './actions/useractions'
+import {fetchUser, fetchAllUsers} from './actions/useractions'
 import LoginContainer from './containers/LoginContainer';
 class App extends React.Component {
   componentDidMount() {
+    this.props.fetchAllUsers()
     if (sessionStorage.userId) {
       this.props.fetchUser()
     }
@@ -38,7 +39,8 @@ class App extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUser: () => dispatch(fetchUser())
+    fetchUser: () => dispatch(fetchUser()),
+    fetchAllUsers: () => dispatch(fetchAllUsers())
   }
 }
 
