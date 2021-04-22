@@ -2,6 +2,7 @@ import React from 'react'
 import {Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {Card, Icon, Image} from 'semantic-ui-react'
+import ConnectForm from '../components/ConnectForm'
 class UserShowContainer extends React.Component {
   state = {
     shownUser: {
@@ -67,7 +68,8 @@ class UserShowContainer extends React.Component {
 
   render(){
     return(
-       <Card raised>
+       <Card raised style={{width: "70vw", height: "80vh", margin: "auto"}}>
+         <Card style={{width: "80%", margin: "0 auto 0 auto"}}>
           <Card.Content textAlign="center">
             <Image
               size='tiny'
@@ -92,7 +94,12 @@ class UserShowContainer extends React.Component {
               {this.state.shownUser.connected_users_with_tags.length || "0"} Connections
             </a>
           </Card.Content>
-          {this.renderSimilarTags()}
+          <Card.Content style={{width: "50%", margin:"auto"}}>
+            {this.renderSimilarTags()}
+            <ConnectForm focusedUser={this.state.shownUser}/>
+          </Card.Content>
+          
+        </Card>
       </Card>
     )
   }
