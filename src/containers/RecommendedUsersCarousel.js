@@ -15,9 +15,14 @@ class RecommendedUsersCarousel extends React.Component {
       <i>Recommended Users For You</i>
       <hr/>
       <div className="down-swipe">
-        {this.props.recommendedUsers.map(u => 
+        {this.props.recommendedUsers.length > 0 ? 
+          this.props.recommendedUsers.map(u => 
             <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcard"}/>
-          )}
+          )
+        :
+        this.props.allUsers.map(u => 
+          <PreviewUserCard user={u} key={u.id + "previewcard"}/>)
+        }
       </div>
       </>
     )
@@ -27,7 +32,8 @@ class RecommendedUsersCarousel extends React.Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser.currentUser,
-    recommendedUsers: state.currentUser.recommendedUsers
+    recommendedUsers: state.currentUser.recommendedUsers,
+    allUsers: state.currentUser.allUsers
   }
 }
 

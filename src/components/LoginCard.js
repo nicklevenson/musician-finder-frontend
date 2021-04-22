@@ -26,7 +26,7 @@ class LoginCard extends React.Component {
         <Card fluid>
           <br></br>
           <div style={{margin:"auto"}}>
-          <Card.Header><h2>Please Login/Signup</h2></Card.Header>
+          <Card.Header><h2>Login/Signup</h2></Card.Header>
           
           {this.props.heading ? <Card.Content><h5><i>{this.props.heading}</i></h5></Card.Content>: null}
           <br></br>

@@ -42,7 +42,7 @@ class HomeContainer extends React.Component {
             
     
               <Rail dividing position="right">
-                {this.props.currentUser.username ? <RecommendedUsersCarousel/> : null}
+                <RecommendedUsersCarousel/>
               </Rail>
             </Segment>
           </Grid.Column>
