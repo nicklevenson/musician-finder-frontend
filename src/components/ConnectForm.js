@@ -32,6 +32,7 @@ class ConnectForm extends React.Component{
       //render connection request button
 
   render(){
+    if (sessionStorage.userId) {
       if (this.props.currentUser.outgoing_pending_requests.map(u=>u.id).includes(this.props.focusedUser.id)){
         return(
           <Button disabled>
@@ -67,6 +68,13 @@ class ConnectForm extends React.Component{
           </Button>
         )
       }
+    }else{
+      return(
+        <Button disabled>
+          <Button.Content>Login To Connect</Button.Content>
+        </Button>
+      )
+    }  
   }
 }
 

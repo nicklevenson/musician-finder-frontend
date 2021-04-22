@@ -24,7 +24,7 @@ class UserShowContainer extends React.Component {
  
 
   renderSimilarTags = () => {
-    if (this.state.similar_tags && this.state.similar_tags.length !== 0) {
+    if (this.state.similar_tags && this.state.similar_tags.length > 0) {
       return (
         <Card.Content>You both like: <br/>{this.state.similar_tags.join(", ")}</Card.Content>
       )
@@ -68,7 +68,7 @@ class UserShowContainer extends React.Component {
 
   render(){
     return(
-       <Card raised style={{width: "70vw", height: "80vh", margin: "auto"}}>
+     
          <Card style={{width: "80%", margin: "0 auto 0 auto"}}>
           <Card.Content textAlign="center">
             <Image
@@ -96,11 +96,12 @@ class UserShowContainer extends React.Component {
           </Card.Content>
           <Card.Content style={{width: "50%", margin:"auto"}}>
             {this.renderSimilarTags()}
+            <br/>
             <ConnectForm focusedUser={this.state.shownUser}/>
           </Card.Content>
           
         </Card>
-      </Card>
+
     )
   }
 }
