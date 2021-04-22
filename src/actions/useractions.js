@@ -45,6 +45,8 @@ export const fetchUser = () => {
     })
   }
 }
+
+
 export const fetchUserRecs = () => {
   return (dispatch) => {
     const userId = sessionStorage.userId

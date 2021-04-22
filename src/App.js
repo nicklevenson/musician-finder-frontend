@@ -8,6 +8,7 @@ import ConnectionsContainer from './containers/ConnectionsContainer'
 import MessagingContainer from './containers/MessagingContainer'
 import NotificationsContainer from './containers/NotificationsContainer'
 import ProfileContainer from './containers/ProfileContainer'
+import UserShowContainer from './containers/UserShowContainer'
 import Logout from './components/Logout'
 
 import {fetchUser, fetchAllUsers} from './actions/useractions'
@@ -29,6 +30,7 @@ class App extends React.Component {
         <Route exact path="/messaging" component={MessagingContainer}></Route>
         <Route exact path="/notifications" component={NotificationsContainer}></Route>
         <Route exact path="/profile" component={ProfileContainer}></Route>
+        <Route exact path="/users/:id" component={UserShowContainer}></Route>
         <Route exact path="/login" component={LoginContainer}></Route>
         <Route exact path="/logout" component={Logout}></Route>
       </div>
