@@ -11,11 +11,26 @@ class UserShowContainer extends React.Component {
       photo: null,
       providerImage: "...",
       connected_users_with_tags: []
-      
-    }
+    },
+    similar_tags: []
   }
 
   componentDidMount() {
+    this.fetchShownUser()
+    this.fetchSimilarTags()
+  }
+
+ 
+
+  renderSimilarTags = () => {
+    if (this.state.similar_tags && this.state.similar_tags.length !== 0) {
+      return (
+        <Card.Content>You both like: <br/>{this.state.similar_tags.join(", ")}</Card.Content>
+      )
+    }
+  }
+
+  fetchShownUser = () => {
     const userId = this.props.match.params.id
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`,{
       method: 'GET',
@@ -32,14 +47,21 @@ class UserShowContainer extends React.Component {
     })
   }
 
- 
-
-  renderSimilarTags = () => {
-    if (this.props.similar_tags && this.props.similar_tags.length !== 0) {
-      return (
-        <Card.Content>You both like: <br/>{this.props.similar_tags.map(t => <i>|{t}|</i>)}</Card.Content>
-      )
-    }
+  fetchSimilarTags = () => {
+    const userId = this.props.match.params.id
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/get_similar_tags/${sessionStorage.userId}`,{
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.jwt}`
+      }
+    })
+    .then(res => res.json())
+    .then(json => {
+      this.setState({similar_tags: json})
+    })
+    .catch(function(error) {
+        alert("Error getting User.")
+    })
   }
 
 
@@ -70,7 +92,7 @@ class UserShowContainer extends React.Component {
               {this.state.shownUser.connected_users_with_tags.length || "0"} Connections
             </a>
           </Card.Content>
-          {/* {this.renderSimilarTags()} */}
+          {this.renderSimilarTags()}
       </Card>
     )
   }

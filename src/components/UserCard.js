@@ -6,7 +6,7 @@ class UserCard extends React.Component {
   renderSimilarTags = () => {
     if (this.props.similar_tags && this.props.similar_tags.length !== 0) {
       return (
-        <Card.Content>You both like: <br/>{this.props.similar_tags.map(t => <i>|{t}|</i>)}</Card.Content>
+        <Card.Content>You both like: <br/>{this.props.similar_tags.join(", ")(t => <i>|{t}|</i>)}</Card.Content>
       )
     }
   }
