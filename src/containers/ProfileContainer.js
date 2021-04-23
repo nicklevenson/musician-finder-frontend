@@ -1,5 +1,6 @@
 import React from 'react'
 import {Redirect, Link} from 'react-router-dom'
+import UserShowContainer from './UserShowContainer'
 
 class ProfileContainer extends React.Component {
   render(){
@@ -8,7 +9,7 @@ class ProfileContainer extends React.Component {
         <>
         <h1>Profile</h1>
         <h5><Link to="/logout">Logout</Link></h5>
- 
+        <UserShowContainer/>
         </>
       )
     }

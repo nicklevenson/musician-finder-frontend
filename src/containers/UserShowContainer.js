@@ -17,8 +17,12 @@ class UserShowContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchShownUser()
-    this.fetchSimilarTags()
+    if (this.props.match){
+      this.fetchShownUser()
+      this.fetchSimilarTags()
+    }else{
+      this.setState({shownUser: this.props.currentUser})
+    }
   }
 
  

@@ -58,7 +58,10 @@ class ConnectForm extends React.Component{
             <Button.Content>You and {this.props.focusedUser.username} are connected</Button.Content>
           </Button>
         )
-      }else {
+      }else if(this.props.currentUser.id === this.props.focusedUser.id){
+        return(null)
+      }
+      else {
         return(
           <Button animated onClick={this.handleConnectionRequest}>
             <Button.Content visible>Request Connection</Button.Content>
