@@ -66,7 +66,7 @@ class Nav extends React.Component {
           as={NavLink}
           to="/profile"
         >
-          Profile<br/><img></img>
+          Profile
         </Menu.Item>
       </Menu>
     )

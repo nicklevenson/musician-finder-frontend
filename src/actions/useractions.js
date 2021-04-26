@@ -10,7 +10,7 @@ export const fetchAllUsers = () => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users`,{
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${sessionStorage.jwt}`
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`
       }
     })
     .then(res => res.json())
@@ -29,7 +29,7 @@ export const fetchUser = () => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`,{
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${sessionStorage.jwt}`
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`
       }
     })
     .then(res => res.json())
@@ -53,7 +53,7 @@ export const fetchUserRecs = () => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users`,{
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${sessionStorage.jwt}`
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`
       }
     })
     .then(res => res.json())
@@ -73,7 +73,7 @@ export const fetchConnections = () => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/connected_users`,{
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${sessionStorage.jwt}`
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`
       }
     })
     .then(res => res.json())
@@ -94,7 +94,7 @@ export const fetchIncomingRequests = () => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/incoming_requests`,{
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${sessionStorage.jwt}`
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`
       }
     })
     .then(res => res.json())
@@ -114,7 +114,7 @@ export const requestConnection = (requested_id) => {
     let configObj = {
       method: 'POST',
       headers: {
-          Authorization: `Bearer ${sessionStorage.jwt}`,
+          Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
       },
@@ -137,7 +137,7 @@ export const acceptConnection = (requesting_user_id) => {
     let configObj = {
       method: 'POST',
       headers: {
-          Authorization: `Bearer ${sessionStorage.jwt}`,
+          Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
       },
@@ -161,7 +161,7 @@ export const rejectConnection = (requesting_user_id) => {
     let configObj = {
       method: 'POST',
       headers: {
-          Authorization: `Bearer ${sessionStorage.jwt}`,
+          Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
       },
