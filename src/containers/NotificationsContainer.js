@@ -13,7 +13,7 @@ class NotificationsContainer extends React.Component {
       return(
         <Container text textAlign="center">
         <h1>Notifications</h1>
-        <Feed >
+        <Feed className="feed">
           {this.props.currentUser.notifications.map(n => {
             return <Notification notification={n}/>
           })}

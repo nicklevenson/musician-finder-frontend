@@ -22,10 +22,10 @@ class HomeContainer extends React.Component {
     return(
       <>
       
-        <Grid relaxed padded centered columns={3}>
+        <Grid centered relaxed  padded columns={2}>
           <Grid.Column>
             <Segment>
-              <Rail dividing position="left" >
+              <Rail dividing position="left">
                 {this.props.currentUser.username ? 
                 <>
                   <UserCard user={this.props.currentUser}/> 
@@ -35,18 +35,18 @@ class HomeContainer extends React.Component {
                 : <LoginCard/>}
               
               </Rail>
-              
-              <div style={{height: "70vh", textAlign:"center"}}>
-                <h2>Posts</h2>
-              </div>
+  
             
     
               <Rail dividing position="right">
                 <RecommendedUsersCarousel/>
               </Rail>
+              <div style={{height: "70vh", textAlign:"center"}}>
+                <h2>Posts</h2>
+              </div>
             </Segment>
           </Grid.Column>
-  
+         
         </Grid>
       </>
     )

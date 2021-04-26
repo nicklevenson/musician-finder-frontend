@@ -1,8 +1,24 @@
 import {Feed, Icon} from 'semantic-ui-react'
 
 export const Notification = (props) => {
+
+  function makeRead(){
+    let configObj = {
+      method: 'POST',
+      headers: {
+          Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ids: [props.notification.id]})
+    }
+    const userId = sessionStorage.userId
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/notifications/make_read`,configObj)
+  }
+
   return(
-    <Feed.Event>
+    <a href={"/users/" + props.notification.involved_user_id}>
+    <Feed.Event style={props.notification.read ? null : {background: "lightgrey"}} onClick={makeRead} className="notification">
       {/* <Feed.Label>
         <img src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
       </Feed.Label> */}
@@ -11,7 +27,7 @@ export const Notification = (props) => {
           {/* <Feed.User>Elliot Fu</Feed.User> added you as a friend */}
           {props.notification.involved_user_id ?
             <>
-              <a href={"/users/" + props.notification.involved_user_id}>{props.notification.involved_username + " "}</a>
+              {props.notification.involved_username + " "}
               {props.notification.content}
             </>
             :
@@ -21,6 +37,7 @@ export const Notification = (props) => {
         </Feed.Summary>
       </Feed.Content>
     </Feed.Event>
+    </a>
   )
 }
 
