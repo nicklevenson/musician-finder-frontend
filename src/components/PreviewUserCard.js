@@ -19,11 +19,13 @@ class PreviewUserCard extends React.Component {
         <Card raised style={{height:"min-content"}}>
           <Card.Content >
             <Image
-              size='mini'
+              size='tiny'
               circular
               src={this.props.user.photo || this.props.user.providerImage}
-              floated="right"
+             centered
             />
+          </Card.Content>
+          <Card.Content>
          
             <Card.Header floated="left">{this.props.user.username}</Card.Header>
             {/* <Card.Meta>

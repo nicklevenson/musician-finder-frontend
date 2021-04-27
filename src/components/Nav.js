@@ -1,6 +1,7 @@
 import React from 'react'
 import {Menu, Header} from 'semantic-ui-react'
 import {NavLink } from 'react-router-dom'
+import ProfileImage from './ProfileImage'
 import NotificationIcon from './NotificationIcon'
 class Nav extends React.Component {
   state = {}
@@ -57,7 +58,10 @@ class Nav extends React.Component {
           as={NavLink}
           to="/notifications"
         >
-        <NotificationIcon/>
+          <div>
+            <NotificationIcon/>
+            Notifications
+          </div>
         </Menu.Item>
 
         <Menu.Item
@@ -67,7 +71,10 @@ class Nav extends React.Component {
           as={NavLink}
           to="/profile"
         >
-          Profile
+          <div>
+            <ProfileImage/>
+            Profile
+          </div>
         </Menu.Item>
       </Menu>
     )
