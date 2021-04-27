@@ -1,6 +1,7 @@
 import React from 'react'
 import {Menu, Header} from 'semantic-ui-react'
 import {NavLink } from 'react-router-dom'
+import NotificationIcon from './NotificationIcon'
 class Nav extends React.Component {
   state = {}
 
@@ -56,7 +57,7 @@ class Nav extends React.Component {
           as={NavLink}
           to="/notifications"
         >
-          Notifications
+        <NotificationIcon/>
         </Menu.Item>
 
         <Menu.Item
