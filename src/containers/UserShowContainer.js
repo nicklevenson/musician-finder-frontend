@@ -40,7 +40,7 @@ class UserShowContainer extends React.Component {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`,{
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${sessionStorage.jwt}`
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`
       }
     })
     .then(res => res.json())
@@ -57,7 +57,7 @@ class UserShowContainer extends React.Component {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/get_similar_tags/${sessionStorage.userId}`,{
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${sessionStorage.jwt}`
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`
       }
     })
     .then(res => res.json())
@@ -92,6 +92,10 @@ class UserShowContainer extends React.Component {
               {this.state.shownUser.bio || "No bio given"}
             </Card.Description>
           </Card.Content>
+          <Card.Meta>
+              {this.renderSimilarTags()}
+          </Card.Meta>
+          <br/>
           <Card.Content extra textAlign="center">
             <a>
               <Icon name='user' />
@@ -99,8 +103,6 @@ class UserShowContainer extends React.Component {
             </a>
           </Card.Content>
           <Card.Content style={{width: "50%", margin:"auto"}}>
-            {this.renderSimilarTags()}
-            <br/>
             <ConnectForm focusedUser={this.state.shownUser}/>
           </Card.Content>
           
