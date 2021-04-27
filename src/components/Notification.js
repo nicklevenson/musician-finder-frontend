@@ -1,6 +1,8 @@
 import {Feed, Icon} from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import {fetchUser} from '../actions/useractions'
 
-export const Notification = (props) => {
+const Notification = (props) => {
 
   function makeRead(){
     let configObj = {
@@ -14,10 +16,13 @@ export const Notification = (props) => {
     }
     const userId = sessionStorage.userId
     fetch(`${process.env.REACT_APP_BACKEND_URL}/notifications/make_read`,configObj)
+    .then(resp => {
+      props.fetchUser()
+    })
   }
 
   return(
-    <a href={"/users/" + props.notification.involved_user_id}>
+    <a href={props.notification.involved_user_id ? "/users/" + props.notification.involved_user_id : null}>
     <Feed.Event style={props.notification.read ? null : {background: "lightgrey"}} onClick={makeRead} className="notification">
       {/* <Feed.Label>
         <img src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
@@ -40,4 +45,12 @@ export const Notification = (props) => {
     </a>
   )
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUser: () => dispatch(fetchUser())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Notification)
 
