@@ -17,19 +17,11 @@ class ConnectionsContainer extends React.Component {
     if (sessionStorage.jwt){
       return(
         <Grid relaxed padded centered columns={3}>
-            <Grid.Row>
-              <Grid.Column>
-                  <div style={{maxHeight: "40vh", textAlign:"center", maxWidth:"300px", margin:"auto", width:"min-content"}}>
-                    {this.props.currentUser.username ? <IncomingRequestsContainer/> : null}
-                  </div>
-              </Grid.Column>  
-            </Grid.Row>
             <Grid.Column>
-                <div style={{height: "70vh", width:"min-content"}}>
-                  {this.props.currentUser.username ? <RecommendedUsersCarousel/> : null}
+                <div style={{maxHeight: "40vh", textAlign:"center", maxWidth:"300px", margin:"auto", width:"min-content"}}>
+                  {this.props.currentUser.username ? <IncomingRequestsContainer/> : null}
                 </div>
-            </Grid.Column>  
-            
+            </Grid.Column> 
             
             <Grid.Column>
               <div >
@@ -44,6 +36,13 @@ class ConnectionsContainer extends React.Component {
                   : "No connected users"}  
              </div>
             </Grid.Column>
+            <Grid.Row columns={1}>
+              <Grid.Column>
+                  <div style={{height: "70vh", width:"80%", margin: "auto"}}>
+                    {this.props.currentUser.username ? <RecommendedUsersCarousel/> : null}
+                  </div>
+              </Grid.Column>  
+            </Grid.Row>
         </Grid>
       )
     }else{

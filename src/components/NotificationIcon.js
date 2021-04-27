@@ -12,7 +12,7 @@ const NotificationIcon = (props) => {
   
   return(
     <>
-    {notificationCount() > 0 ? <div style={{position: "absolute",width:"10px", height: "10px",marginLeft: "10px", marginBottom: "20px", backgroundColor:"red", zIndex:"5", borderRadius:"50%", color:"white"}}></div> : null}
+    {notificationCount() > 0 ? <div style={{position: "absolute",width:"10px", height: "10px",marginLeft: "10px", marginBottom: "20px", backgroundColor:"tomato", zIndex:"5", borderRadius:"50%", color:"white"}}></div> : null}
     <div style={{textAlign: "center"}}>
       <Icon name="bell"/>
     </div>
