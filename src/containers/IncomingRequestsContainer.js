@@ -13,16 +13,20 @@ class IncomingRequestsContainer extends React.Component {
         <>
         <i>Incoming Requests</i>
         <hr/>
-        <div className="side-swipe">
+        <div className="down-swipe">
           {this.props.incomingRequests.map(u => 
               <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcardrequest"}/>
-            )}
+          )}
         </div>
         </>
       )
     }else{
       return(
-        null
+        <div style={{}}>
+          <i>Incoming Requests</i>
+          <hr/>
+          No Incoming Requests
+        </div>
       )
     }
   }

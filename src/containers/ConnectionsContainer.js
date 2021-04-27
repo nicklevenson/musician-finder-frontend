@@ -16,33 +16,39 @@ class ConnectionsContainer extends React.Component {
   render(){
     if (sessionStorage.jwt){
       return(
-        <Grid relaxed padded centered columns={3}>
+        <Grid relaxed padded centered columns={1}>
             <Grid.Column>
-                <div style={{maxHeight: "40vh", textAlign:"center", maxWidth:"300px", margin:"auto", width:"min-content"}}>
+                <div style={{maxHeight: "40vh", margin:"auto", width:"80%"}}>
                   {this.props.currentUser.username ? <IncomingRequestsContainer/> : null}
                 </div>
             </Grid.Column> 
-            
-            <Grid.Column>
-              <div >
-                <i>Your Connections</i>
+
+
+            <Grid.Row columns={1}>
+              <Grid.Column>
+                <div style={{width:"80%", margin: "auto",maxHeight: "70vh"}}>
+                  <i>Your Connections</i>
                   <hr/>
                   {this.props.connectedUsers.length > 0 ? 
-                  <div className="down-swipe"style={{width:"min-content"}} >
+                  <div className="down-swipe">
                     {this.props.connectedUsers.map(u => 
                         <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcardconnections"}/>
                     )}
                   </div>
-                  : "No connected users"}  
-             </div>
-            </Grid.Column>
+                  : "No connected users. Go connect with some lovely people!"}  
+                </div>
+              </Grid.Column>
+            </Grid.Row>
+
+
             <Grid.Row columns={1}>
               <Grid.Column>
-                  <div style={{height: "70vh", width:"80%", margin: "auto"}}>
+                  <div style={{maxHeight: "70vh", width:"80%", margin: "auto"}}>
                     {this.props.currentUser.username ? <RecommendedUsersCarousel/> : null}
                   </div>
               </Grid.Column>  
             </Grid.Row>
+
         </Grid>
       )
     }else{

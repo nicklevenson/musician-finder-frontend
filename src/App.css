@@ -44,6 +44,7 @@
 
   overflow-x: hidden;
   overflow-y: scroll;
+  text-align: center;
   /* white-space: nowrap !important; */
 }
 
@@ -62,5 +63,5 @@
 
 .notification {
   padding: 5px;
-  border-bottom: solid thin lightgray;
+  border-bottom: solid thin rgba(150, 150, 150, 0.336);
 }
