@@ -25,16 +25,18 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav currentUser={this.props.currentUser}/>
-        <Switch>
-          <Route exact path="/home" component={HomeContainer}></Route>
-          <Route exact path="/connections" component={ConnectionsContainer}></Route>
-          <Route exact path="/messaging" component={MessagingContainer}></Route>
-          <Route exact path="/notifications" component={NotificationsContainer}></Route>
-          <Route exact path="/profile" component={ProfileContainer}></Route>
-          <Route exact path="/users/:id" component={UserShowContainer}></Route>
-          <Route exact path="/login" component={LoginContainer}></Route>
-          <Route exact path="/logout" component={Logout}></Route>
-        </Switch>
+        <div style={{paddingTop: "100px"}}>
+          <Switch>
+            <Route exact path="/home" component={HomeContainer}></Route>
+            <Route exact path="/connections" component={ConnectionsContainer}></Route>
+            <Route exact path="/messaging" component={MessagingContainer}></Route>
+            <Route exact path="/notifications" component={NotificationsContainer}></Route>
+            <Route exact path="/profile" component={ProfileContainer}></Route>
+            <Route exact path="/users/:id" component={UserShowContainer}></Route>
+            <Route exact path="/login" component={LoginContainer}></Route>
+            <Route exact path="/logout" component={Logout}></Route>
+          </Switch>
+        </div>
       </div>
     );
   }
