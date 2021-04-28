@@ -1,5 +1,5 @@
 import React from 'react'
-import {Menu, Header} from 'semantic-ui-react'
+import {Menu, Icon} from 'semantic-ui-react'
 import {NavLink } from 'react-router-dom'
 import ProfileImage from './ProfileImage'
 import NotificationIcon from './NotificationIcon'
@@ -26,8 +26,11 @@ class Nav extends React.Component {
             onClick={this.handleItemClick}
             as={NavLink}
             to="/home"
-          >    
-             Home
+          >  
+            <div>
+              <div><Icon name="home" size="large" fitted/></div>
+              Home
+            </div>
           </Menu.Item>
        
           <Menu.Item
@@ -37,7 +40,10 @@ class Nav extends React.Component {
             as={NavLink}
             to="/connections"
           >
-            Connections
+            <div>
+              <div><Icon name="users" size="large" fitted/></div>
+              Connections
+            </div>
           </Menu.Item>
    
 
@@ -48,7 +54,10 @@ class Nav extends React.Component {
           as={NavLink}
           to="/messaging"
         >
-          Messaging
+           <div>
+              <div><Icon name="chat" size="large" fitted/></div>
+              Messaging
+          </div>
         </Menu.Item>
 
         <Menu.Item
