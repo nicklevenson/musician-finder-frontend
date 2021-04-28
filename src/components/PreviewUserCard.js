@@ -8,14 +8,18 @@ class PreviewUserCard extends React.Component {
   renderSimilarTags = () => {
     if (this.props.similar_tags && this.props.similar_tags.length !== 0 && this.props.user.id !== sessionStorage.userId) {
       return (
-        <Card.Content>You both like: {this.props.similar_tags.slice(0, 10).join(", ")}</Card.Content>
+        <div style={{height: "1em"}}>
+          <Card.Content>You both like: {this.props.similar_tags.slice(0, 3).join(", ")}</Card.Content>
+        </div>
       )
+    }else{
+      return <div style={{height: "1em"}}></div>
     }
   }
 
   render(){
     return(
-      <div style={{display:"inline-block", margin:"1vw", whiteSpace:"normal", width:"80%", maxWidth: "min-content", textAlign: "center"}}>
+      <div style={{display:"inline-block", margin:"1vw", width:"80%", maxWidth: "min-content", textAlign: "center"}}>
         <Card raised style={{height:"min-content"}}>
           <Card.Content >
             <Image
