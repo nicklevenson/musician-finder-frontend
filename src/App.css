@@ -68,3 +68,12 @@
   border-bottom: solid thin rgba(150, 150, 150, 0.336);
 
 }
+
+.fixed-heading {
+  background-color: white;
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  width: 100%;
+  border-bottom: solid thin rgb(180, 180, 180);
+}

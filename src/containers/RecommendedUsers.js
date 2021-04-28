@@ -12,9 +12,8 @@ class RecommendedUsers extends React.Component {
   render() {
     return(
       <>
-      <div style={{position:"absolute", zIndex:"1", top: "0", width: "80%"}}>
+      <div className="fixed-heading">
         <i>Recommended Users For You</i>
-        <hr/>
       </div>
       <br/>
       {/* <div className="down-swipe"> */}
