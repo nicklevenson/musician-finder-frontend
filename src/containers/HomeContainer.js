@@ -27,7 +27,11 @@ class HomeContainer extends React.Component {
               <Rail dividing position="left">
                 {this.props.currentUser.username ? 
                 <>
-                  <PreviewUserCard user={this.props.currentUser}/> 
+                  <div className="down-swipe">
+                    <i>You</i>
+                    <hr/>
+                    <PreviewUserCard user={this.props.currentUser}/> 
+                  </div>
                   <br/><br/>
                   <IncomingRequestsContainer/>
                 </>
