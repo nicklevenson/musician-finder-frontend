@@ -11,7 +11,7 @@ import IncomingRequestsContainer from './IncomingRequestsContainer'
 import {fetchConnections} from '../actions/useractions'
 class ConnectionsContainer extends React.Component {
   componentDidMount = () => {
-    this.props.fetchConnections()
+    this.props.fetchConnections(this.props.currentUser.id)
   }
   render(){
     if (sessionStorage.jwt){
@@ -73,7 +73,7 @@ class ConnectionsContainer extends React.Component {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchConnections: () => dispatch(fetchConnections())
+    fetchConnections: (userId) => dispatch(fetchConnections(userId))
   }
 }
 

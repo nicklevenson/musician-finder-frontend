@@ -37,7 +37,7 @@ export const fetchUser = () => {
       
         dispatch(setUser(json))
         dispatch(fetchUserRecs())
-        dispatch(fetchConnections())
+        dispatch(fetchConnections(userId))
         dispatch(fetchIncomingRequests())
     })
     .catch(function(error) {
@@ -67,9 +67,8 @@ export const fetchUserRecs = () => {
     })
   }
 }
-export const fetchConnections = () => {
+export const fetchConnections = (userId) => {
   return (dispatch) => {
-    const userId = sessionStorage.userId
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/connected_users`,{
       method: 'GET',
       headers: {
@@ -83,7 +82,7 @@ export const fetchConnections = () => {
        
     })
     .catch(function(error) {
-        alert("Error getting User.")
+        alert("Error getting User Connections.")
     })
   }
 }
