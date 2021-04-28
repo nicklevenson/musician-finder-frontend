@@ -3,6 +3,7 @@ import {Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {Card, Icon, Image} from 'semantic-ui-react'
 import ConnectForm from '../components/ConnectForm'
+import CurrentUserProfile from '../components/CurrentUserProfile'
 class UserShowContainer extends React.Component {
   state = {
     shownUser: {
@@ -48,7 +49,7 @@ class UserShowContainer extends React.Component {
       this.setState({shownUser: json})
     })
     .catch(function(error) {
-        alert("Error getting User.")
+        alert("Error getting shown user.")
     })
   }
 
@@ -65,7 +66,7 @@ class UserShowContainer extends React.Component {
       this.setState({similar_tags: json})
     })
     .catch(function(error) {
-        alert("Error getting User.")
+        alert("Error getting tags.")
     })
   }
 
@@ -105,7 +106,8 @@ class UserShowContainer extends React.Component {
           <Card.Content style={{width: "50%", margin:"auto"}}>
             <ConnectForm focusedUser={this.state.shownUser}/>
           </Card.Content>
-          
+
+          {this.state.shownUser.id === this.props.currentUser.id ? <Card.Content extra><CurrentUserProfile/></Card.Content>: null} 
         </Card>
 
     )
