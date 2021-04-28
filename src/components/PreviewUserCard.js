@@ -6,7 +6,7 @@ import ConnectForm from './ConnectForm'
 class PreviewUserCard extends React.Component {
 
   renderSimilarTags = () => {
-    if (this.props.similar_tags && this.props.similar_tags.length !== 0) {
+    if (this.props.similar_tags && this.props.similar_tags.length !== 0 && this.props.user.id !== sessionStorage.userId) {
       return (
         <Card.Content>You both like: {this.props.similar_tags.slice(0, 10).join(", ")}</Card.Content>
       )

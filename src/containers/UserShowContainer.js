@@ -28,7 +28,7 @@ class UserShowContainer extends React.Component {
  
 
   renderSimilarTags = () => {
-    if (this.state.similar_tags && this.state.similar_tags.length > 0) {
+    if (this.state.similar_tags && this.state.similar_tags.length > 0 && this.props.currentUser.id != this.state.shownUser.id) {
       return (
         <Card.Content>You both like: <br/>{this.state.similar_tags.join(", ")}</Card.Content>
       )
