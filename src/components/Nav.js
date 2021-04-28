@@ -16,7 +16,11 @@ class Nav extends React.Component {
         <Menu.Item 
           header
 
-        >Matchup Music
+        >
+          <div>
+            <div><Icon name="music" size="large" fitted/></div>
+            Matchup Music
+          </div>
         </Menu.Item>
     
           <Menu.Item
