@@ -29,7 +29,7 @@ class Notification extends React.Component {
     return(
   
       <Feed.Event style={this.props.notification.read ? null : {background: this.state.background}} onClick={this.props.notification.read ? null : e => this.makeRead(e)} className="notification">
-        <Link to={this.props.notification.involved_user_id ? "/users/" + this.props.notification.involved_user_id : null}>
+        <Link to={this.props.notification.involved_user_id ? "/users/" + this.props.notification.involved_user_id : "/notifications"}>
         {/* <Feed.Label>
           <img src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
         </Feed.Label> */}

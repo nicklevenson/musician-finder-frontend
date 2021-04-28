@@ -32,7 +32,7 @@ class HomeContainer extends React.Component {
                     <hr/>
                     <PreviewUserCard user={this.props.currentUser}/> 
                   </div>
-                  <br/><br/>
+                  <br/>
                   <IncomingRequestsContainer/>
                 </>
                 : <LoginCard/>}
