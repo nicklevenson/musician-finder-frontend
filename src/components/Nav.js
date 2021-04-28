@@ -15,7 +15,8 @@ class Nav extends React.Component {
       <Menu fixed="top" secondary pointing borderless style={{paddingLeft: "10vw", paddingRight: "10vw", paddingTop:"1vh", paddingBottom:"1vh", backgroundColor: "white"}}>
         <Menu.Item 
           header
-
+          href="/home"
+          as={"a"}
         >
           <div>
             <div><Icon name="music" size="large" fitted/></div>

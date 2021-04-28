@@ -38,7 +38,7 @@ class PreviewUserCard extends React.Component {
             <Card.Content>
               {this.props.user.bio ?  this.props.user.bio.substring(0, 70) + "..." : "No bio given"}
             </Card.Content>
-            <br></br>
+           
             <Card.Meta>
               {this.renderSimilarTags()}
             </Card.Meta>
