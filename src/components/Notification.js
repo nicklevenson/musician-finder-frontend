@@ -1,6 +1,7 @@
 
 import React from 'react'
 import {Feed, Icon} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchUser} from '../actions/useractions'
 
@@ -28,7 +29,7 @@ class Notification extends React.Component {
     return(
   
       <Feed.Event style={this.props.notification.read ? null : {background: this.state.background}} onClick={this.props.notification.read ? null : e => this.makeRead(e)} className="notification">
-        <a href={this.props.notification.involved_user_id ? "/users/" + this.props.notification.involved_user_id : null}>
+        <Link to={this.props.notification.involved_user_id ? "/users/" + this.props.notification.involved_user_id : null}>
         {/* <Feed.Label>
           <img src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
         </Feed.Label> */}
@@ -46,7 +47,7 @@ class Notification extends React.Component {
             <Feed.Date>{this.props.notification.created_at.split("-").splice(0,2).join("-")}</Feed.Date>
           </Feed.Summary>
         </Feed.Content>
-        </a>
+        </Link>
       </Feed.Event>
    
     )
