@@ -5,7 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import PreviewUserCard from '../components/PreviewUserCard';
 import '../RecommendedUsers.css'
 import { fetchUserRecs } from '../actions/useractions';
-class RecommendedUsersCarousel extends React.Component {
+class RecommendedUsers extends React.Component {
   componentDidMount() {
     this.props.fetchUserRecs()
   }
@@ -43,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecommendedUsersCarousel)
+export default connect(mapStateToProps, mapDispatchToProps)(RecommendedUsers)

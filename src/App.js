@@ -24,7 +24,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <Nav/>
+        <Nav currentUser={this.props.currentUser}/>
         <Route exact path="/home" component={HomeContainer}></Route>
         <Route exact path="/connections" component={ConnectionsContainer}></Route>
         <Route exact path="/messaging" component={MessagingContainer}></Route>
@@ -46,4 +46,10 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser.currentUser
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

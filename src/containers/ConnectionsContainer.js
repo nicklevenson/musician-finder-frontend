@@ -2,8 +2,8 @@ import React from 'react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {Grid, Divider} from 'semantic-ui-react'
-import UserCard from '../components/UserCard'
-import RecommendedUsersCarousel from './RecommendedUsersCarousel'
+
+import RecommendedUsers from './RecommendedUsers'
 import PreviewUserCard from '../components/PreviewUserCard'
 import LoginCard from '../components/LoginCard'
 import IncomingRequestsContainer from './IncomingRequestsContainer'
@@ -44,7 +44,7 @@ class ConnectionsContainer extends React.Component {
             <Grid.Row columns={1}>
               <Grid.Column>
                   <div style={{maxHeight: "70vh", width:"80%", margin: "auto"}}>
-                    {this.props.currentUser.username ? <RecommendedUsersCarousel/> : null}
+                    {this.props.currentUser.username ? <RecommendedUsers/> : null}
                   </div>
               </Grid.Column>  
             </Grid.Row>

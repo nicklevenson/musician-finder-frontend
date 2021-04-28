@@ -99,7 +99,7 @@ class UserShowContainer extends React.Component {
           <Card.Content extra textAlign="center">
             <a>
               <Icon name='user' />
-              {this.state.shownUser.connected_users_with_tags.length || "0"} Connections
+              {this.state.shownUser.connected_users_with_tags ? this.state.shownUser.connected_users_with_tags.length : null} Connections
             </a>
           </Card.Content>
           <Card.Content style={{width: "50%", margin:"auto"}}>

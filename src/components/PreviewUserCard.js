@@ -15,14 +15,14 @@ class PreviewUserCard extends React.Component {
 
   render(){
     return(
-      <div style={{display:"inline-block", margin:"1vw", whiteSpace:"normal", width:"80%", maxWidth: "min-content"}}>
+      <div style={{display:"inline-block", margin:"1vw", whiteSpace:"normal", width:"80%", maxWidth: "min-content", textAlign: "center"}}>
         <Card raised style={{height:"min-content"}}>
           <Card.Content >
             <Image
               size='tiny'
               circular
               src={this.props.user.photo || this.props.user.providerImage}
-             centered
+              centered
             />
           </Card.Content>
           <Card.Content>

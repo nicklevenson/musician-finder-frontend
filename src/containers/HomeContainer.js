@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import UserCard from '../components/UserCard'
 import {Grid, Segment, Rail} from 'semantic-ui-react'
-import RecommendedUsersCarousel from './RecommendedUsersCarousel'
+import RecommendedUsers from './RecommendedUsers'
 import PreviewUserCard from '../components/PreviewUserCard'
 import LoginCard from '../components/LoginCard'
 import IncomingRequestsContainer from './IncomingRequestsContainer'
@@ -28,7 +27,7 @@ class HomeContainer extends React.Component {
               <Rail dividing position="left">
                 {this.props.currentUser.username ? 
                 <>
-                  <UserCard user={this.props.currentUser}/> 
+                  <PreviewUserCard user={this.props.currentUser}/> 
                   <br/><br/>
                   <IncomingRequestsContainer/>
                 </>
@@ -39,7 +38,7 @@ class HomeContainer extends React.Component {
             
     
               <Rail dividing position="right">
-                <RecommendedUsersCarousel/>
+                <RecommendedUsers/>
               </Rail>
               <div style={{height: "70vh", textAlign:"center"}}>
                 <h2>Posts</h2>
