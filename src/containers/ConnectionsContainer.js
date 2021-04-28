@@ -16,40 +16,52 @@ class ConnectionsContainer extends React.Component {
   render(){
     if (sessionStorage.jwt){
       return(
-        <Grid relaxed padded centered columns={1}>
-            <Grid.Column>
-                <div style={{maxHeight: "40vh", margin:"auto", width:"80%"}}>
-                  {this.props.currentUser.username ? <IncomingRequestsContainer/> : null}
-                </div>
-            </Grid.Column> 
-
-
-            <Grid.Row columns={1}>
+        <div style={{width: "90%", margin: "auto"}}>
+          <Grid relaxed padded centered columns={1}>
               <Grid.Column>
-                <div style={{width:"80%", margin: "auto",maxHeight: "70vh"}}>
-                  <i>Your Connections</i>
-                  <hr/>
-                  {this.props.connectedUsers.length > 0 ? 
-                  <div className="down-swipe">
-                    {this.props.connectedUsers.map(u => 
-                        <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcardconnections"}/>
-                    )}
+                  <div className="fixed-heading">
+                    <i>Incoming Requests</i>
                   </div>
-                  : "No connected users. Go connect with some lovely people!"}  
-                </div>
-              </Grid.Column>
-            </Grid.Row>
-
-
-            <Grid.Row columns={1}>
-              <Grid.Column>
-                  <div style={{maxHeight: "50vh", width:"80%", margin: "auto", overflow:"auto", whiteSpace:"nowrap"}}>
-                    {this.props.currentUser.username ? <RecommendedUsers/> : null}
+                  <div className="side-swipe">
+                    {this.props.currentUser.username ? <IncomingRequestsContainer/> : null}
                   </div>
-              </Grid.Column>  
-            </Grid.Row>
+              </Grid.Column> 
 
-        </Grid>
+
+              <Grid.Row columns={1}>
+                <Grid.Column>
+                  <>
+                    <div className="fixed-heading">
+                      <i>Your connections</i>
+                    </div>
+                    <br/>
+                  
+                    {this.props.connectedUsers.length > 0 ? 
+                    <div className="down-swipe">
+                      {this.props.connectedUsers.map(u => 
+                          <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcardconnections"}/>
+                      )}
+                    </div>
+                    : "No connected users. Go connect with some lovely people!"}  
+                  </>
+                </Grid.Column>
+              </Grid.Row>
+
+
+              <Grid.Row columns={1}>
+                <Grid.Column>
+                    <div className="fixed-heading">
+                      <i>Recommended Users For You</i>
+                    </div>
+                    <br/>
+                    <div className="side-swipe">
+                      {this.props.currentUser.username ? <RecommendedUsers/> : null}
+                    </div>
+                </Grid.Column>  
+              </Grid.Row>
+
+          </Grid>
+        </div>
       )
     }else{
       return(

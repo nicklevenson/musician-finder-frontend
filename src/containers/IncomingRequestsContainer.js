@@ -11,11 +11,7 @@ class IncomingRequestsContainer extends React.Component {
     if (this.props.incomingRequests.length > 0){
       return(
         <>
-          <div className="fixed-heading">
-            <i>Incoming Requests</i>
-          </div>
-          <br/>
-          <div className="down-swipe">
+          <div>
             {this.props.incomingRequests.map(u => 
                 <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcardrequest"}/>
             )}

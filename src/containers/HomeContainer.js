@@ -26,15 +26,21 @@ class HomeContainer extends React.Component {
             <Segment>
               <Rail dividing position="left">
                 {this.props.currentUser.username ? 
-                <>
-                  <div className="down-swipe">
+                <div style={{height:"70vh"}}>
+                  <div className="down-swipe" style={{height:"50%"}}>
                     <PreviewUserCard user={this.props.currentUser}/> 
                   </div>
                   <br/>
-                  <div style={{height: "50%", position:"relative"}}>
-                    <IncomingRequestsContainer/>
+                  <div style={{height:"50%", position: "relative"}}>
+                    <div className="fixed-heading">
+                      <i>Incoming Requests</i>
+                    </div>
+                    <br/>
+                    <div className="down-swipe">
+                      <IncomingRequestsContainer/>
+                    </div>
                   </div>
-                </>
+                </div>
                 : <LoginCard/>}
               
               </Rail>
@@ -42,10 +48,16 @@ class HomeContainer extends React.Component {
             
     
               <Rail dividing position="right">
-                <div className="down-swipe">
-                  <RecommendedUsers/>
-                </div>
+                  <div className="fixed-heading">
+                    <i>Recommended Users For You</i>
+                  </div>
+                  <br/>
+                  <div className="down-swipe">
+                    <RecommendedUsers/>
+                  </div>
               </Rail>
+
+              
               <div style={{height: "70vh", textAlign:"center"}}>
                 <h2>Posts</h2>
               </div>

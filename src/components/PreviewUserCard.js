@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 import {Card, Icon, Image} from 'semantic-ui-react'
 import ConnectForm from './ConnectForm'
 
@@ -27,7 +27,7 @@ class PreviewUserCard extends React.Component {
           </Card.Content>
           <Card.Content>
          
-            <Card.Header floated="left">{this.props.user.username}</Card.Header>
+            <Card.Header floated="left"><a href={`users/${this.props.user.id}`}>{this.props.user.username}</a></Card.Header>
             {/* <Card.Meta>
               <span className='date'>Joined {this.props.user.created_at.split("T")[0]}</span>
             </Card.Meta> */}
