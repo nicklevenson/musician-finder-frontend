@@ -12,10 +12,10 @@ class Nav extends React.Component {
 
     return (
       
-      <Menu secondary pointing borderless style={{paddingLeft: "10vw", paddingRight: "10vw", paddingTop:"1vh", paddingBottom:"1vh", position: "fixed", width: "100%", zIndex: "5", backgroundColor: "white"}}>
+      <Menu fixed="top" secondary pointing borderless style={{paddingLeft: "10vw", paddingRight: "10vw", paddingTop:"1vh", paddingBottom:"1vh"}}>
         <Menu.Item 
           header
-          
+
         >Matchup Music
         </Menu.Item>
     

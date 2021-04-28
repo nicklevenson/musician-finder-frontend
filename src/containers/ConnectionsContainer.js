@@ -43,7 +43,7 @@ class ConnectionsContainer extends React.Component {
 
             <Grid.Row columns={1}>
               <Grid.Column>
-                  <div style={{maxHeight: "70vh", width:"80%", margin: "auto"}}>
+                  <div style={{maxHeight: "50vh", width:"80%", margin: "auto", overflow:"auto", whiteSpace:"nowrap"}}>
                     {this.props.currentUser.username ? <RecommendedUsers/> : null}
                   </div>
               </Grid.Column>  

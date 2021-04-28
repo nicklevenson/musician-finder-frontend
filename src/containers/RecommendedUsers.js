@@ -12,9 +12,12 @@ class RecommendedUsers extends React.Component {
   render() {
     return(
       <>
-      <i>Recommended Users For You</i>
-      <hr/>
-      <div className="down-swipe">
+      <div style={{position:"absolute", zIndex:"1", top: "0", width: "80%"}}>
+        <i>Recommended Users For You</i>
+        <hr/>
+      </div>
+      <br/>
+      {/* <div className="down-swipe"> */}
         {this.props.recommendedUsers.length > 0 ? 
           this.props.recommendedUsers.map(u => 
             <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcard"}/>
@@ -23,7 +26,7 @@ class RecommendedUsers extends React.Component {
         this.props.allUsers.map(u => 
           <PreviewUserCard user={u} key={u.id + "previewcard"}/>)
         }
-      </div>
+      {/* </div> */}
       </>
     )
   }
