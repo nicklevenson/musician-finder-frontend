@@ -21,21 +21,11 @@ class ConnectForm extends React.Component{
   //   this.props.removeConnection(thi)
   // }
 
-    //needs current user, current connections, and its pending connections
-    //needs user to be requested
-
-    //check if request is pending with this user
-      //render gray pending request 
-    //check if this user is in current user's current connections
-      //render Remove Connection button
-    //else
-      //render connection request button
-
   render(){
     if (sessionStorage.userId) {
       if (this.props.currentUser.outgoing_pending_requests.map(u=>u.id).includes(this.props.focusedUser.id)){
         return(
-          <Button disabled>
+          <Button size="tiny" disabled>
             <Button.Content>Pending</Button.Content>
           </Button>
           
@@ -44,17 +34,17 @@ class ConnectForm extends React.Component{
          return(
           <>
             {/* <h5>{this.props.focusedUser.username} has requested to connect</h5> */}
-            <Button onClick={this.handleConnectionAccept}>
+            <Button size="tiny" onClick={this.handleConnectionAccept}>
               <Button.Content>Accept</Button.Content>
             </Button>
-            <Button onClick={this.handleConnectionReject}>
+            <Button size="tiny" onClick={this.handleConnectionReject}>
               <Button.Content>Reject</Button.Content>
             </Button>
           </>
          )
       }else if(this.props.connectedUsers.map(u=>u.user.id).includes(this.props.focusedUser.id)){
         return(
-          <Button disabled>
+          <Button size="tiny" disabled>
             <Button.Content>You and {this.props.focusedUser.username} are connected</Button.Content>
           </Button>
         )
@@ -63,7 +53,7 @@ class ConnectForm extends React.Component{
       }
       else {
         return(
-          <Button animated onClick={this.handleConnectionRequest}>
+          <Button size="tiny" animated onClick={this.handleConnectionRequest}>
             <Button.Content visible>Request Connection</Button.Content>
             <Button.Content hidden>
               Send? <Icon name='arrow right' />
@@ -73,7 +63,7 @@ class ConnectForm extends React.Component{
       }
     }else{
       return(
-        <Button disabled>
+        <Button size="tiny" disabled>
           <Button.Content>Login To Connect</Button.Content>
         </Button>
       )
