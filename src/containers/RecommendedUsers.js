@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import PreviewUserCard from '../components/PreviewUserCard';
+import PreviewUserCard from '../components/Users/PreviewUserCard';
 import { fetchUserRecs } from '../actions/useractions';
 
 class RecommendedUsers extends React.Component {

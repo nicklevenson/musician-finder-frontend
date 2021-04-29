@@ -2,7 +2,7 @@ import React from "react";
 import { Feed } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchUser } from "../actions/useractions";
+import { fetchUser } from "../../actions/useractions";
 
 class Notification extends React.Component {
   state = {

@@ -1,8 +1,8 @@
 import React from 'react'
 import {Menu, Icon} from 'semantic-ui-react'
 import {NavLink } from 'react-router-dom'
-import ProfileImage from './ProfileImage'
-import NotificationIcon from './NotificationIcon'
+import ProfileImage from '../Users/ProfileImage'
+import NotificationIcon from '../Notifications/NotificationIcon'
 class Nav extends React.Component {
   state = {}
 

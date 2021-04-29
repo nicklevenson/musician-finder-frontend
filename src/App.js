@@ -2,14 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import './App.css';
 import {Route, Switch} from 'react-router-dom'
-import Nav from './components/Nav'
+import Nav from './components/Navigation/Nav'
 import HomeContainer from './containers/HomeContainer'
 import ConnectionsContainer from './containers/ConnectionsContainer'
 import MessagingContainer from './containers/MessagingContainer'
 import NotificationsContainer from './containers/NotificationsContainer'
 import ProfileContainer from './containers/ProfileContainer'
 import UserShowContainer from './containers/UserShowContainer'
-import Logout from './components/Logout'
+import Logout from './components/Navigation/Logout'
 
 import {fetchUser, fetchAllUsers} from './actions/useractions'
 import LoginContainer from './containers/LoginContainer';

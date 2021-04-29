@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { fetchUser } from "../actions/useractions";
-import Notification from "../components/Notification.js";
+import Notification from "../components/Notifications/Notification.js";
 // import {Feed, Container} from 'semantic-ui-react'
 class NotificationsContainer extends React.Component {
   componentDidMount = () => {

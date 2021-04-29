@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Grid } from "semantic-ui-react";
 import RecommendedUsers from "./RecommendedUsers";
-import PreviewUserCard from "../components/PreviewUserCard";
+import PreviewUserCard from "../components/Users/PreviewUserCard";
 // import LoginCard from "../components/LoginCard";
 // import IncomingRequestsContainer from "./IncomingRequestsContainer";
 class HomeContainer extends React.Component {

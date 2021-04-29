@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchIncomingRequests} from '../actions/useractions.js'
-import PreviewUserCard from '../components/PreviewUserCard'
+import PreviewUserCard from '../components/Users/PreviewUserCard'
 class IncomingRequestsContainer extends React.Component {
 
   componentDidMount() {
