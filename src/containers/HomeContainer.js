@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Grid, Segment, Rail} from 'semantic-ui-react'
+import {Grid, Segment, Rail, GridColumn} from 'semantic-ui-react'
 import RecommendedUsers from './RecommendedUsers'
 import PreviewUserCard from '../components/PreviewUserCard'
 import LoginCard from '../components/LoginCard'
@@ -21,10 +21,10 @@ class HomeContainer extends React.Component {
     return(
       <>
       
-        <Grid centered relaxed  padded columns={2}>
-          <Grid.Column>
-            <Segment>
-              <Rail dividing position="left">
+        <Grid centered relaxed  padded columns={12}>
+          <Grid.Row>
+            
+              {/* <Grid.Column>
                 {this.props.currentUser.username ? 
                 <div style={{height:"70vh"}}>
                   <div className="down-swipe" style={{height:"50%"}}>
@@ -43,11 +43,18 @@ class HomeContainer extends React.Component {
                 </div>
                 : <LoginCard/>}
               
-              </Rail>
+              </Grid.Column> */}
   
             
     
-              <Rail dividing position="right">
+
+              <Grid.Column>
+                <div style={{height: "70vh", textAlign:"center"}}>
+                  <h2>Posts</h2>
+                </div>
+              </Grid.Column>
+
+              <Grid.Column width={10}>
                   <div className="fixed-heading">
                     <i>Recommended Users For You</i>
                   </div>
@@ -55,14 +62,9 @@ class HomeContainer extends React.Component {
                   <div className="down-swipe">
                     <RecommendedUsers/>
                   </div>
-              </Rail>
-
-              
-              <div style={{height: "70vh", textAlign:"center"}}>
-                <h2>Posts</h2>
-              </div>
-            </Segment>
-          </Grid.Column>
+              </Grid.Column>
+         
+          </Grid.Row>
          
         </Grid>
       </>

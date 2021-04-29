@@ -7,7 +7,7 @@ import {fetchUser} from '../actions/useractions'
 
 class Notification extends React.Component {
   state = {
-    background: this.props.notification.read ? "white" : "lightgrey"
+    background: this.props.notification.read ? "white" : "rgb(238, 232, 232)"
   }
   makeRead = (e) => {
     let configObj = {
