@@ -33,6 +33,7 @@ class LoginCard extends React.Component {
           <Card.Content textAlign="center">
           <a href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-google`}><img src={googleLogin} alt="Login with Google" style={{width: "200px"}}/></a><br></br> <br></br>
           <a href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-facebook`}><img src={facebookLogin} alt="Login with Facebook"  style={{width: "193px", height:"37px"}}></img></a> <br></br> <br></br>
+          <a href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-spotify`}>Login spotify</a>
           </Card.Content>
           {sessionStorage.jwt ? <Redirect to="/home" /> : null}
           </div>
