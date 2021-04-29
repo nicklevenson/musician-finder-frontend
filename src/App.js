@@ -8,7 +8,7 @@ import ConnectionsContainer from './containers/ConnectionsContainer'
 import MessagingContainer from './containers/MessagingContainer'
 import NotificationsContainer from './containers/NotificationsContainer'
 import ProfileContainer from './containers/ProfileContainer'
-import UserShowContainer from './containers/UserShowContainer'
+import UserShowContainer from './components/Users/UserShow'
 import Logout from './components/Navigation/Logout'
 
 import {fetchUser, fetchAllUsers} from './actions/useractions'

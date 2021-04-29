@@ -2,8 +2,8 @@ import React from "react";
 // import {Redirect, Link} from 'react-router-dom'
 import { connect } from "react-redux";
 import { Card, Icon, Image } from "semantic-ui-react";
-import ConnectForm from "../components/Users/ConnectForm";
-import CurrentUserProfile from "../components/Users/CurrentUserProfile";
+import ConnectForm from "./ConnectForm";
+import CurrentUserProfile from "./CurrentUserProfile";
 class UserShowContainer extends React.Component {
   state = {
     shownUser: {
