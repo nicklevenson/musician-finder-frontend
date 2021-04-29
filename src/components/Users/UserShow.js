@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Card, Icon, Image } from "semantic-ui-react";
 import ConnectForm from "./ConnectForm";
 import CurrentUserProfile from "./CurrentUserProfile";
-class UserShowContainer extends React.Component {
+class UserShow extends React.Component {
   state = {
     shownUser: {
       username: "loading...",
@@ -136,4 +136,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(UserShowContainer);
+export default connect(mapStateToProps)(UserShow);
