@@ -43,12 +43,6 @@ class HomeContainer extends React.Component {
               
               </Grid.Column> */}
 
-            <Grid.Column>
-              <div style={{ height: "70vh", textAlign: "center" }}>
-                <h2>Posts</h2>
-              </div>
-            </Grid.Column>
-
             <Grid.Column width={10}>
               <div className="fixed-heading">
                 <i>Recommended Users For You</i>
