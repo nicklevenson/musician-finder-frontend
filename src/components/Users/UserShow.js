@@ -104,7 +104,9 @@ class UserShow extends React.Component {
             {this.state.shownUser.bio || "No bio given"}
           </Card.Description>
         </Card.Content>
-        <Card.Meta>{this.renderSimilarTags()}</Card.Meta>
+        <Card.Meta style={{ width: "50%", margin: "auto" }}>
+          {this.renderSimilarTags()}
+        </Card.Meta>
         <br />
         <Card.Content extra textAlign="center">
           <button>
