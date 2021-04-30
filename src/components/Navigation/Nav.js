@@ -2,6 +2,9 @@ import { Component } from "react";
 import { Icon } from "semantic-ui-react";
 import ProfileImage from "../Users/ProfileImage";
 import NotificationIcon from "../Notifications/NotificationIcon";
+
+import anime from "animejs";
+
 class Nav extends Component {
   constructor(props) {
     super(props);
@@ -21,8 +24,6 @@ class Nav extends Component {
       index++;
     }
 
-    console.log(e.target);
-    console.log(window.location);
     window.location.href = `/${e.target.getAttribute("name")}`;
     this.setState({
       isActive: false,
@@ -32,11 +33,26 @@ class Nav extends Component {
 
   handleHamburgerClick = (e) => {
     e.preventDefault();
+
     if (!e.target.classList.contains("hamburger")) {
       e.target = e.target.parentNode;
     }
+
     e.target.classList.toggle("is-active");
-    this.setState({ isActive: !this.state.isActive });
+    this.setState({ isActive: !this.state.isActive }, () =>
+      this.animateButtons()
+    );
+  };
+
+  animateButtons = () => {
+    console.log("animating buttons!");
+    let buttons = document.querySelectorAll(".main-nav-dropdown-menu button");
+    console.log(buttons);
+    anime({
+      targets: buttons,
+      opacity: 1,
+      delay: anime.stagger(150),
+    });
   };
 
   render() {
@@ -59,34 +75,42 @@ class Nav extends Component {
             <div></div>
           </div>
         </div>
-        {this.state.isActive ? (
-          <div className="main-nav-dropdown-menu">
-            <button name="home" onClick={(e) => this.handleItemClick(e)}>
-              <Icon name="home" size="large" />
-              Home
-            </button>
+        <div
+          className={
+            this.state.isActive
+              ? "main-nav-dropdown-menu is-active"
+              : "main-nav-dropdown-menu"
+          }
+        >
+          {this.state.isActive ? (
+            <>
+              <button name="home" onClick={(e) => this.handleItemClick(e)}>
+                <Icon name="home" size="large" />
+                Home
+              </button>
 
-            <button name="messaging" onClick={(e) => this.handleItemClick(e)}>
-              <Icon name="chat" size="large" />
-              Messaging
-            </button>
+              <button name="messaging" onClick={(e) => this.handleItemClick(e)}>
+                <Icon name="chat" size="large" />
+                Messaging
+              </button>
 
-            <button
-              name="notifications"
-              onClick={(e) => this.handleItemClick(e)}
-            >
-              <NotificationIcon />
-              Notifications
-            </button>
+              <button
+                name="notifications"
+                onClick={(e) => this.handleItemClick(e)}
+              >
+                <NotificationIcon />
+                Notifications
+              </button>
 
-            <button name="profile" onClick={(e) => this.handleItemClick(e)}>
-              <ProfileImage />
-              Profile
-            </button>
-          </div>
-        ) : (
-          ""
-        )}
+              <button name="profile" onClick={(e) => this.handleItemClick(e)}>
+                <ProfileImage />
+                Profile
+              </button>
+            </>
+          ) : (
+            ""
+          )}
+        </div>
       </>
     );
   }
