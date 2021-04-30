@@ -31,12 +31,8 @@ class Nav extends Component {
         <div className="main-navigation">
           <div className="main-logo-container">
             <Menu.Item header href="/home" as={"a"}>
-              <div>
-                <div>
-                  <Icon name="music" size="large" fitted />
-                </div>
-                Matchup Music
-              </div>
+              <Icon name="music" size="large" fitted />
+              Matchup Music
             </Menu.Item>
           </div>
 
