@@ -13,6 +13,7 @@ import Logout from './components/Navigation/Logout'
 
 import {fetchUser, fetchAllUsers} from './actions/useractions'
 import LoginContainer from './containers/LoginContainer';
+import RecommendedUsers from './containers/RecommendedUsers';
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchAllUsers()
@@ -28,6 +29,7 @@ class App extends React.Component {
         <div style={{paddingTop: "100px"}}>
           <Switch>
             <Route exact path="/home" component={HomeContainer}></Route>
+            <Route exact path="/recommended-users" component={RecommendedUsers}></Route>
             <Route exact path="/connections" component={ConnectionsContainer}></Route>
             <Route exact path="/messaging" component={MessagingContainer}></Route>
             <Route exact path="/notifications" component={NotificationsContainer}></Route>
