@@ -43,6 +43,7 @@
 
     &.is-active {
       z-index: 1000;
+      min-height: 36rem;
       height: 50vh;
       padding: 3rem 0;
     }
