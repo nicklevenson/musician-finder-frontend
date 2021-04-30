@@ -2,10 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Grid } from "semantic-ui-react";
-
-import RecommendedUsers from "./RecommendedUsers";
 import PreviewUserCard from "../components/Users/PreviewUserCard";
-// import LoginCard from "../components/LoginCard";
 import IncomingRequestsContainer from "./IncomingRequestsContainer";
 
 import { fetchConnections } from "../actions/useractions";

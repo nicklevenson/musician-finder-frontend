@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid, Menu } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import RecommendedUsers from "./RecommendedUsers";
-import PreviewUserCard from "../components/Users/PreviewUserCard";
 import ConnectionsContainer from "./ConnectionsContainer";
 // import LoginCard from "../components/LoginCard";
 // import IncomingRequestsContainer from "./IncomingRequestsContainer";
