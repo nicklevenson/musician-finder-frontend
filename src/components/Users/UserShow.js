@@ -13,6 +13,7 @@ class UserShow extends React.Component {
       photo: null,
       providerImage: "...",
       connected_users_with_tags: [],
+      tags: []
     },
     similar_tags: [],
   };
@@ -40,6 +41,19 @@ class UserShow extends React.Component {
       );
     }
   };
+
+  renderInterestTags = () => {
+    if (
+      this.state.shownUser.tags.length > 0
+    ) {
+      return (
+        <Card.Content textAlign="center">
+          {this.state.shownUser.username} is interested in: <br/><br/>
+          {this.state.shownUser.tags.map(t => t.name).join(", ")}
+        </Card.Content>
+      );
+    }
+  }
 
   fetchShownUser = () => {
     const userId = this.props.match.params.id;
@@ -117,6 +131,11 @@ class UserShow extends React.Component {
             Connections
           </button>
         </Card.Content>
+
+        <Card.Meta style={{ width: "50%", margin: "auto" }}>
+          {this.renderInterestTags()}
+        </Card.Meta>
+
         <Card.Content style={{ width: "50%", margin: "auto" }}>
           <ConnectForm focusedUser={this.state.shownUser} />
         </Card.Content>
@@ -126,6 +145,8 @@ class UserShow extends React.Component {
             <CurrentUserProfile />
           </Card.Content>
         ) : null}
+
+       
       </Card>
     );
   }
