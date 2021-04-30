@@ -2,9 +2,9 @@ import React from "react";
 // import {Redirect, Link} from 'react-router-dom'
 import { connect } from "react-redux";
 import { Card, Icon, Image } from "semantic-ui-react";
-import ConnectForm from "../components/ConnectForm";
-import CurrentUserProfile from "../components/CurrentUserProfile";
-class UserShowContainer extends React.Component {
+import ConnectForm from "./ConnectForm";
+import CurrentUserProfile from "./CurrentUserProfile";
+class UserShow extends React.Component {
   state = {
     shownUser: {
       username: "loading...",
@@ -104,7 +104,9 @@ class UserShowContainer extends React.Component {
             {this.state.shownUser.bio || "No bio given"}
           </Card.Description>
         </Card.Content>
-        <Card.Meta>{this.renderSimilarTags()}</Card.Meta>
+        <Card.Meta style={{ width: "50%", margin: "auto" }}>
+          {this.renderSimilarTags()}
+        </Card.Meta>
         <br />
         <Card.Content extra textAlign="center">
           <button>
@@ -136,4 +138,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(UserShowContainer);
+export default connect(mapStateToProps)(UserShow);

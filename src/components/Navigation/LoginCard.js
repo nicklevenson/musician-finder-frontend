@@ -1,8 +1,8 @@
 import React from 'react'
-import googleLogin from '../assets/btn_google.png'
-import facebookLogin from '../assets/facebook-login.png'
+import googleLogin from '../../assets/btn_google.png'
+import facebookLogin from '../../assets/facebook-login.png'
 import {connect} from 'react-redux'  
-import {fetchUser} from '../actions/useractions.js'
+import {fetchUser} from '../../actions/useractions.js'
 import { Redirect } from 'react-router-dom'
 import { Card} from 'semantic-ui-react'
 class LoginCard extends React.Component {

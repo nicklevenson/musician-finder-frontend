@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { Menu, Icon } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
-import ProfileImage from "./ProfileImage";
-import NotificationIcon from "./NotificationIcon";
+import ProfileImage from "../Users/ProfileImage";
+import NotificationIcon from "../Notifications/NotificationIcon";
 class Nav extends Component {
   constructor(props) {
     super(props);
@@ -63,21 +63,6 @@ class Nav extends Component {
                   <Icon name="home" size="large" fitted />
                 </div>
                 Home
-              </div>
-            </Menu.Item>
-
-            <Menu.Item
-              name="connections"
-              active={activeItem === "connections"}
-              onClick={this.handleItemClick}
-              as={NavLink}
-              to="/connections"
-            >
-              <div>
-                <div>
-                  <Icon name="users" size="large" fitted />
-                </div>
-                Connections
               </div>
             </Menu.Item>
 

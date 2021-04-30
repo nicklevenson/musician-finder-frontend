@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginCard from '../components/LoginCard'
+import LoginCard from '../components/Navigation/LoginCard'
 class LoginContainer extends React.Component {
 
   render(){

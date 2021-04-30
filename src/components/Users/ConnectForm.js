@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Button, Icon} from 'semantic-ui-react'
-import {requestConnection, acceptConnection, rejectConnection} from '../actions/useractions.js'
+import {requestConnection, acceptConnection, rejectConnection} from '../../actions/useractions.js'
 class ConnectForm extends React.Component{
 
   handleConnectionRequest = () => {

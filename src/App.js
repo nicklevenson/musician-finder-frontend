@@ -3,14 +3,15 @@ import { connect } from "react-redux";
 import "./App.css";
 import "./style/index.scss";
 import { Route, Switch } from "react-router-dom";
-import Nav from "./components/Nav";
+import Nav from "./components/Navigation/Nav";
 import HomeContainer from "./containers/HomeContainer";
 import ConnectionsContainer from "./containers/ConnectionsContainer";
 import MessagingContainer from "./containers/MessagingContainer";
 import NotificationsContainer from "./containers/NotificationsContainer";
+import RecommendedUsers from "./containers/RecommendedUsers";
+import UserShow from "./components/Users/UserShow";
 import ProfileContainer from "./containers/ProfileContainer";
-import UserShowContainer from "./containers/UserShowContainer";
-import Logout from "./components/Logout";
+import Logout from "./components/Navigation/Logout";
 
 import { fetchUser, fetchAllUsers } from "./actions/useractions";
 import LoginContainer from "./containers/LoginContainer";
@@ -30,6 +31,11 @@ class App extends React.Component {
             <Route exact path="/home" component={HomeContainer}></Route>
             <Route
               exact
+              path="/recommended-users"
+              component={RecommendedUsers}
+            ></Route>
+            <Route
+              exact
               path="/connections"
               component={ConnectionsContainer}
             ></Route>
@@ -44,11 +50,7 @@ class App extends React.Component {
               component={NotificationsContainer}
             ></Route>
             <Route exact path="/profile" component={ProfileContainer}></Route>
-            <Route
-              exact
-              path="/users/:id"
-              component={UserShowContainer}
-            ></Route>
+            <Route exact path="/users/:id" component={UserShow}></Route>
             <Route exact path="/login" component={LoginContainer}></Route>
             <Route exact path="/logout" component={Logout}></Route>
           </Switch>

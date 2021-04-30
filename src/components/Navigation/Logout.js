@@ -1,6 +1,6 @@
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { setUser } from "../actions/useractions.js";
+import { setUser } from "../../actions/useractions.js";
 const Logout = (props) => {
   delete sessionStorage.jwt;
   delete sessionStorage.userId;
