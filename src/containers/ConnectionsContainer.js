@@ -19,9 +19,7 @@ class ConnectionsContainer extends React.Component {
         <div style={{ width: "90%", margin: "auto" }}>
           <Grid relaxed padded centered columns={1}>
             <Grid.Column>
-              <div className="fixed-heading">
-                <i>Incoming Requests</i>
-              </div>
+              
               <div className="side-swipe">
                 {this.props.currentUser.username ? (
                   <IncomingRequestsContainer />
@@ -51,20 +49,6 @@ class ConnectionsContainer extends React.Component {
                     "No connected users. Go connect with some lovely people!"
                   )}
                 </>
-              </Grid.Column>
-            </Grid.Row>
-
-            <Grid.Row columns={1}>
-              <Grid.Column>
-                <div className="fixed-heading">
-                  <i>Recommended Users For You</i>
-                </div>
-                <br />
-                <div className="side-swipe">
-                  {this.props.currentUser.username ? (
-                    <RecommendedUsers />
-                  ) : null}
-                </div>
               </Grid.Column>
             </Grid.Row>
           </Grid>
