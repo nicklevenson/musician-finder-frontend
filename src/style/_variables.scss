@@ -2,3 +2,17 @@ $box-shadow: rgba(0, 0, 0, 0.3);
 $transition: 0.3s all ease-in-out;
 $dark: #2b2929;
 $white: rgb(236, 244, 250);
+
+@mixin flexbox-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@mixin flexbox-col-spaced {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
