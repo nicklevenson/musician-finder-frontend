@@ -1,0 +1,11 @@
+@use "variables" as v;
+@use "home";
+@use "nav";
+
+#root {
+  min-height: 100vh;
+
+  .App {
+    min-height: 100vh;
+  }
+}
