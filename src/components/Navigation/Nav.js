@@ -13,6 +13,7 @@ class Nav extends Component {
       activeItem: "home",
     };
   }
+
   handleItemClick = (e) => {
     e.preventDefault();
     let index = 0;
@@ -38,21 +39,67 @@ class Nav extends Component {
       e.target = e.target.parentNode;
     }
 
-    e.target.classList.toggle("is-active");
-    this.setState({ isActive: !this.state.isActive }, () =>
-      this.animateButtons()
-    );
+    this.setState({ isActive: !this.state.isActive }, () => {
+      e.target.classList.toggle("is-active");
+
+      if (this.state.isActive) {
+        this.animateButtonsIn();
+      } else this.animateButtonsOut();
+    });
   };
 
-  animateButtons = () => {
+  animateButtonsIn = () => {
     console.log("animating buttons!");
     let buttons = document.querySelectorAll(".main-nav-dropdown-menu button");
-    console.log(buttons);
-    anime({
-      targets: buttons,
-      opacity: 1,
-      delay: anime.stagger(150),
-    });
+    let nav = document.querySelector(".main-nav-dropdown-menu");
+    nav.classList.toggle("is-active");
+
+    anime
+      .timeline({
+        easing: "spring(1, 80, 10, 0)",
+      })
+      .add({
+        targets: nav,
+        translateY: "0",
+        easing: "easeOutQuad",
+        duration: 300,
+      })
+      .add(
+        {
+          targets: buttons,
+          opacity: 1,
+          delay: anime.stagger(150),
+        },
+        500
+      );
+  };
+
+  animateButtonsOut = () => {
+    console.log("animating buttons out!");
+    let buttons = document.querySelectorAll(".main-nav-dropdown-menu button");
+    let nav = document.querySelector(".main-nav-dropdown-menu");
+    setTimeout(() => nav.classList.toggle("is-active"), 800);
+
+    anime
+      .timeline({
+        easing: "spring(1, 80, 10, 0)",
+        duration: 800,
+      })
+      .add({
+        targets: buttons,
+        opacity: 0,
+        duration: 500,
+        delay: anime.stagger(150, { direction: "reverse" }),
+      })
+      .add(
+        {
+          targets: nav,
+          translateY: "-120%",
+          easing: "linear",
+          duration: 300,
+        },
+        500
+      );
   };
 
   render() {
@@ -75,41 +122,31 @@ class Nav extends Component {
             <div></div>
           </div>
         </div>
-        <div
-          className={
-            this.state.isActive
-              ? "main-nav-dropdown-menu is-active"
-              : "main-nav-dropdown-menu"
-          }
-        >
-          {this.state.isActive ? (
-            <>
-              <button name="home" onClick={(e) => this.handleItemClick(e)}>
-                <Icon name="home" size="large" />
-                Home
-              </button>
+        <div className="main-nav-dropdown-menu">
+          <>
+            <button name="home" onClick={(e) => this.handleItemClick(e)}>
+              <Icon name="home" size="large" />
+              Home
+            </button>
 
-              <button name="messaging" onClick={(e) => this.handleItemClick(e)}>
-                <Icon name="chat" size="large" />
-                Messaging
-              </button>
+            <button name="messaging" onClick={(e) => this.handleItemClick(e)}>
+              <Icon name="chat" size="large" />
+              Messaging
+            </button>
 
-              <button
-                name="notifications"
-                onClick={(e) => this.handleItemClick(e)}
-              >
-                <NotificationIcon />
-                Notifications
-              </button>
+            <button
+              name="notifications"
+              onClick={(e) => this.handleItemClick(e)}
+            >
+              <NotificationIcon />
+              Notifications
+            </button>
 
-              <button name="profile" onClick={(e) => this.handleItemClick(e)}>
-                <ProfileImage />
-                Profile
-              </button>
-            </>
-          ) : (
-            ""
-          )}
+            <button name="profile" onClick={(e) => this.handleItemClick(e)}>
+              <ProfileImage />
+              Profile
+            </button>
+          </>
         </div>
       </>
     );
