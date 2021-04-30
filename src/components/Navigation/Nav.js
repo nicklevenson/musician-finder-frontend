@@ -1,6 +1,5 @@
 import { Component } from "react";
-import { Menu, Icon } from "semantic-ui-react";
-import { NavLink } from "react-router-dom";
+import { Icon } from "semantic-ui-react";
 import ProfileImage from "../Users/ProfileImage";
 import NotificationIcon from "../Notifications/NotificationIcon";
 class Nav extends Component {
@@ -8,36 +7,47 @@ class Nav extends Component {
     super(props);
     this.state = {
       isActive: false,
+      activeItem: "home",
     };
   }
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e) => {
+    e.preventDefault();
+    let index = 0;
+
+    while (!e.target.getAttribute("name")) {
+      console.log(e.target);
+      if (index > 4) return false;
+      e.target = e.target.parentNode;
+      index++;
+    }
+
+    console.log(e.target);
+    console.log(window.location);
+    window.location.href = `/${e.target.getAttribute("name")}`;
+    this.setState({
+      isActive: false,
+      activeItem: e.target.getAttribute("name"),
+    });
+  };
 
   handleHamburgerClick = (e) => {
     e.preventDefault();
-    console.log(e.target);
     if (!e.target.classList.contains("hamburger")) {
       e.target = e.target.parentNode;
     }
-    console.log(e.target);
     e.target.classList.toggle("is-active");
     this.setState({ isActive: !this.state.isActive });
   };
 
   render() {
-    const { activeItem } = this.state;
-
     return (
       <>
         <div className="main-navigation">
           <div className="main-logo-container">
-            <Menu.Item header href="/home" as={"a"}>
-              <div>
-                <div>
-                  <Icon name="music" size="large" fitted />
-                </div>
-                Matchup Music
-              </div>
-            </Menu.Item>
+            <button target="/home">
+              <Icon name="music" size="large" />
+              Matchup Music
+            </button>
           </div>
 
           <div
@@ -51,61 +61,28 @@ class Nav extends Component {
         </div>
         {this.state.isActive ? (
           <div className="main-nav-dropdown-menu">
-            <Menu.Item
-              name="home"
-              active={activeItem === "home"}
-              onClick={this.handleItemClick}
-              as={NavLink}
-              to="/home"
-            >
-              <div>
-                <div>
-                  <Icon name="home" size="large" fitted />
-                </div>
-                Home
-              </div>
-            </Menu.Item>
+            <button name="home" onClick={(e) => this.handleItemClick(e)}>
+              <Icon name="home" size="large" />
+              Home
+            </button>
 
-            <Menu.Item
-              name="messaging"
-              active={activeItem === "messaging"}
-              onClick={this.handleItemClick}
-              as={NavLink}
-              to="/messaging"
-            >
-              <div>
-                <div>
-                  <Icon name="chat" size="large" fitted />
-                </div>
-                Messaging
-              </div>
-            </Menu.Item>
+            <button name="messaging" onClick={(e) => this.handleItemClick(e)}>
+              <Icon name="chat" size="large" />
+              Messaging
+            </button>
 
-            <Menu.Item
+            <button
               name="notifications"
-              active={activeItem === "notifications"}
-              onClick={this.handleItemClick}
-              as={NavLink}
-              to="/notifications"
+              onClick={(e) => this.handleItemClick(e)}
             >
-              <div>
-                <NotificationIcon />
-                Notifications
-              </div>
-            </Menu.Item>
+              <NotificationIcon />
+              Notifications
+            </button>
 
-            <Menu.Item
-              name="Profile"
-              active={activeItem === "Profile"}
-              onClick={this.handleItemClick}
-              as={NavLink}
-              to="/profile"
-            >
-              <div>
-                <ProfileImage />
-                Profile
-              </div>
-            </Menu.Item>
+            <button name="profile" onClick={(e) => this.handleItemClick(e)}>
+              <ProfileImage />
+              Profile
+            </button>
           </div>
         ) : (
           ""
