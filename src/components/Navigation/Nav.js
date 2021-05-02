@@ -70,7 +70,7 @@ class Nav extends Component {
           opacity: 1,
           delay: anime.stagger(150),
         },
-        500
+        100
       );
   };
 
