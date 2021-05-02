@@ -8,6 +8,8 @@ class CurrentUserProfile extends React.Component {
     this.state = {
       numberOfTestCards: 18,
       formattedDate: "",
+      notificationsExpanded: false,
+      tagsExpanded: false,
     };
   }
   componentDidMount() {
@@ -42,10 +44,32 @@ class CurrentUserProfile extends React.Component {
       return;
     }
   }
+
+  toggleNotifications(e) {
+    e.preventDefault();
+    console.log("toggle notifications");
+  }
+
+  toggleTags(e) {
+    e.preventDefault();
+    console.log("toggle tags");
+  }
+
   render() {
     return (
       <div className="user-profile-container">
-        <div className="tags-container"></div>
+        <div className="notifications-and-tags-container">
+          <div className="notifications">
+            <button onClick={(e) => this.toggleNotifications(e)} type="button">
+              Notifications
+            </button>
+          </div>
+          <div className="tags">
+            <button onClick={(e) => this.toggleTags(e)} type="button">
+              Tags
+            </button>
+          </div>
+        </div>
         <div className="user-profile">
           <img
             src={this.props.user.photo || this.props.user.providerImage}

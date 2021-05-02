@@ -3,7 +3,7 @@
 @use "nav";
 @use "./components/CurrentUserProfile";
 
-#root {
+.App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing
   min-height: 100vh;
 
@@ -16,6 +16,7 @@
 
   button {
     border: none;
+    border-color: v.$gray;
     background: none;
     &:hover {
       cursor: pointer;
