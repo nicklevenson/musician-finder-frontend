@@ -67,7 +67,7 @@ class UserShow extends React.Component {
     return (
       <>
         {this.state.shownUser.id === this.props.currentUser.id ? (
-          <CurrentUserProfile user={this.props.currentUser} />
+          <CurrentUserProfile />
         ) : (
           <OtherUserProfile user={this.state.shownUser} />
         )}

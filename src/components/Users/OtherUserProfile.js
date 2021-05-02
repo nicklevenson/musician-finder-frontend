@@ -24,7 +24,7 @@ class OtherUserProfile extends Component {
   };
 
   renderInterestTags = () => {
-    if (this.props.user.tags.length > 0) {
+    if (this?.props?.user?.tags.length > 0) {
       return (
         <Card.Content>
           {this.props.user.username} is interested in: <br />

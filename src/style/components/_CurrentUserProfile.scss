@@ -1,0 +1,11 @@
+@use "../variables" as v;
+
+.user-profile-container {
+  width: 100vw;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  .user-profile {
+    grid-column: 4;
+  }
+}
