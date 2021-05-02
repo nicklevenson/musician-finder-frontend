@@ -1,9 +1,8 @@
 import React from "react";
-// import {Redirect, Link} from 'react-router-dom'
 import { connect } from "react-redux";
-import { Card, Icon, Image } from "semantic-ui-react";
-import ConnectForm from "./ConnectForm";
 import CurrentUserProfile from "./CurrentUserProfile";
+import OtherUserProfile from "./OtherUserProfile";
+
 class UserShow extends React.Component {
   state = {
     shownUser: {
@@ -13,7 +12,6 @@ class UserShow extends React.Component {
       photo: null,
       providerImage: "...",
       connected_users_with_tags: [],
-      tags: []
     },
     similar_tags: [],
   };
@@ -24,34 +22,6 @@ class UserShow extends React.Component {
       this.fetchSimilarTags();
     } else {
       this.setState({ shownUser: this.props.currentUser });
-    }
-  }
-
-  renderSimilarTags = () => {
-    if (
-      this.state.similar_tags &&
-      this.state.similar_tags.length > 0 &&
-      this.props.currentUser.id !== this.state.shownUser.id
-    ) {
-      return (
-        <Card.Content>
-          You both like: <br />
-          {this.state.similar_tags.join(", ")}
-        </Card.Content>
-      );
-    }
-  };
-
-  renderInterestTags = () => {
-    if (
-      this.state.shownUser.tags.length > 0
-    ) {
-      return (
-        <Card.Content textAlign="center">
-          {this.state.shownUser.username} is interested in: <br/><br/>
-          {this.state.shownUser.tags.map(t => t.name).join(", ")}
-        </Card.Content>
-      );
     }
   }
 
@@ -93,61 +63,15 @@ class UserShow extends React.Component {
   };
 
   render() {
+    console.log(this.state.shownUser);
     return (
-      <Card style={{ width: "80%", margin: "0 auto 0 auto" }}>
-        <Card.Content textAlign="center">
-          <Image
-            size="tiny"
-            circular
-            src={
-              this.state.shownUser.photo || this.state.shownUser.providerImage
-            }
-          />
-          <br />
-          <br />
-          <Card.Header>{this.state.shownUser.username}</Card.Header>
-          {/* <Card.Meta>
-              <span className='date'>Joined {this.state.shownUser.created_at.split("T")[0]}</span>
-            </Card.Meta> */}
-          <Card.Meta>
-            <span className="location">
-              Location: {this.state.shownUser.location || "Earth"}
-            </span>
-          </Card.Meta>
-          <Card.Description>
-            {this.state.shownUser.bio || "No bio given"}
-          </Card.Description>
-        </Card.Content>
-        <Card.Meta style={{ width: "50%", margin: "auto" }}>
-          {this.renderSimilarTags()}
-        </Card.Meta>
-        <br />
-        <Card.Content extra textAlign="center">
-          <button>
-            <Icon name="user" />
-            {this.state.shownUser.connected_users_with_tags
-              ? this.state.shownUser.connected_users_with_tags.length
-              : null}{" "}
-            Connections
-          </button>
-        </Card.Content>
-
-        <Card.Meta style={{ width: "50%", margin: "auto" }}>
-          {this.renderInterestTags()}
-        </Card.Meta>
-
-        <Card.Content style={{ width: "50%", margin: "auto" }}>
-          <ConnectForm focusedUser={this.state.shownUser} />
-        </Card.Content>
-
+      <>
         {this.state.shownUser.id === this.props.currentUser.id ? (
-          <Card.Content extra>
-            <CurrentUserProfile />
-          </Card.Content>
-        ) : null}
-
-       
-      </Card>
+          <CurrentUserProfile user={this.props.currentUser} />
+        ) : (
+          <OtherUserProfile user={this.state.shownUser} />
+        )}
+      </>
     );
   }
 }
