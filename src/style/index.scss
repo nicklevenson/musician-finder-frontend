@@ -2,6 +2,8 @@
 @use "home";
 @use "nav";
 @use "./components/CurrentUserProfile";
+@use "./components/UserNotification";
+@use "./components//UserTag";
 
 .App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing

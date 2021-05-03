@@ -1,58 +1,52 @@
-import React from "react";
+import { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import UserNotification from "./UserNotification";
+import UserTag from "./UserTag";
 
-class CurrentUserProfile extends React.Component {
+import helpers from "../../globalHelpers";
+
+class CurrentUserProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numberOfTestCards: 18,
       formattedDate: "",
       notificationsExpanded: false,
       tagsExpanded: false,
     };
   }
+  defaultProps = {
+    user: {
+      notifications: [],
+      tags: [],
+    },
+  };
   componentDidMount() {
     console.log("mounting current user profile", this.props);
     this.formatDate(this.props.user.created_at);
   }
 
   formatDate(date) {
-    try {
-      console.log("formatting date", typeof date);
-      if (typeof date === "string") {
-        let datesToNums = [];
-        date.slice(0, 10);
-        date = date.split("-");
-        date.forEach((int, index) => {
-          if (index === 1) int -= 1;
-          datesToNums.push(parseInt(int));
-          console.log(datesToNums);
-        });
-        let utc = Date.UTC(...datesToNums);
-        let f = new Intl.DateTimeFormat("en", {
-          weekday: "short",
-          year: "numeric",
-          month: "short",
-          day: "2-digit",
-        });
-        let formattedDate = f.format(utc);
-        this.setState({ formattedDate });
-      }
-    } catch (err) {
-      console.warn("error within formatDate method", err);
-      return;
-    }
+    let formattedDate = helpers.formatDate(date);
+    this.setState({ formattedDate });
   }
 
   toggleNotifications(e) {
     e.preventDefault();
     console.log("toggle notifications");
+    this.setState({
+      notificationsExpanded: !this.state.notificationsExpanded,
+      tagsExpanded: false,
+    });
   }
 
   toggleTags(e) {
     e.preventDefault();
     console.log("toggle tags");
+    this.setState({
+      notificationsExpanded: false,
+      tagsExpanded: !this.state.tagsExpanded,
+    });
   }
 
   render() {
@@ -60,14 +54,40 @@ class CurrentUserProfile extends React.Component {
       <div className="user-profile-container">
         <div className="notifications-and-tags-container">
           <div className="notifications">
-            <button onClick={(e) => this.toggleNotifications(e)} type="button">
+            <button
+              className="toggle-notifications-btn"
+              onClick={(e) => this.toggleNotifications(e)}
+              type="button"
+            >
               Notifications
             </button>
+            <div className="notifications-container">
+              {this?.state?.notificationsExpanded
+                ? this?.props?.user?.notifications.map(
+                    (notification, index) => {
+                      return (
+                        <UserNotification info={notification} key={index} />
+                      );
+                    }
+                  )
+                : ""}
+            </div>
           </div>
           <div className="tags">
-            <button onClick={(e) => this.toggleTags(e)} type="button">
+            <button
+              className="toggle-tags-btn"
+              onClick={(e) => this.toggleTags(e)}
+              type="button"
+            >
               Tags
             </button>
+            <div className="tags-container">
+              {this?.state?.tagsExpanded
+                ? this?.props?.user?.tags.map((tag, index) => {
+                    return <UserTag info={tag} key={index} />;
+                  })
+                : ""}
+            </div>
           </div>
         </div>
         <div className="user-profile">
