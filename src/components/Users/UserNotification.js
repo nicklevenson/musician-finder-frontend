@@ -6,6 +6,7 @@ class UserNotification extends Component {
     super(props);
     this.state = {
       formattedDate: "",
+      deleteBtnVisible: false,
     };
   }
 
@@ -18,17 +19,33 @@ class UserNotification extends Component {
     }
   }
 
-  formatDate(date) {}
+  toggleHover(e) {
+    e.preventDefault();
+    console.log("hovering over user notifaction", e);
+    this.setState({ deleteBtnVisible: !this.state.deleteBtnVisible });
+  }
 
-  render() {
-    return (
-      <div className="user-notification">
-        <div>{this.props.info.content}</div>
-        <div>{this.state.formattedDate}</div>
+  getDeleteBtn() {
+    if (this.state.deleteBtnVisible) {
+      return (
         <button className="delete-notification-btn">
           <div></div>
           <div></div>
         </button>
+      );
+    } else return "";
+  }
+
+  render() {
+    return (
+      <div
+        onMouseEnter={(e) => this.toggleHover(e)}
+        onMouseLeave={(e) => this.toggleHover(e)}
+        className="user-notification"
+      >
+        <div>{this.props.info.content}</div>
+        <div>{this.state.formattedDate}</div>
+        {this.getDeleteBtn()}
       </div>
     );
   }

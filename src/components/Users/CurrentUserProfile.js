@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Icon } from "semantic-ui-react";
 import UserNotification from "./UserNotification";
 import UserTag from "./UserTag";
 
@@ -91,20 +92,32 @@ class CurrentUserProfile extends Component {
           </div>
         </div>
         <div className="user-profile">
-          <img
-            src={this.props.user.photo || this.props.user.providerImage}
-            alt="user-profile"
-          />
-          <div className="username">{this.props.user.username}</div>
-          <div className="email">{this.props.user.email}</div>
-          <div>Member since {this.state.formattedDate}</div>
-          <div>
-            <span className="location">
-              Location: {this.props.user.location || "Earth"}
-            </span>
+          <div className="blue-backdrop"></div>
+          <Link className="logout-btn" to="/logout">
+            <Icon fitted name="sign-out" />
+          </Link>
+          <button className="edit-profile-btn">
+            <Icon fitted name="edit" />
+          </button>
+          <div className="user-profile-image-container">
+            <img
+              src={this.props.user.photo || this.props.user.providerImage}
+              alt="user-profile"
+            />
           </div>
-          <div>{this.props.user.bio || "No bio given"}</div>
-          <Link to="/logout">Logout</Link>
+          <div className="user-profile-text-container">
+            <div className="username">{this.props.user.username}</div>
+            <a href={`mailto:${this.props.user.email}`} className="email">
+              {this.props.user.email}
+            </a>
+            <div>Member since {this.state.formattedDate}</div>
+            <div>
+              <span className="location">
+                Location: {this.props.user.location || "Earth"}
+              </span>
+            </div>
+            <div>{this.props.user.bio || "No bio given"}</div>
+          </div>
         </div>
       </div>
     );
