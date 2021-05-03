@@ -12,7 +12,7 @@ class MessagingContainer extends React.Component {
         <div className="messages-container">
           {this.props.chatrooms.map(chatroom => {
             return(
-              <Chatroom/>
+              <Chatroom chatroom={chatroom} key={chatroom.id}/>
             )
           })}
         </div>
