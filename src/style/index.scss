@@ -1,8 +1,11 @@
 @use "variables" as v;
 @use "home";
 @use "nav";
+@use "./components/CurrentUserProfile";
+@use "./components/UserNotification";
+@use "./components//UserTag";
 
-#root {
+.App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing
   min-height: 100vh;
 
@@ -15,9 +18,19 @@
 
   button {
     border: none;
+    border-color: v.$gray;
     background: none;
     &:hover {
       cursor: pointer;
+    }
+  }
+
+  p {
+    width: 100%;
+    max-width: 10rem;
+    margin: 0;
+    &:last-of-type {
+      margin-bottom: 1rem;
     }
   }
 }

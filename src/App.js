@@ -26,7 +26,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav currentUser={this.props.currentUser} />
-        <div style={{ paddingTop: "100px" }}>
+        <div>
           <Switch>
             <Route exact path="/home" component={HomeContainer}></Route>
             <Route
