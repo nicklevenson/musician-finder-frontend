@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Image} from 'semantic-ui-react'
-class Chatroom extends React.Component {
+class ChatroomPreview extends React.Component {
   state = {
     backgroundColor: "white"
   }
@@ -20,7 +20,7 @@ class Chatroom extends React.Component {
     const otherUser = this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
     
     return(
-      <div style={{width: "30%", backgroundColor: this.state.backgroundColor, display: "flex", alignItems: "center"}}>
+      <div style={{backgroundColor: this.state.backgroundColor, display: "flex", alignItems: "center"}} onClick={ e => this.props.showChatroom(this.props.chatroom.id)}>
          <Image
             size="tiny"
             src={otherUser.photo || otherUser.providerImage}
@@ -30,7 +30,7 @@ class Chatroom extends React.Component {
           <div style={{display: "inline-block"}}>
             <h3>{otherUser.username}</h3>
             <i>{this.props.chatroom.messages[-1]?
-                this.props.chatroom.messages[-1].content
+                this.props.chatroom.messages[-1].content.substr(0, 20)
                 : 
                 "Start a conversation"}
             </i>
@@ -46,4 +46,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Chatroom)
+export default connect(mapStateToProps)(ChatroomPreview)
