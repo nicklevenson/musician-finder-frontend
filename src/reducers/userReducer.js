@@ -6,6 +6,7 @@ export default function userReducer(state={
   connectedUsers: [],
   recommendedUsers: [],
   incomingRequests: [],
+  chatrooms: [],
   allUsers: []
 }, action) {
   switch(action.type){
@@ -17,6 +18,8 @@ export default function userReducer(state={
       return {...state, recommendedUsers: action.payload}
     case "SET_INCOMING_REQUESTS":
       return {...state, incomingRequests: action.payload}
+    case "SET_USER_CHATROOMS":
+      return {...state, chatrooms: action.payload}
     case "SET_ALL_USERS":
       return {...state, allUsers: action.payload}
     default:
