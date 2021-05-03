@@ -46,6 +46,32 @@ export const fetchUser = () => {
   };
 };
 
+export const updateUser = (user_info) => {
+  return (dispatch) => {
+    const userId = sessionStorage.userId;
+    let configObj = {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.jwt} ${userId}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user: user_info }),
+    };
+    fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}`,
+      configObj
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(fetchUser());
+      })
+      .catch(function (error) {
+        alert("Error requesting connection.");
+      });
+  }
+}
+
 export const fetchUserRecs = () => {
   return (dispatch) => {
     const userId = sessionStorage.userId;
