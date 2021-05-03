@@ -5,10 +5,12 @@ import {fetchUserChatrooms} from '../actions/useractions'
 import ChatroomPreview from '../components/Messages/ChatroomPreview'
 import Chatroom from '../components/Messages/Chatroom'
 import {Grid} from 'semantic-ui-react'
+import NewMessage from '../components/Messages/NewMessage'
 class MessagingContainer extends React.Component {
   state = {
     selectedChatroom: null
   }
+  
 
   handleChatroomShow = (chatroomId) => {
     const chatroom = this.props.chatrooms.find(cr => cr.id === chatroomId)
@@ -30,7 +32,10 @@ class MessagingContainer extends React.Component {
               </Grid.Column>
               <Grid.Column width={12} className="shown-chatroom" style={{border: "solid thin lightgray"}}>
                 {this.state.selectedChatroom ? 
-                  <Chatroom chatroom={this.state.selectedChatroom}/>
+                  <>
+                    <Chatroom chatroom={this.state.selectedChatroom}/>
+                    <NewMessage chatroomId={this.state.selectedChatroom.id}/>
+                  </>
                 :
                   null
                 }

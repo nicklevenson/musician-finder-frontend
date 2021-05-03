@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Image} from 'semantic-ui-react'
 import {Message} from './Message.js'
+
 class Chatroom extends React.Component {
   // state = {
   //   otherUser: this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
@@ -14,12 +15,13 @@ class Chatroom extends React.Component {
               size="tiny"
               src={otherUser.photo || otherUser.providerImage}
               circular
+              inline
         /> 
 
-        <h5>{otherUser.username}</h5>
+        <b> {otherUser.username}</b>
 
         {this.props.chatroom.messages.length < 1 ?
-          "Start a conversation":
+          <h5>Start a conversation</h5>:
           null}
 
         {this.props.chatroom.messages.map(message => {
