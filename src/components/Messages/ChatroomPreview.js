@@ -13,14 +13,16 @@ class ChatroomPreview extends React.Component {
         this.setState({backgroundColor: "lightgray"})
       }
     }
+  }
 
-
+  handleClick = () => {
+    this.props.showChatroom(this.props.chatroom.id)
   }
   render(){
     const otherUser = this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
     
     return(
-      <div style={{backgroundColor: this.state.backgroundColor, display: "flex", alignItems: "center", borderBottom: "solid thin lightgray"}} onClick={ e => this.props.showChatroom(this.props.chatroom.id)}>
+      <div style={{backgroundColor: this.props.selected ? "lightgrey" : this.state.backgroundColor, display: "flex", alignItems: "center", borderBottom: "solid thin lightgray"}} onClick={this.handleClick}>
          <Image
             size="mini"
             src={otherUser.photo || otherUser.providerImage}

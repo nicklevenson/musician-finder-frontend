@@ -2,19 +2,20 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Image} from 'semantic-ui-react'
 class Chatroom extends React.Component {
-  state = {
-    otherUser: this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
-  }
+  // state = {
+  //   otherUser: this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
+  // }
   render(){
+    const otherUser = this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
     return (
       <div style={{margin: "2rem"}}>
         <Image
               size="tiny"
-              src={this.state.otherUser.photo || this.state.otherUser.providerImage}
+              src={otherUser.photo || otherUser.providerImage}
               circular
         /> 
 
-        <h5>{this.state.otherUser.username}</h5>
+        <h5>{otherUser.username}</h5>
 
         {this.props.chatroom.messages.length < 1 ?
           "Start a conversation":
