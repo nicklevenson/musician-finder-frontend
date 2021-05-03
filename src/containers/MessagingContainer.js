@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchUserChatrooms} from '../actions/useractions'
 import ChatroomPreview from '../components/Messages/ChatroomPreview'
+import Chatroom from '../components/Messages/Chatroom'
 class MessagingContainer extends React.Component {
   state = {
     selectedChatroom: null
@@ -25,9 +26,9 @@ class MessagingContainer extends React.Component {
           </div>
           <div className="shown-chatroom">
             {this.state.selectedChatroom ? 
-            <h1>Chatroom</h1> 
+              <Chatroom chatroom={this.state.selectedChatroom}/>
             :
-            null
+              null
             }
           </div>
         </div>
