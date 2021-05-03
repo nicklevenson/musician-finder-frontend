@@ -7,8 +7,15 @@ class Chatroom extends React.Component {
   }
   render(){
     return (
-      <>
-        <h2>{this.state.otherUser.username}</h2>
+      <div style={{margin: "2rem"}}>
+        <Image
+              size="tiny"
+              src={this.state.otherUser.photo || this.state.otherUser.providerImage}
+              circular
+        /> 
+
+        <h5>{this.state.otherUser.username}</h5>
+
         {this.props.chatroom.messages.length < 1 ?
           "Start a conversation":
           null}
@@ -24,7 +31,7 @@ class Chatroom extends React.Component {
             <p>{message.content}</p>
           </>
         })}
-      </>
+      </div>
     )
   }
 }

@@ -20,15 +20,15 @@ class ChatroomPreview extends React.Component {
     const otherUser = this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
     
     return(
-      <div style={{backgroundColor: this.state.backgroundColor, display: "flex", alignItems: "center"}} onClick={ e => this.props.showChatroom(this.props.chatroom.id)}>
+      <div style={{backgroundColor: this.state.backgroundColor, display: "flex", alignItems: "center", borderBottom: "solid thin lightgray"}} onClick={ e => this.props.showChatroom(this.props.chatroom.id)}>
          <Image
-            size="tiny"
+            size="mini"
             src={otherUser.photo || otherUser.providerImage}
             circular
             inline
           /> 
           <div style={{display: "inline-block"}}>
-            <h3>{otherUser.username}</h3>
+            <p>{otherUser.username}</p>
             <i>{this.props.chatroom.messages[-1]?
                 this.props.chatroom.messages[-1].content.substr(0, 20)
                 : 

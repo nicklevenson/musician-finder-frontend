@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {fetchUserChatrooms} from '../actions/useractions'
 import ChatroomPreview from '../components/Messages/ChatroomPreview'
 import Chatroom from '../components/Messages/Chatroom'
+import {Grid} from 'semantic-ui-react'
 class MessagingContainer extends React.Component {
   state = {
     selectedChatroom: null
@@ -18,20 +19,22 @@ class MessagingContainer extends React.Component {
       return(
         <>
         <h1>Messages</h1>
-        <div className="messages-container">
-          <div className="chatroom-previews">
-            {this.props.chatrooms.map(chatroom => {
-                return <ChatroomPreview chatroom={chatroom} key={chatroom.id} showChatroom={this.handleChatroomShow}/>
-            })}
-          </div>
-          <div className="shown-chatroom">
-            {this.state.selectedChatroom ? 
-              <Chatroom chatroom={this.state.selectedChatroom}/>
-            :
-              null
-            }
-          </div>
-        </div>
+        <Grid className="messages-container" centered style={{maxWidth: "1000px", margin: "auto"}}>
+          <Grid.Row style={{height:"80vh"}}>
+            <Grid.Column width={4} className="chatroom-previews" style={{border: "solid thin lightgray"}}>
+              {this.props.chatrooms.map(chatroom => {
+                  return <ChatroomPreview chatroom={chatroom} key={chatroom.id} showChatroom={this.handleChatroomShow}/>
+              })}
+            </Grid.Column>
+            <Grid.Column width={12} className="shown-chatroom" style={{border: "solid thin lightgray"}}>
+              {this.state.selectedChatroom ? 
+                <Chatroom chatroom={this.state.selectedChatroom}/>
+              :
+                null
+              }
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         </>
       )
     }
