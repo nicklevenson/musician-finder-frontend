@@ -2,12 +2,21 @@ import React from 'react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchUserChatrooms} from '../actions/useractions'
+import Chatroom from '../components/Messages/Chatroom'
 class MessagingContainer extends React.Component {
   render(){
-    console.log(this.props)
     if (sessionStorage.jwt){
       return(
+        <>
         <h1>Messages</h1>
+        <div className="messages-container">
+          {this.props.chatrooms.map(chatroom => {
+            return(
+              <Chatroom/>
+            )
+          })}
+        </div>
+        </>
       )
     }
     else{
