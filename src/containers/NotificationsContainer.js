@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { fetchUser } from "../actions/useractions";
+import { fetchUserNotifications } from "../actions/useractions";
 import Notification from "../components/Notifications/Notification.js";
 // import {Feed, Container} from 'semantic-ui-react'
 class NotificationsContainer extends React.Component {
   componentDidMount = () => {
-    this.props.fetchUser();
+    this.props.fetchUserNotifications();
   };
   render() {
     if (sessionStorage.jwt) {
@@ -14,8 +14,8 @@ class NotificationsContainer extends React.Component {
         <div>
           <h1>Notifications</h1>
           <div className="feed">
-            {this.props.currentUser.notifications.map((n) => {
-              return <Notification notification={n} />;
+            {this.props.notifications.map((n) => {
+              return <Notification notification={n} key={n.id}/>;
             })}
           </div>
         </div>
@@ -28,13 +28,13 @@ class NotificationsContainer extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUser: () => dispatch(fetchUser()),
+    fetchUserNotifications: () => dispatch(fetchUserNotifications()),
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.currentUser.currentUser,
+    notifications: state.currentUser.notifications,
   };
 };
 

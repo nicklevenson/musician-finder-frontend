@@ -1,13 +1,12 @@
 export default function userReducer(state={
   currentUser: {
     outgoing_pending_requests: [],
-    notifications: []
   },
   connectedUsers: [],
   recommendedUsers: [],
   incomingRequests: [],
   chatrooms: [],
-  allUsers: []
+  notifications: []
 }, action) {
   switch(action.type){
     case "SET_USER":
@@ -20,8 +19,8 @@ export default function userReducer(state={
       return {...state, incomingRequests: action.payload}
     case "SET_USER_CHATROOMS":
       return {...state, chatrooms: action.payload}
-    case "SET_ALL_USERS":
-      return {...state, allUsers: action.payload}
+    case "SET_USER_NOTIFICATIONS":
+      return {...state, notifications: action.payload}
     default:
       return state
   }

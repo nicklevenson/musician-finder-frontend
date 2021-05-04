@@ -11,14 +11,9 @@ class RecommendedUsers extends React.Component {
   render() {
     return(
       <>
-        {this.props.recommendedUsers.length > 0 ? 
-          this.props.recommendedUsers.map(u => 
+          {this.props.recommendedUsers.map(u => 
             <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcard"}/>
-          )
-        :
-        this.props.allUsers.map(u => 
-          <PreviewUserCard user={u} key={u.id + "previewcard"}/>)
-        }
+          )} 
       </>
     )
   }

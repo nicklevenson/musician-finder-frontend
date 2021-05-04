@@ -20,6 +20,10 @@ export const setUserChatrooms = (chatrooms) => ({
   type: "SET_USER_CHATROOMS",
   payload: chatrooms
 })
+export const setUserNotifications = (notifications) => ({
+  type: "SET_USER_NOTIFICATIONS",
+  payload: notifications
+})
 
 
 export const fetchAllUsers = () => {
@@ -47,6 +51,7 @@ export const fetchUser = () => {
         dispatch(fetchConnections(userId));
         dispatch(fetchIncomingRequests());
         dispatch(fetchUserChatrooms());
+        dispatch(fetchUserNotifications())
       })
       .catch(function (error) {
         alert("Error getting User.");
@@ -222,6 +227,27 @@ export const rejectConnection = (requesting_user_id) => {
   };
 };
 
+export const fetchUserNotifications = () => {
+  return (dispatch) => {
+    const userId = sessionStorage.userId;
+    fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/get_user_notifications`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(setUserNotifications(json));
+      })
+      .catch(function (error) {
+        alert("Error getting notifications.");
+      });
+  }
+}
 
 export const fetchUserChatrooms = () => {
   return (dispatch) => {

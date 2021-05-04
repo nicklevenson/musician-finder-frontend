@@ -1,0 +1,13 @@
+@use "../variables" as v;
+
+.alert {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  right: 0;
+  top: 0;
+  background-color: tomato;
+  z-index: 5;
+  border-radius: 50%;
+  color: white;
+}

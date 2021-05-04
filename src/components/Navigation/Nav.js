@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Icon } from "semantic-ui-react";
 import ProfileImage from "../Users/ProfileImage";
 import NotificationIcon from "../Notifications/NotificationIcon";
-
+import MessageIcon from "../Messages/MessageIcon"
 import anime from "animejs";
 
 class Nav extends Component {
@@ -130,8 +130,8 @@ class Nav extends Component {
             </button>
 
             <button name="messaging" onClick={(e) => this.handleItemClick(e)}>
-              <Icon name="chat" size="large" />
-              Messaging
+              <MessageIcon/>
+              Messages
             </button>
 
             <button
