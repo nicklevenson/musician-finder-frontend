@@ -4,13 +4,13 @@ import {Image} from 'semantic-ui-react'
 class ChatroomPreview extends React.Component {
   
 
-  getBackgroundColor = () => {
+  getClassName = () => {
     if (this.props.selected){
-      return "lightgray"
+      return "chatroom-preview chatroom-preview-selected"
     }else if( this.isUnread()){
-      return "lightgreen" 
+      return "chatroom-preview chatroom-preview-unread" 
     }else{
-      return "white"
+      return "chatroom-preview"
     }
   }
   isUnread = () => {
@@ -29,7 +29,7 @@ class ChatroomPreview extends React.Component {
     const otherUser = this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
     
     return(
-      <div className="chatroom-preview" style={{backgroundColor: this.getBackgroundColor()}} onClick={this.handleClick}>
+      <div className={this.getClassName()} onClick={this.handleClick}>
          <Image
             size="mini"
             src={otherUser.photo || otherUser.providerImage}
