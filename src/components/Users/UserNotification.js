@@ -43,8 +43,10 @@ class UserNotification extends Component {
         onMouseLeave={(e) => this.toggleHover(e)}
         className="user-notification"
       >
-        <div>{this.props.info.content}</div>
-        <div>{this.state.formattedDate}</div>
+        <div className="user-notification-content">
+          {this.props.info.content}
+        </div>
+        <div className="user-notification-date">{this.state.formattedDate}</div>
         {this.getDeleteBtn()}
       </div>
     );
