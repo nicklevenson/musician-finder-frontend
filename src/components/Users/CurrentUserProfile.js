@@ -16,13 +16,8 @@ class CurrentUserProfile extends Component {
       tagsExpanded: false,
     };
   }
-  defaultProps = {
-    user: {
-      tags: [],
-    }
-  };
+
   componentDidMount() {
-    console.log("mounting current user profile", this.props);
     this.formatDate(this.props.user.created_at);
   }
 
@@ -33,7 +28,6 @@ class CurrentUserProfile extends Component {
 
   toggleNotifications(e) {
     e.preventDefault();
-    console.log("toggle notifications");
     this.setState({
       notificationsExpanded: !this.state.notificationsExpanded,
       tagsExpanded: false,
@@ -42,7 +36,6 @@ class CurrentUserProfile extends Component {
 
   toggleTags(e) {
     e.preventDefault();
-    console.log("toggle tags");
     this.setState({
       notificationsExpanded: false,
       tagsExpanded: !this.state.tagsExpanded,
@@ -64,13 +57,9 @@ class CurrentUserProfile extends Component {
             </button>
             <div className="notifications-container">
               {this?.state?.notificationsExpanded
-                ? this?.props?.notifications?.map(
-                    (notification, index) => {
-                      return (
-                        <UserNotification info={notification} key={index} />
-                      );
-                    }
-                  )
+                ? this?.props?.notifications?.map((notification, index) => {
+                    return <UserNotification info={notification} key={index} />;
+                  })
                 : ""}
             </div>
           </div>
@@ -125,10 +114,16 @@ class CurrentUserProfile extends Component {
   }
 }
 
+CurrentUserProfile.defaultProps = {
+  user: {
+    tags: [],
+  },
+};
+
 const mapStateToProps = (state) => {
   return {
     user: state.currentUser.currentUser,
-    notifications: state.currentUser.notifications
+    notifications: state.currentUser.notifications,
   };
 };
 
