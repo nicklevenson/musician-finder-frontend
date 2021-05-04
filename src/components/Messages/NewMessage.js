@@ -25,7 +25,7 @@ class NewMessage extends React.Component {
 
   render(){
     return(
-      <div className="new-message">
+      <div className="new-message" style={{position: "absolute"}}>
         <label htmlFor="message content"/>
         <input name="message content" value={this.state.content} placeholder="New Message" onChange={e => this.handleChange(e)}></input>
         <b onClick={this.handleSend}> Send</b>

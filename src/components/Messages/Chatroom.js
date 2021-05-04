@@ -9,23 +9,25 @@ class Chatroom extends React.Component {
     const chatroom = this.props.chatrooms.find(cr => cr.id === this.props.chatroomId)
     const otherUser = chatroom.users.find(u => u.id !== this.props.currentUser.id)
     return (
-      <div style={{margin: "2rem"}}>
+      <div style={{height: "80vh"}}>
         <Image
-              size="tiny"
-              src={otherUser.photo || otherUser.providerImage}
-              circular
-              inline
+          size="tiny"
+          src={otherUser.photo || otherUser.providerImage}
+          circular
+          inline
         /> 
 
-        <b> {otherUser.username}</b>
+          <b> {otherUser.username}</b>
+          <div style={{margin: "2rem", height: "80%", overflowY: "auto"}}>
 
-        {chatroom.messages.length < 1 ?
-          <h5>Start a conversation</h5>:
-          null}
+          {chatroom.messages.length < 1 ?
+            <h5>Start a conversation</h5>:
+            null}
 
-        {chatroom.messages.map(message => {
-          return <Message message={message}/>
-        })}
+          {chatroom.messages.map(message => {
+            return <Message message={message}/>
+          })}
+        </div>
       </div>
     )
   }

@@ -22,7 +22,7 @@ class MessagingContainer extends React.Component {
       return(
         <>
           <Grid className="messages-container" centered style={{maxWidth: "1000px", margin: "auto"}}>
-            <Grid.Row style={{height:"80vh"}}>
+            <Grid.Row style={{height:"90vh"}}>
               <Grid.Column width={4} className="chatroom-previews" style={{border: "solid thin lightgray", padding: "0"}}>
                 {this.props.chatrooms.map(chatroom => {
                     return <ChatroomPreview chatroom={chatroom} key={chatroom.id} 
