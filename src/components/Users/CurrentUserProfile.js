@@ -18,9 +18,8 @@ class CurrentUserProfile extends Component {
   }
   defaultProps = {
     user: {
-      notifications: [],
       tags: [],
-    },
+    }
   };
   componentDidMount() {
     console.log("mounting current user profile", this.props);
@@ -65,7 +64,7 @@ class CurrentUserProfile extends Component {
             </button>
             <div className="notifications-container">
               {this?.state?.notificationsExpanded
-                ? this?.props?.user?.notifications.map(
+                ? this?.props?.notifications?.map(
                     (notification, index) => {
                       return (
                         <UserNotification info={notification} key={index} />
@@ -129,6 +128,7 @@ class CurrentUserProfile extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.currentUser.currentUser,
+    notifications: state.currentUser.notifications
   };
 };
 

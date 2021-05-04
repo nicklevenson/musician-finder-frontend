@@ -10,7 +10,15 @@ class MessagingContainer extends React.Component {
   state = {
     selectedChatroom: null
   }
-  
+  componentDidMount = () => {
+    if (sessionStorage.jwt){
+      this.timer = setInterval(()=>this.props.fetchUserChatrooms(), 10000)
+    }
+  }
+  componentWillUnmount = () => {
+    clearInterval(this.timer)
+    this.timer = null
+  }
 
   handleChatroomShow = (chatroomId) => {
     const chatroom = this.props.chatrooms.find(cr => cr.id === chatroomId)

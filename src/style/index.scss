@@ -9,7 +9,7 @@
 @use "./components//Message";
 @use "./components/NewMessage";
 @use "./components/ChatroomPreview";
-
+@use "./components/Alert";
 .App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing
   min-height: 100vh;
