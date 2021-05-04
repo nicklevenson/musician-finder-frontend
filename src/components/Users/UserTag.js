@@ -6,21 +6,18 @@ class UserTag extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    console.log("mounting User Tag", this.props);
-  }
+  componentDidMount() {}
 
   getContainerClass() {
     let parentClass = "user-tag";
     let { tag_type } = this.props.info;
-    console.log(tag_type);
     if (tag_type === "spotify_artist") parentClass += " spotify";
     return parentClass;
   }
 
   getImage() {
-    if (this.props.info.spotify_image_url) {
-      return <img src={this.props.info.spotify_image_url} alt="artist" />;
+    if (this.props.info.image_url) {
+      return <img src={this.props.info.image_url} alt="artist" />;
     } else return "";
   }
 
