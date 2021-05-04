@@ -61,6 +61,7 @@ class CurrentUserProfile extends Component {
               type="button"
             >
               Notifications
+              <Icon name="chevron down" />
             </button>
             <div className="notifications-container">
               {this?.state?.notificationsExpanded
@@ -81,6 +82,7 @@ class CurrentUserProfile extends Component {
               type="button"
             >
               Tags
+              <Icon name="chevron down" />
             </button>
             <div className="tags-container">
               {this?.state?.tagsExpanded

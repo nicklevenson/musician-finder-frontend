@@ -1,14 +1,15 @@
 @use "../variables" as v;
 
 .user-notification {
-  @include v.flexbox-col-spaced;
+  display: grid;
   position: relative;
-  flex-direction: row;
   background-color: v.$green;
   color: v.$white;
   filter: opacity(70%);
   padding: 1rem 2rem;
   padding-right: 3rem;
+  margin: 1rem 0;
+  box-shadow: v.$box-shadow;
 
   .delete-notification-btn {
     background-color: v.$red;
@@ -30,6 +31,22 @@
       &:last-of-type {
         transform: rotate(-45deg);
       }
+    }
+  }
+
+  .user-notification-date {
+    font-weight: bold;
+    opacity: 0.7;
+    padding-top: 1rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .user-notification {
+    @include v.flexbox-col-spaced;
+    flex-direction: row;
+    .user-notification-date {
+      padding: 0;
     }
   }
 }
