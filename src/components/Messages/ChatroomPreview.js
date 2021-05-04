@@ -16,8 +16,8 @@ class ChatroomPreview extends React.Component {
   isUnread = () => {
     const index = this.props.chatroom.messages.length - 1
     if(this.props.chatroom.messages){
-      if (this.props.chatroom.messages[index].user_id !== this.props.currentUser.id &&
-        this.props.chatroom.messages[index].read === false){
+      if (this.props.chatroom?.messages[index]?.user_id !== this.props.currentUser.id &&
+        this.props.chatroom?.messages[index]?.read === false){
         return true
       }
     }
@@ -38,7 +38,7 @@ class ChatroomPreview extends React.Component {
           /> 
           <div style={{display: "inline-block"}}>
             <p>{otherUser.username}</p>
-            <i>{this.props.chatroom.messages[this.props.chatroom.messages.length - 1]?
+            <i>{this.props.chatroom?.messages[this.props.chatroom.messages.length - 1]?
                 this.props.chatroom.messages[this.props.chatroom.messages.length - 1].content.substr(0, 20)
                 : 
                 "Start a conversation"}
