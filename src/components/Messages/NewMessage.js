@@ -10,7 +10,8 @@ class NewMessage extends React.Component {
   handleChange = (e) => {
     this.setState({content: e.target.value})
   }
-  handleSend = () => {
+  handleSend = (e) => {
+    e.preventDefault()
     if (this.state.content.length > 0) {
       const messageObject = {
         content: this.state.content,
@@ -25,9 +26,11 @@ class NewMessage extends React.Component {
   render(){
     return(
       <div className="new-message">
-        <label htmlFor="message content"/>
-        <input name="message content" value={this.state.content} placeholder="New Message" onChange={e => this.handleChange(e)}></input>
-        <b onClick={this.handleSend}> Send</b>
+        <div className="new-message-input">
+          <label htmlFor="message content"/>
+          <input name="message content" value={this.state.content} placeholder="New Message" onChange={e => this.handleChange(e)}></input>
+        </div>
+        <button onClick={this.handleSend}> Send</button>
       </div>
     )
   }

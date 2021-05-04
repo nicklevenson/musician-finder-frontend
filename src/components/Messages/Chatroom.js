@@ -34,7 +34,7 @@ class Chatroom extends React.Component {
             null}
 
           {chatroom.messages.map(message => {
-            return <Message message={message} key={message.id}/>
+            return <Message message={message} key={message.id} currentUserMessage={this.props.currentUser.id === message.user_id ? true : null}/>
           })}
         </div>
 

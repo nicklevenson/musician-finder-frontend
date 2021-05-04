@@ -4,19 +4,22 @@
 .chatroom {
   height: 100%;
   display: grid;
-  grid-template: 10% 80% 10% / 50% 50%;
+  grid-template: .5fr 5fr .5fr / 100%;
 }
 
 .chatroom-header {
-  grid-area: 1 / 1 / 2 / 3;
+  padding: 1rem;
+  grid-area: 1 / 1 / 1 / 2;
 }
 
 .messages-container {
-  margin: 2rem;
+  padding: 2rem;
   overflow: auto; 
-  grid-area: 2 / 1 / 2 / 3;
+  grid-area: 2 / 1 / 2 / 2;
+  display: grid;
 }
 
 .new-message-container {
-  grid-area: 3 / 1 / 4 / 3;
+  margin: 0 1rem 0 1rem;
+  grid-area: 3 / 1 / 4 / 2;
 }

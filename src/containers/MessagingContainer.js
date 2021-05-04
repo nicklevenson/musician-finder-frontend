@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {fetchUserChatrooms} from '../actions/useractions'
 import ChatroomPreview from '../components/Messages/ChatroomPreview'
 import Chatroom from '../components/Messages/Chatroom'
-import {Grid} from 'semantic-ui-react'
 
 class MessagingContainer extends React.Component {
   
