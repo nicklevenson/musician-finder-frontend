@@ -1,0 +1,15 @@
+@use "../variables" as v;
+
+.chatroom-preview {
+  display: flex;
+  align-items: center;
+  border-bottom: solid thin lightgray;
+}
+
+.chatroom-preview-selected {
+  background-color: v.$gray;
+}
+
+.chatroom-preview-unread {
+  background-color: v.$green;
+}

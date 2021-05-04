@@ -1,0 +1,25 @@
+@use "../variables" as v;
+
+
+.chatroom {
+  height: 100%;
+  display: grid;
+  grid-template: .5fr 5fr .5fr / 100%;
+}
+
+.chatroom-header {
+  padding: 1rem;
+  grid-area: 1 / 1 / 1 / 2;
+}
+
+.messages-container {
+  padding: 2rem;
+  overflow: auto; 
+  grid-area: 2 / 1 / 2 / 2;
+  display: grid;
+}
+
+.new-message-container {
+  margin: 0 1rem 0 1rem;
+  grid-area: 3 / 1 / 4 / 2;
+}
