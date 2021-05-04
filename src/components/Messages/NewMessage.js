@@ -18,14 +18,13 @@ class NewMessage extends React.Component {
         chatroom_id: this.props.chatroomId
       }
       this.props.sendMessage(messageObject)
-      this.props.refreshChatroom(this.props.chatroomId)
       this.setState({content: ""})
     }
   }
 
   render(){
     return(
-      <div className="new-message" style={{position: "absolute"}}>
+      <div className="new-message">
         <label htmlFor="message content"/>
         <input name="message content" value={this.state.content} placeholder="New Message" onChange={e => this.handleChange(e)}></input>
         <b onClick={this.handleSend}> Send</b>

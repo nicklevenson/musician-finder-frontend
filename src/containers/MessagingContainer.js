@@ -5,7 +5,7 @@ import {fetchUserChatrooms} from '../actions/useractions'
 import ChatroomPreview from '../components/Messages/ChatroomPreview'
 import Chatroom from '../components/Messages/Chatroom'
 import {Grid} from 'semantic-ui-react'
-import NewMessage from '../components/Messages/NewMessage'
+
 class MessagingContainer extends React.Component {
   
   state = {
@@ -29,8 +29,8 @@ class MessagingContainer extends React.Component {
     if (sessionStorage.jwt){
       return(
         <>
-          <div className="messages-container">
-              <div className="chatroom-previews" style={{border: "solid thin lightgray", padding: "0"}}>
+          <div className="messaging-container">
+              <div className="chatroom-previews">
                 {this.orderChatrooms(this.props.chatrooms).map(chatroom => {
                     return <ChatroomPreview chatroom={chatroom} key={chatroom.id} 
                             showChatroom={this.handleChatroomShow} 
@@ -38,11 +38,10 @@ class MessagingContainer extends React.Component {
                             />
                 })}
               </div>
-              <div className="shown-chatroom" style={{border: "solid thin lightgray"}}>
+              <div className="shown-chatroom">
                 {this.state.selectedChatroom ? 
                   <>
                     <Chatroom chatroomId={this.state.selectedChatroom.id}/>
-                    <NewMessage chatroomId={this.state.selectedChatroom.id} refreshChatroom={this.handleChatroomShow}/>
                   </>
                 :
                   null

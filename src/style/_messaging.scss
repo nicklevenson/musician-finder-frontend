@@ -1,6 +1,6 @@
 @use "./variables" as v;
 
-.messages-container {
+.messaging-container {
   display: grid;
   grid-template: 90vh / 1fr 3fr;
   margin: auto;
@@ -9,8 +9,10 @@
 
 .chatroom-previews {
   grid-area: 1 / 1 / 2 / 2;
+  border: solid thin lightgray;
 }
 
 .shown-chatroom {
   grid-area: 1 / 2 / 2 / 3;
+  border: solid thin lightgray;
 }

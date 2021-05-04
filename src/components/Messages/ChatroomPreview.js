@@ -29,7 +29,7 @@ class ChatroomPreview extends React.Component {
     const otherUser = this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
     
     return(
-      <div style={{backgroundColor: this.getBackgroundColor(), display: "flex", alignItems: "center", borderBottom: "solid thin lightgray"}} onClick={this.handleClick}>
+      <div className="chatroom-preview" style={{backgroundColor: this.getBackgroundColor()}} onClick={this.handleClick}>
          <Image
             size="mini"
             src={otherUser.photo || otherUser.providerImage}

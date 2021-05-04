@@ -2,7 +2,7 @@
 import {Image} from 'semantic-ui-react'
 export const Message = (props) => {
   return(
-    <div className="message" style={{width: "80%", margin: "1rem"}}>
+    <div className="message">
       <Image
         size="mini"
         src={props.message.user.photo || props.message.user.providerImage}

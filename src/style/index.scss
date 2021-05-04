@@ -8,6 +8,7 @@
 @use "./components//Chatroom";
 @use "./components//Message";
 @use "./components/NewMessage";
+@use "./components/ChatroomPreview";
 
 .App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing

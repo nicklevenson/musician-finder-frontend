@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Image} from 'semantic-ui-react'
 import {Message} from './Message.js'
 import { makeMessageRead } from '../../actions/useractions.js'
-
+import NewMessage from './NewMessage'
 class Chatroom extends React.Component {
   componentDidMount(){
     const chatroom = this.props.chatrooms.find(cr => cr.id === this.props.chatroomId)
@@ -17,17 +17,18 @@ class Chatroom extends React.Component {
     const chatroom = this.props.chatrooms.find(cr => cr.id === this.props.chatroomId)
     const otherUser = chatroom.users.find(u => u.id !== this.props.currentUser.id)
     return (
-      <div style={{height: "80vh"}}>
-        <Image
-          size="tiny"
-          src={otherUser.photo || otherUser.providerImage}
-          circular
-          inline
-        /> 
-
+      <div className="chatroom">
+        <div className="chatroom-header">
+          <Image
+            size="tiny"
+            src={otherUser.photo || otherUser.providerImage}
+            circular
+            inline
+          />
           <b> {otherUser.username}</b>
-          <div style={{margin: "2rem", height: "80%", overflowY: "auto"}}>
+        </div>
 
+        <div className="messages-container">
           {chatroom.messages.length < 1 ?
             <h5>Start a conversation</h5>:
             null}
@@ -35,6 +36,10 @@ class Chatroom extends React.Component {
           {chatroom.messages.map(message => {
             return <Message message={message} key={message.id}/>
           })}
+        </div>
+
+        <div className="new-message-container">
+          <NewMessage chatroomId={chatroom.id}/>
         </div>
       </div>
     )
