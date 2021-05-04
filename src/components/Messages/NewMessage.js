@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {sendMessage, fetchAllUsers, fetchUserChatrooms} from '../../actions/useractions'
+import {sendMessage, fetchUserChatrooms} from '../../actions/useractions'
 
 class NewMessage extends React.Component {
   state = {

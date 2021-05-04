@@ -2,19 +2,26 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Image} from 'semantic-ui-react'
 class ChatroomPreview extends React.Component {
-  state = {
-    backgroundColor: "white"
-  }
   
-  componentDidMount(){
-    if(this.props.chatroom.messages.users){
-      if (this.props.chatroom.messages[this.props.chatroom.messages.length - 1].user.id !== this.props.currentUser.id &&
-        this.props.chatroom.messages[this.props.chatroom.messages.length - 1].read === false){
-        this.setState({backgroundColor: "lightgray"})
+
+  getBackgroundColor = () => {
+    if (this.props.selected){
+      return "lightgray"
+    }else if( this.isUnread()){
+      return "lightgreen" 
+    }else{
+      return "white"
+    }
+  }
+  isUnread = () => {
+    const index = this.props.chatroom.messages.length - 1
+    if(this.props.chatroom.messages){
+      if (this.props.chatroom.messages[index].user_id !== this.props.currentUser.id &&
+        this.props.chatroom.messages[index].read === false){
+        return true
       }
     }
   }
-
   handleClick = () => {
     this.props.showChatroom(this.props.chatroom.id)
   }
@@ -22,7 +29,7 @@ class ChatroomPreview extends React.Component {
     const otherUser = this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
     
     return(
-      <div style={{backgroundColor: this.props.selected ? "lightgrey" : this.state.backgroundColor, display: "flex", alignItems: "center", borderBottom: "solid thin lightgray"}} onClick={this.handleClick}>
+      <div style={{backgroundColor: this.getBackgroundColor(), display: "flex", alignItems: "center", borderBottom: "solid thin lightgray"}} onClick={this.handleClick}>
          <Image
             size="mini"
             src={otherUser.photo || otherUser.providerImage}

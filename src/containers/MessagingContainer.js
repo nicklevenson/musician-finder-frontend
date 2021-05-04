@@ -17,6 +17,14 @@ class MessagingContainer extends React.Component {
     const chatroom = this.props.chatrooms.find(cr => cr.id === chatroomId)
     this.setState({selectedChatroom: chatroom})
   }
+
+  orderChatrooms = (chatrooms) => {
+    if (chatrooms.length > 0){
+      return chatrooms.sort((cr, cr2) => (cr.updated_at < cr2.updated_at) ? 1 : -1)
+    }else{
+      return []
+    }
+  }
   render(){
     if (sessionStorage.jwt){
       return(
@@ -24,7 +32,7 @@ class MessagingContainer extends React.Component {
           <Grid className="messages-container" centered style={{maxWidth: "1000px", margin: "auto"}}>
             <Grid.Row style={{height:"90vh"}}>
               <Grid.Column width={4} className="chatroom-previews" style={{border: "solid thin lightgray", padding: "0"}}>
-                {this.props.chatrooms.map(chatroom => {
+                {this.orderChatrooms(this.props.chatrooms).map(chatroom => {
                     return <ChatroomPreview chatroom={chatroom} key={chatroom.id} 
                             showChatroom={this.handleChatroomShow} 
                             selected={this.state.selectedChatroom?.id === chatroom.id ? true : false}
