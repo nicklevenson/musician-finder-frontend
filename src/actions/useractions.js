@@ -21,12 +21,15 @@ export const setUserChatrooms = (chatrooms) => ({
   payload: chatrooms
 })
 
+
 export const fetchAllUsers = () => {
   return async (dispatch) => {
     let response = await api.getAllUsers();
     if (response) dispatch(setAllUsers(response));
   };
 };
+
+
 
 export const fetchUser = () => {
   return (dispatch) => {

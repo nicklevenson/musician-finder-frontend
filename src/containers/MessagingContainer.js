@@ -7,6 +7,7 @@ import Chatroom from '../components/Messages/Chatroom'
 import {Grid} from 'semantic-ui-react'
 import NewMessage from '../components/Messages/NewMessage'
 class MessagingContainer extends React.Component {
+  
   state = {
     selectedChatroom: null
   }
@@ -33,8 +34,8 @@ class MessagingContainer extends React.Component {
               <Grid.Column width={12} className="shown-chatroom" style={{border: "solid thin lightgray"}}>
                 {this.state.selectedChatroom ? 
                   <>
-                    <Chatroom chatroom={this.state.selectedChatroom}/>
-                    <NewMessage chatroomId={this.state.selectedChatroom.id}/>
+                    <Chatroom chatroomId={this.state.selectedChatroom.id}/>
+                    <NewMessage chatroomId={this.state.selectedChatroom.id} refreshChatroom={this.handleChatroomShow}/>
                   </>
                 :
                   null

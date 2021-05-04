@@ -4,11 +4,10 @@ import {Image} from 'semantic-ui-react'
 import {Message} from './Message.js'
 
 class Chatroom extends React.Component {
-  // state = {
-  //   otherUser: this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
-  // }
+  
   render(){
-    const otherUser = this.props.chatroom.users.find(u => u.id !== this.props.currentUser.id)
+    const chatroom = this.props.chatrooms.find(cr => cr.id === this.props.chatroomId)
+    const otherUser = chatroom.users.find(u => u.id !== this.props.currentUser.id)
     return (
       <div style={{margin: "2rem"}}>
         <Image
@@ -20,11 +19,11 @@ class Chatroom extends React.Component {
 
         <b> {otherUser.username}</b>
 
-        {this.props.chatroom.messages.length < 1 ?
+        {chatroom.messages.length < 1 ?
           <h5>Start a conversation</h5>:
           null}
 
-        {this.props.chatroom.messages.map(message => {
+        {chatroom.messages.map(message => {
           return <Message message={message}/>
         })}
       </div>
@@ -33,7 +32,9 @@ class Chatroom extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.currentUser.currentUser
+    currentUser: state.currentUser.currentUser,
+    shownChatroom: state.currentUser.shownChatroom,
+    chatrooms: state.currentUser.chatrooms
   };
 };
 

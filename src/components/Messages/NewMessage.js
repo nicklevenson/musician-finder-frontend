@@ -18,7 +18,7 @@ class NewMessage extends React.Component {
         chatroom_id: this.props.chatroomId
       }
       this.props.sendMessage(messageObject)
-      this.props.fetchUserChatrooms()
+      this.props.refreshChatroom(this.props.chatroomId)
       this.setState({content: ""})
     }
   }

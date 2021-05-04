@@ -8,8 +8,8 @@ class ChatroomPreview extends React.Component {
   
   componentDidMount(){
     if(this.props.chatroom.messages.users){
-      if (this.props.chatroom.messages[-1].user.id !== this.props.currentUser.id &&
-        this.props.chatroom.messages[-1].read === false){
+      if (this.props.chatroom.messages[this.props.chatroom.messages.length - 1].user.id !== this.props.currentUser.id &&
+        this.props.chatroom.messages[this.props.chatroom.messages.length - 1].read === false){
         this.setState({backgroundColor: "lightgray"})
       }
     }
@@ -31,8 +31,8 @@ class ChatroomPreview extends React.Component {
           /> 
           <div style={{display: "inline-block"}}>
             <p>{otherUser.username}</p>
-            <i>{this.props.chatroom.messages[-1]?
-                this.props.chatroom.messages[-1].content.substr(0, 20)
+            <i>{this.props.chatroom.messages[this.props.chatroom.messages.length - 1]?
+                this.props.chatroom.messages[this.props.chatroom.messages.length - 1].content.substr(0, 20)
                 : 
                 "Start a conversation"}
             </i>
