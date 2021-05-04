@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Icon } from "semantic-ui-react";
 import ProfileImage from "../Users/ProfileImage";
 import NotificationIcon from "../Notifications/NotificationIcon";
-import MessageIcon from "../Messages/MessageIcon"
+import MessageIcon from "../Messages/MessageIcon";
 import anime from "animejs";
 
 class Nav extends Component {
@@ -19,7 +19,6 @@ class Nav extends Component {
     let index = 0;
 
     while (!e.target.getAttribute("name")) {
-      console.log(e.target);
       if (index > 4) return false;
       e.target = e.target.parentNode;
       index++;
@@ -49,7 +48,6 @@ class Nav extends Component {
   };
 
   animateButtonsIn = () => {
-    console.log("animating buttons!");
     let buttons = document.querySelectorAll(".main-nav-dropdown-menu button");
     let nav = document.querySelector(".main-nav-dropdown-menu");
     nav.classList.toggle("is-active");
@@ -75,7 +73,6 @@ class Nav extends Component {
   };
 
   animateButtonsOut = () => {
-    console.log("animating buttons out!");
     let buttons = document.querySelectorAll(".main-nav-dropdown-menu button");
     let nav = document.querySelector(".main-nav-dropdown-menu");
     setTimeout(() => nav.classList.toggle("is-active"), 800);
@@ -130,7 +127,7 @@ class Nav extends Component {
             </button>
 
             <button name="messaging" onClick={(e) => this.handleItemClick(e)}>
-              <MessageIcon/>
+              <MessageIcon />
               Messages
             </button>
 

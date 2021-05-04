@@ -34,6 +34,16 @@ class CurrentUserProfile extends Component {
     });
   }
 
+  toggleUserEditorModal(e) {
+    e.preventDefault();
+    try {
+      console.log("user editor modal toggle", e.target);
+    } catch (err) {
+      console.warn("error with edit user click event", err);
+      return false;
+    }
+  }
+
   toggleTags(e) {
     e.preventDefault();
     this.setState({
@@ -86,7 +96,11 @@ class CurrentUserProfile extends Component {
           <Link className="logout-btn" to="/logout">
             <Icon fitted name="sign-out" />
           </Link>
-          <button className="edit-profile-btn">
+          <button
+            type="button"
+            onClick={(e) => this.toggleUserEditorModal(e)}
+            className="edit-profile-btn"
+          >
             <Icon fitted name="edit" />
           </button>
           <div className="user-profile-image-container">
