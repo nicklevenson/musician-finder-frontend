@@ -29,17 +29,16 @@ class MessagingContainer extends React.Component {
     if (sessionStorage.jwt){
       return(
         <>
-          <Grid className="messages-container" centered style={{maxWidth: "1000px", margin: "auto"}}>
-            <Grid.Row style={{height:"90vh"}}>
-              <Grid.Column width={4} className="chatroom-previews" style={{border: "solid thin lightgray", padding: "0"}}>
+          <div className="messages-container">
+              <div className="chatroom-previews" style={{border: "solid thin lightgray", padding: "0"}}>
                 {this.orderChatrooms(this.props.chatrooms).map(chatroom => {
                     return <ChatroomPreview chatroom={chatroom} key={chatroom.id} 
                             showChatroom={this.handleChatroomShow} 
                             selected={this.state.selectedChatroom?.id === chatroom.id ? true : false}
                             />
                 })}
-              </Grid.Column>
-              <Grid.Column width={12} className="shown-chatroom" style={{border: "solid thin lightgray"}}>
+              </div>
+              <div className="shown-chatroom" style={{border: "solid thin lightgray"}}>
                 {this.state.selectedChatroom ? 
                   <>
                     <Chatroom chatroomId={this.state.selectedChatroom.id}/>
@@ -48,9 +47,8 @@ class MessagingContainer extends React.Component {
                 :
                   null
                 }
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+              </div>
+          </div>
         </>
       )
     }
