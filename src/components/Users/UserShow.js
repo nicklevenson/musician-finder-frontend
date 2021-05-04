@@ -6,12 +6,7 @@ import OtherUserProfile from "./OtherUserProfile";
 class UserShow extends React.Component {
   state = {
     shownUser: {
-      username: "loading...",
-      location: "...",
-      bio: "...",
-      photo: null,
-      providerImage: "...",
-      connected_users_with_tags: [],
+      loading: true
     },
     similar_tags: [],
   };
@@ -64,15 +59,24 @@ class UserShow extends React.Component {
 
   render() {
     console.log(this.state.shownUser);
-    return (
-      <>
-        {this.state.shownUser.id === this.props.currentUser.id ? (
-          <CurrentUserProfile />
-        ) : (
-          <OtherUserProfile user={this.state.shownUser} />
-        )}
-      </>
-    );
+    if (this.state.shownUser.loading === true){
+      return (
+        <>
+          <h3>Loading User...</h3>
+        </>
+      )
+    }else{
+      return (
+        <>
+          {this.state.shownUser.id === this.props.currentUser.id ? (
+            <CurrentUserProfile />
+          ) : (
+            <OtherUserProfile user={this.state.shownUser} />
+          )}
+        </>
+      );
+    }
+  
   }
 }
 

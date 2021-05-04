@@ -16,6 +16,10 @@ export const setAllUsers = (users) => ({
   type: "SET_ALL_USERS",
   payload: users,
 });
+export const setUserChatrooms = (chatrooms) => ({
+  type: "SET_USER_CHATROOMS",
+  payload: chatrooms
+})
 
 export const fetchAllUsers = () => {
   return async (dispatch) => {
@@ -39,6 +43,7 @@ export const fetchUser = () => {
         dispatch(fetchUserRecs());
         dispatch(fetchConnections(userId));
         dispatch(fetchIncomingRequests());
+        dispatch(fetchUserChatrooms());
       })
       .catch(function (error) {
         alert("Error getting User.");
@@ -213,3 +218,76 @@ export const rejectConnection = (requesting_user_id) => {
       });
   };
 };
+
+
+export const fetchUserChatrooms = () => {
+  return (dispatch) => {
+    const userId = sessionStorage.userId;
+    fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/get_user_chatrooms`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(setUserChatrooms(json));
+      })
+      .catch(function (error) {
+        alert("Error getting chatrooms.");
+      });
+  }
+}
+
+export const sendMessage = (messageObject) => {
+  return (dispatch) => {
+    let configObj = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: messageObject }),
+    };
+    fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/messages`,
+      configObj
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(fetchUserChatrooms());
+      })
+      .catch(function (error) {
+        alert("Error sending message.");
+      });
+  };
+}
+
+export const makeMessageRead = (message_id) => {
+  return (dispatch) => {
+    let configObj = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message_id: message_id }),
+    };
+    fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/messages/make_read`,
+      configObj
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(fetchUserChatrooms());
+      })
+      .catch(function (error) {
+        alert("Error making message read.");
+      });
+  };
+}
