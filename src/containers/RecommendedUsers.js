@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import PreviewUserCard from '../components/Users/PreviewUserCard';
 import { fetchUserRecs } from '../actions/useractions';
-
+import Filter from '../components/Misc/Filter'
 class RecommendedUsers extends React.Component {
   componentDidMount() {
     this.props.fetchUserRecs()
@@ -11,6 +11,7 @@ class RecommendedUsers extends React.Component {
   render() {
     return(
       <>
+          <Filter/>
           {this.props.recommendedUsers.map(u => 
             <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcard"}/>
           )} 
