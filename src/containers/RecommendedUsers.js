@@ -12,7 +12,7 @@ class RecommendedUsers extends React.Component {
     return(
       <>
           <Filter/>
-          {this.props.recommendedUsers.map(u => 
+          {this.props.recommendedUsers?.map(u => 
             <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcard"}/>
           )} 
       </>

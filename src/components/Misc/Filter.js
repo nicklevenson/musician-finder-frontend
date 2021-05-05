@@ -5,7 +5,7 @@ import {fetchUserRecs} from '../../actions/useractions'
 class Filter extends React.Component {
   state = {
     hidden: true,
-    rangeSliderValue: 0,
+    rangeSliderValue: 500,
   }
 
   handleRangeSliderChange = (e) => {

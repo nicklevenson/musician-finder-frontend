@@ -41,13 +41,13 @@ input[type="range"]::-moz-range-thumb {
  background: pink;
  margin-top: -5px;
  border-radius: 25%;
-}
+} 
 input[type="range"]::-webkit-slider-thumb:active {
-  box-shadow: 0px 0px 25px lightpink;
+  // box-shadow: 0px 0px 25px lightpink;
 }
  
 input[type="range"]::-moz-range-thumb:active {
-  box-shadow: 3px 0px 0px lightpink;
+  // box-shadow: 3px 0px 0px lightpink;
 }
 
 .range-slider {
