@@ -12,37 +12,26 @@
     position: relative;
     @include v.flexbox-col;
     justify-content: flex-start;
-    background-color: v.$light-gray;
-    padding: 1rem;
+    background-color: v.$blue;
+
     max-height: 40rem;
     margin-bottom: 1rem;
-    * {
-      z-index: 1;
-    }
+    padding: 1rem;
+    padding-bottom: 0;
     i {
       display: flex;
       justify-content: center;
       align-items: center;
       color: v.$blue;
     }
-    .blue-backdrop {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: auto;
-      height: 7rem;
-      background-color: v.$blue;
-      z-index: 0;
-    }
     .logout-btn {
-      z-index: 100;
       position: absolute;
       width: 2rem;
       height: 2rem;
       background: v.$white;
       top: 1rem;
       left: 1rem;
+      z-index: 2;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -55,12 +44,12 @@
       }
     }
     .edit-profile-btn {
-      z-index: 100;
       position: absolute;
       width: 2rem;
       height: 2rem;
       background: v.$white;
       top: 4rem;
+      z-index: 2;
       left: 1rem;
       display: flex;
       justify-content: center;
@@ -74,6 +63,7 @@
       justify-content: flex-end;
       align-items: center;
       width: 100%;
+      z-index: 1;
       img {
         border-radius: 20px;
         box-shadow: v.$button-box-shadow;
@@ -83,9 +73,12 @@
       }
     }
     .user-profile-text-container {
-      width: 100%;
+      width: calc(100% + 2rem);
       text-align: left;
       overflow-y: scroll;
+      background-color: v.$light-gray;
+      padding: 1rem;
+
       &::-webkit-scrollbar {
         width: 4px;
         border-radius: 100%;
@@ -144,6 +137,9 @@
     .user-profile {
       grid-column: 4;
       grid-row: 0;
+    }
+    .user-profile-text-container {
+      margin-top: -2.5rem;
     }
   }
 }

@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { Icon } from "semantic-ui-react";
 import UserNotification from "./UserNotification";
 import UserTag from "./UserTag";
+import BackDrop from "../BackDrop";
+import UserEditorModal from "./UserEditorModal";
 
 import helpers from "../../globalHelpers";
 
@@ -14,6 +16,7 @@ class CurrentUserProfile extends Component {
       formattedDate: "",
       notificationsExpanded: false,
       tagsExpanded: false,
+      showUserEditorModal: false,
     };
   }
 
@@ -38,9 +41,27 @@ class CurrentUserProfile extends Component {
     e.preventDefault();
     try {
       console.log("user editor modal toggle", e.target);
+      this.setState({ showUserEditorModal: !this.state.showUserEditorModal });
     } catch (err) {
       console.warn("error with edit user click event", err);
       return false;
+    }
+  }
+
+  renderUserEditorModal() {
+    try {
+      let { showUserEditorModal } = this.state;
+      if (showUserEditorModal) {
+        return (
+          <>
+            <BackDrop zIndex="10" />
+            <UserEditorModal />
+          </>
+        );
+      } else return "";
+    } catch (err) {
+      console.warn("error rendering user editor modal", err);
+      return "";
     }
   }
 
@@ -53,6 +74,7 @@ class CurrentUserProfile extends Component {
   }
 
   render() {
+    let modal = this.renderUserEditorModal();
     return (
       <div className="user-profile-container">
         <div className="notifications-and-tags-container">
@@ -92,7 +114,6 @@ class CurrentUserProfile extends Component {
           </div>
         </div>
         <div className="user-profile">
-          <div className="blue-backdrop"></div>
           <Link className="logout-btn" to="/logout">
             <Icon fitted name="sign-out" />
           </Link>
@@ -123,6 +144,7 @@ class CurrentUserProfile extends Component {
             <div>{this.props.user.bio || "No bio given"}</div>
           </div>
         </div>
+        {modal}
       </div>
     );
   }
