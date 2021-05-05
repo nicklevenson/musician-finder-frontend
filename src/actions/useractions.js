@@ -85,18 +85,22 @@ export const updateUser = (user_info) => {
   }
 }
 
-export const fetchUserRecs = () => {
+export const fetchUserRecs = (filterParamsObject) => {
   return (dispatch) => {
     const userId = sessionStorage.userId;
+
+    let configObj = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({filterParamsObject: filterParamsObject || {noFilter: true}}),
+    }
     fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
-        },
-      }
-    )
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users`, configObj
+      )
       .then((res) => res.json())
       .then((json) => {
         dispatch(setRecommendedUsers(json));
