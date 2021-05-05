@@ -5,7 +5,7 @@ import { Icon } from "semantic-ui-react";
 import UserNotification from "./UserNotification";
 import UserTag from "./UserTag";
 import BackDrop from "../BackDrop";
-import UserEditorModal from "./UserEditorModal";
+import UserEditorModal from "./UserEditorModal/UserEditorModal";
 
 import helpers from "../../globalHelpers";
 
