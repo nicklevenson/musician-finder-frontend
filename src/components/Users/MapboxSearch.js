@@ -13,44 +13,38 @@ class MapboxSearch extends React.Component {
 
   getResults = () => {
     const location = this.state.query
-    // if (location !== ""){
-    //   fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?types=place&access_token=${process.env.REACT_APP_MAPBOX}`)
-    //   .then(resp => resp.json())
-    //   .then(json => {
-    //     if (json.features){
-    //       this.setState({results: json.features})
-    //     }
-    //   })
-    // }
-  
     const results = cities.filter(city => {
         const cityName = city.city.toLowerCase()
         const provinceName = city.admin_name.toLowerCase()
-        if (cityName.includes(this.state.query.toLowerCase()) || provinceName.includes(this.state.query.toLowerCase())){
+        if (cityName.includes(location.toLowerCase()) || provinceName.includes(location.toLowerCase())){
           return true
+        }else{
+          return false
         }
     })
-    console.log(results)
+
+    this.setState({results: results.splice(0, 9)})
   } 
 
-  handleChage = (e) => {
+  handleChange = (e) => {
     this.setState({query: e.target.value})
     this.getResults()
   }
 
   handleResultClick = (e, result) => {
-    // this.setState({locationName: result.place_name})
-    // this.setState({query: result.place_name})
-    // this.setState({lng: result.center[0]})
-    // this.setState({lat: result.center[1]})
+    const location = result.city + ", " + result.admin_name
+    this.setState({locationName: location})
+    this.setState({query: location})
+    this.setState({lng: result.lng})
+    this.setState({lat: result.lat})
   }
   render(){
     return(
       <>
         <label htmlFor="search for location">Search for location</label>
-        <input name="search for location" value={this.state.query} onChange={e => this.handleChage(e)}/>
+        <input name="search for location" value={this.state.query} onChange={e => this.handleChange(e)}/>
         <div className="location-results">
-          {this.state.results.map(result => <div className="location-result" onClick={e => this.handleResultClick(e, result)}>{result.place_name}</div>)}
+          {this.state.results.map(result => <div key={result.city + ", " + result.admin_name} className="location-result" onClick={e => this.handleResultClick(e, result)}>{result.city}, {result.admin_name}</div>)}
         </div>
       </>
     )
