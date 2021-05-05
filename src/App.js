@@ -15,6 +15,7 @@ import Logout from "./components/Navigation/Logout";
 
 import { fetchUser, fetchUserChatrooms, fetchUserNotifications } from "./actions/useractions";
 import LoginContainer from "./containers/LoginContainer";
+import MapboxSearch from "./components/Users/MapboxSearch";
 class App extends React.Component {
   componentDidMount() {
     if (sessionStorage.userId) {
@@ -34,6 +35,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav currentUser={this.props.currentUser} />
+        <MapboxSearch/>
         <div>
           <Switch>
             <Route exact path="/home" component={HomeContainer}></Route>
