@@ -1,6 +1,6 @@
 import React from "react";
 // import {Link} from 'react-router-dom'
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, Icon, Image, Button } from "semantic-ui-react";
 import ConnectForm from "./ConnectForm";
 
 class PreviewUserCard extends React.Component {
@@ -36,8 +36,7 @@ class PreviewUserCard extends React.Component {
         <Card raised style={{ height: "min-content" }}>
           <Card.Content>
             <Image
-              size="tiny"
-              circular
+              size="large"
               src={this.props.user.photo || this.props.user.providerImage}
               centered
             />
@@ -74,6 +73,9 @@ class PreviewUserCard extends React.Component {
           </Card.Content>
           <Card.Content>
             <ConnectForm focusedUser={this.props.user} />
+            <Button size="tiny" onClick={this.props.cardChange}>
+              <Button.Content>Next!</Button.Content>
+            </Button>
           </Card.Content>
         </Card>
       </div>
