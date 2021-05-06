@@ -42,12 +42,12 @@ class RecommendedUsers extends React.Component {
     let interval = setInterval(() => {
       let i = container.scrollLeft
         if (i < this.state.margin){
-          container.scrollLeft = i + 10
+          container.scrollLeft = i + window.innerWidth/100
           if (container.scrollLeft >= this.state.margin){
             clearInterval(interval)
           }
         }else{
-          container.scrollLeft = i - 10
+          container.scrollLeft = i - window.innerWidth/50
           if (container.scrollLeft <= this.state.margin){
             clearInterval(interval)
           }
