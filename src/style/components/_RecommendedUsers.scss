@@ -5,12 +5,12 @@
 }
 
 .cards-container {
-  height: 70vh;
+  height: min-content;
   overflow: hidden;
   white-space: nowrap;
   transition: ease-in-out;
   transition-duration: 1s;
-  scroll-behavior: smooth;
+  // scroll-behavior: smooth;
   
   
 }

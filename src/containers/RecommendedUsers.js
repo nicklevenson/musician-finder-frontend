@@ -35,13 +35,26 @@ class RecommendedUsers extends React.Component {
       }))
     }
   }
-
-
-
+ 
   setMargin = () => {
     const container = document.querySelector('.cards-container')
-    container.scrollLeft = this.state.margin
+    // container.scrollLeft = this.state.margin
+    let interval = setInterval(() => {
+      let i = container.scrollLeft
+        if (i < this.state.margin){
+          container.scrollLeft = i + 10
+          if (container.scrollLeft >= this.state.margin){
+            clearInterval(interval)
+          }
+        }else{
+          container.scrollLeft = i - 10
+          if (container.scrollLeft <= this.state.margin){
+            clearInterval(interval)
+          }
+        }
+    }, 1)
   }
+
   render() {
     return(
       <div className="recommended-users">
