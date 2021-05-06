@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import PreviewUserCard from '../components/Users/PreviewUserCard';
 import { fetchUserRecs } from '../actions/useractions';
 import Filter from '../components/Misc/Filter'
+
 class RecommendedUsers extends React.Component {
 
   state = {
@@ -13,7 +14,7 @@ class RecommendedUsers extends React.Component {
     this.props.fetchUserRecs()
   }
 
-  cardChange = () => {
+  cardChange = (e) => {
     if (this.state.activeIndex === this.props.recommendedUsers.length - 1){
       this.setState({activeIndex: 0})
     }else{
@@ -21,6 +22,7 @@ class RecommendedUsers extends React.Component {
         activeIndex: state.activeIndex + 1
       }))
     }
+   
   }
   render() {
     return(
@@ -31,6 +33,7 @@ class RecommendedUsers extends React.Component {
               <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={index} cardChange={this.cardChange}/>
             </div>
           )} 
+    
       </div>
     )
   }

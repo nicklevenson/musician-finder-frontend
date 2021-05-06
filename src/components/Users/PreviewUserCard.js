@@ -73,9 +73,13 @@ class PreviewUserCard extends React.Component {
           </Card.Content>
           <Card.Content>
             <ConnectForm focusedUser={this.props.user} />
-            <Button size="tiny" onClick={this.props.cardChange}>
-              <Button.Content>Next!</Button.Content>
-            </Button>
+            {this.props.cardChange ? 
+              <Button size="tiny" onClick={e => this.props.cardChange(e)}>
+                <Button.Content>Next Plz!</Button.Content>
+              </Button> :
+              null
+            }
+           
           </Card.Content>
         </Card>
       </div>

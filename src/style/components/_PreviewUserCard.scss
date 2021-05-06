@@ -4,10 +4,24 @@
   text-align: center;
 }
 .active.card {
+  animation-name: slideIn;
+  animation-duration: 1s;
+  
+}
+@keyframes slideIn {
+  from {
+    margin-left: 100%;
+    width: 200%;
+  }
 
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
 
 .inactive.card {
   display: none;
 }
+
 
