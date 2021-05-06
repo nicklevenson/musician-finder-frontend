@@ -12,7 +12,7 @@
 @use "./components/Alert";
 @use "./components/Filter";
 @use "./components/LocationSlider";
-@use "./components/PreviewUserCard";
+@use "./components/RecommendedUsers";
 .App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing
   min-height: 100vh;
