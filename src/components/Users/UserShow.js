@@ -6,7 +6,7 @@ import OtherUserProfile from "./OtherUserProfile";
 class UserShow extends React.Component {
   state = {
     shownUser: {
-      loading: true
+      loading: true,
     },
     similar_tags: [],
   };
@@ -58,14 +58,13 @@ class UserShow extends React.Component {
   };
 
   render() {
-    console.log(this.state.shownUser);
-    if (this.state.shownUser.loading === true){
+    if (this.state.shownUser.loading === true) {
       return (
         <>
           <h3>Loading User...</h3>
         </>
-      )
-    }else{
+      );
+    } else {
       return (
         <>
           {this.state.shownUser.id === this.props.currentUser.id ? (
@@ -76,7 +75,6 @@ class UserShow extends React.Component {
         </>
       );
     }
-  
   }
 }
 
