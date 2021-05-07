@@ -13,13 +13,15 @@ class MapboxSearch extends React.Component {
 
   getResults = () => {
     const location = this.state.query.split(" ").join("&")
-    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?access_token=${process.env.REACT_APP_MAPBOX}`)
-    .then(resp => resp.json())
-    .then(json => {
-      if (json.features){
-        this.setState({results: json.features})
-      }
-    })
+    if (location !== ""){
+      fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?types=place&access_token=${process.env.REACT_APP_MAPBOX}`)
+      .then(resp => resp.json())
+      .then(json => {
+        if (json.features){
+          this.setState({results: json.features})
+        }
+      })
+    }
   } 
 
   handleChage = (e) => {
