@@ -5,13 +5,26 @@ import {Message} from './Message.js'
 import { makeMessageRead } from '../../actions/useractions.js'
 import NewMessage from './NewMessage'
 class Chatroom extends React.Component {
-  componentDidMount(){
-    const chatroom = this.props.chatrooms.find(cr => cr.id === this.props.chatroomId)
-    const lastMessage = chatroom?.messages[chatroom.messages.length - 1]
-    if (lastMessage?.read === false && lastMessage.user_id !== this.props.currentUser.id){
+
+  componentDidMount() {
+    this.makeRead()
+  }
+  componentDidUpdate(){
+    this.makeRead()
+  }
+
+  makeRead = () => {
+    if (this.hasUnread()){
+      this.props.makeMessageRead(this.props.chatroomId)
       console.log("making message read")
-      this.props.makeMessageRead(lastMessage.id)
     }
+  }
+
+  hasUnread = () => {
+    const chatroom = this.props.chatrooms.find(cr => cr.id === this.props.chatroomId)
+    return chatroom.messages.flat().some(message => {
+      return (message.read === false && this.props.currentUser.id !== message.user.id)
+    })
   }
   render(){
     const chatroom = this.props.chatrooms.find(cr => cr.id === this.props.chatroomId)
@@ -48,7 +61,7 @@ class Chatroom extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    makeMessageRead: (message_id) => dispatch(makeMessageRead(message_id))
+    makeMessageRead: (chatroom_id) => dispatch(makeMessageRead(chatroom_id))
   };
 };
 

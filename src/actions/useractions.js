@@ -296,7 +296,7 @@ export const sendMessage = (messageObject) => {
   };
 }
 
-export const makeMessageRead = (message_id) => {
+export const makeMessageRead = (chatroom_id) => {
   return (dispatch) => {
     let configObj = {
       method: "POST",
@@ -305,7 +305,7 @@ export const makeMessageRead = (message_id) => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message_id: message_id }),
+      body: JSON.stringify({ chatroom_id: chatroom_id }),
     };
     fetch(
       `${process.env.REACT_APP_BACKEND_URL}/messages/make_read`,
