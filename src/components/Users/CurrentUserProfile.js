@@ -18,6 +18,8 @@ class CurrentUserProfile extends Component {
       tagsExpanded: false,
       showUserEditorModal: false,
     };
+
+    this.toggleUserEditorModal = this.toggleUserEditorModal.bind(this);
   }
 
   componentDidMount() {
@@ -55,7 +57,7 @@ class CurrentUserProfile extends Component {
         return (
           <>
             <BackDrop zIndex="10" />
-            <UserEditorModal />
+            <UserEditorModal closeEvent={this.toggleUserEditorModal} />
           </>
         );
       } else return "";

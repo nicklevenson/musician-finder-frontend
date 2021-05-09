@@ -44,7 +44,11 @@ class UserEditorModal extends Component {
     return (
       <div className="user-editor-modal">
         <h3>User Settings</h3>
-        <button className="close-btn" type="button">
+        <button
+          onClick={this.props.closeEvent}
+          className="close-btn"
+          type="button"
+        >
           <Icon name="close" />
         </button>
         <div className="form-container">
