@@ -1,6 +1,6 @@
 import React from "react";
 // import {Link} from 'react-router-dom'
-import { Card, Icon, Image } from "semantic-ui-react";
+import {Icon, Image} from "semantic-ui-react";
 import ConnectForm from "./ConnectForm";
 
 class PreviewUserCard extends React.Component {
@@ -12,9 +12,9 @@ class PreviewUserCard extends React.Component {
     ) {
       return (
         <div style={{ height: "1em" }}>
-          <Card.Content>
+          <div className="card-content">
             You both like: {this.props.similar_tags.slice(0, 3).join(", ")}
-          </Card.Content>
+          </div>
         </div>
       );
     } else {
@@ -33,49 +33,55 @@ class PreviewUserCard extends React.Component {
           textAlign: "center",
         }}
       >
-        <Card raised style={{ height: "min-content" }}>
-          <Card.Content>
+        <div className="preview-user-card">
+          <div className="card-content">
             <Image
-              size="tiny"
-              circular
+              size="large"
               src={this.props.user.photo || this.props.user.providerImage}
               centered
             />
-          </Card.Content>
-          <Card.Content>
-            <Card.Header floated="left">
+          </div>
+          <div className="card-content">
+            <div className="card-header">
               <a href={`users/${this.props.user.id}`}>
                 {this.props.user.username}
               </a>
-            </Card.Header>
+            </div>
             {/* <Card.Meta>
               <span className='date'>Joined {this.props.user.created_at.split("T")[0]}</span>
             </Card.Meta> */}
-            <Card.Meta>
+            <div className="card-meta">
               <span className="location">
                 Location: {this.props.user.location || "Earth"}
               </span>
-            </Card.Meta>
+            </div>
 
-            <Card.Content>
+            <div className="card-content">
               {this.props.user.bio
                 ? this.props.user.bio.substring(0, 70) + "..."
                 : "No bio given"}
-            </Card.Content>
+            </div>
 
-            <Card.Meta>{this.renderSimilarTags()}</Card.Meta>
-          </Card.Content>
-          <Card.Content extra textAlign="center">
+            <div className="card-meta">{this.renderSimilarTags()}</div>
+          </div>
+          <div className="card-content" extra textAlign="center">
             <button>
               <Icon name="user" />
               {this.props.user.connected_users_with_tags.length || "0"}{" "}
               Connections
             </button>
-          </Card.Content>
-          <Card.Content>
+          </div>
+          <div className="card-content">
             <ConnectForm focusedUser={this.props.user} />
-          </Card.Content>
-        </Card>
+            {this.props.cardChange ? 
+              <button size="tiny" onClick={e => this.props.cardChange(e)}>
+                Next Plz!
+              </button> :
+              null
+            }
+           
+          </div>
+        </div>
       </div>
     );
   }

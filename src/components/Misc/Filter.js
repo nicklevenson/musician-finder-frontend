@@ -1,6 +1,6 @@
 import React from 'react'
-import RangeSlider from './RangeSlider'
 import {connect} from 'react-redux'
+import RangeSlider from './RangeSlider'
 import {fetchUserRecs} from '../../actions/useractions'
 class Filter extends React.Component {
   state = {

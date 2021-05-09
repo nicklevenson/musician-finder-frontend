@@ -109,7 +109,7 @@ class Nav extends Component {
           <div className="main-logo-container">
             <button target="/home">
               <Icon name="music" size="large" />
-              Matchup Music
+              <i>PB&Jam</i>
             </button>
           </div>
 
