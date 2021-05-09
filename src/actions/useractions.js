@@ -62,7 +62,7 @@ export const fetchUser = () => {
 export const updateUser = (user_info) => {
   return (dispatch) => {
     const userId = sessionStorage.userId;
-    let configObj = {
+    const configObj = {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${sessionStorage.jwt} ${userId}`,
@@ -85,21 +85,27 @@ export const updateUser = (user_info) => {
   }
 }
 
-export const fetchUserRecs = () => {
+export const fetchUserRecs = (filterParamsObject) => {
   return (dispatch) => {
     const userId = sessionStorage.userId;
+
+    const configObj = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({filterParamsObject: filterParamsObject || {noFilter: true}}),
+    }
     fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
-        },
-      }
-    )
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users`, configObj
+      )
       .then((res) => res.json())
       .then((json) => {
-        dispatch(setRecommendedUsers(json));
+        if (json[0]){
+          dispatch(setRecommendedUsers(json));
+        }
       })
       .catch(function (error) {
         alert("Error getting User.");
@@ -151,7 +157,7 @@ export const fetchIncomingRequests = () => {
 
 export const requestConnection = (requested_id) => {
   return (dispatch) => {
-    let configObj = {
+    const configObj = {
       method: "POST",
       headers: {
         Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
@@ -177,7 +183,7 @@ export const requestConnection = (requested_id) => {
 
 export const acceptConnection = (requesting_user_id) => {
   return (dispatch) => {
-    let configObj = {
+    const configObj = {
       method: "POST",
       headers: {
         Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
@@ -203,7 +209,7 @@ export const acceptConnection = (requesting_user_id) => {
 
 export const rejectConnection = (requesting_user_id) => {
   return (dispatch) => {
-    let configObj = {
+    const configObj = {
       method: "POST",
       headers: {
         Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
@@ -273,7 +279,7 @@ export const fetchUserChatrooms = () => {
 
 export const sendMessage = (messageObject) => {
   return (dispatch) => {
-    let configObj = {
+    const configObj = {
       method: "POST",
       headers: {
         Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
@@ -298,7 +304,7 @@ export const sendMessage = (messageObject) => {
 
 export const makeMessageRead = (message_id) => {
   return (dispatch) => {
-    let configObj = {
+    const configObj = {
       method: "POST",
       headers: {
         Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
