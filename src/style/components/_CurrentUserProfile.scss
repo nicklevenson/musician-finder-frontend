@@ -110,15 +110,15 @@
         box-shadow: v.$button-box-shadow;
       }
     }
-
-    .tags-container {
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      flex-wrap: wrap;
-      width: 100%;
-    }
   }
+}
+
+.tags-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 @media (min-width: 1024px) {

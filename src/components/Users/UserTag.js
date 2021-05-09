@@ -21,13 +21,35 @@ class UserTag extends Component {
     } else return "";
   }
 
+  isEditable() {
+    try {
+      if (this.props.isEditable) {
+        return (
+          <button
+            type="button"
+            data-id={this.props.tagId}
+            onClick={this.props.removeTag}
+            className="tag-delete-btn"
+          >
+            X
+          </button>
+        );
+      } else return "";
+    } catch (err) {
+      console.warn("error adding delete button to pin", err);
+      return "";
+    }
+  }
+
   render() {
     const parentClass = this.getContainerClass();
     const image = this.getImage();
+    const deleteBt = this.isEditable();
     return (
       <div className={parentClass}>
         <div className="tag-title">{this.props.info.name}</div>
         <div className="image-container">{image}</div>
+        {deleteBt}
       </div>
     );
   }

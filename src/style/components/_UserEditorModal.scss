@@ -7,6 +7,8 @@
   bottom: 0;
   z-index: 100000;
   background-color: v.$white;
+  max-height: 100vh;
+  overflow-y: scroll;
 
   input {
     width: 100%;

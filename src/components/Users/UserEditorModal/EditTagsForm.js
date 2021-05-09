@@ -7,6 +7,8 @@ class EditTagsForm extends Component {
     this.state = {
       tags: this.props.user.tags,
     };
+
+    this.removeTag = this.removeTag.bind(this);
   }
 
   renderTags() {
@@ -19,6 +21,7 @@ class EditTagsForm extends Component {
                 isEditable="true"
                 removeTag={this.removeTag}
                 key={tag.id}
+                tagId={tag.id}
                 info={tag}
               />
             );
@@ -31,8 +34,20 @@ class EditTagsForm extends Component {
     }
   }
 
-  removeTag() {
-    console.log("removing tag");
+  removeTag(e) {
+    e.preventDefault();
+    let id = e.target;
+    id = id.getAttribute("data-id");
+    id = parseInt(id);
+    let tags = this.state.tags;
+
+    tags.forEach((tag, index) => {
+      if (tag.id === id) {
+        tags.splice(index, 1);
+        return;
+      }
+    });
+    this.setState({ tags });
   }
 
   render() {
