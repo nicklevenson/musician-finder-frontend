@@ -11,8 +11,10 @@
 @use "./components/NewMessage";
 @use "./components/ChatroomPreview";
 @use "./components/Alert";
-@use "./components//BackDrop";
-
+@use "./components/BackDrop";
+@use "./components/Filter";
+@use "./components/LocationSlider";
+@use "./components/RecommendedUsers";
 .App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing
   min-height: 100vh;
