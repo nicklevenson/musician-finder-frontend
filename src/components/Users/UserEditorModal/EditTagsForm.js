@@ -12,7 +12,7 @@ class EditTagsForm extends Component {
     return (
       <form>
         <div className="form-group">
-          <label for="tag">Add Tag</label>
+          <label htmlFor="tag">Add Tag</label>
           <input type="text" placeholder="tag" />
         </div>
         <button className="save-btn" type="button">

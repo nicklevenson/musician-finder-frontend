@@ -12,7 +12,7 @@ class EditGenresForm extends Component {
     return (
       <form>
         <div className="form-group">
-          <label for="genres">Add Genre</label>
+          <label htmlFor="genres">Add Genre</label>
           <input type="text" placeholder="genre" />
         </div>
         <button className="save-btn" type="button">

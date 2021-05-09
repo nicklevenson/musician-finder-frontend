@@ -57,7 +57,10 @@ class CurrentUserProfile extends Component {
         return (
           <>
             <BackDrop zIndex="10" />
-            <UserEditorModal closeEvent={this.toggleUserEditorModal} />
+            <UserEditorModal
+              handleInputChange={this.handleInputChange}
+              closeEvent={this.toggleUserEditorModal}
+            />
           </>
         );
       } else return "";

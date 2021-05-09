@@ -12,13 +12,26 @@ class UserEditorModal extends Component {
     super(props);
     this.state = {
       activeForm: EditAccountForm,
+      user: this.props.user,
     };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {}
 
   getActiveForm() {
-    return <this.state.activeForm />;
+    return <this.state.activeForm handleInputChange={this.handleInputChange} />;
+  }
+
+  handleInputChange(e) {
+    e.preventDefault();
+    const target = e.target;
+    // const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    let user = this.state.user;
+    user[name] = target.value;
+    this.setState({ user }, () => console.log(this.state));
   }
 
   handleFormToggleClick(e) {
@@ -97,4 +110,10 @@ class UserEditorModal extends Component {
   }
 }
 
-export default UserEditorModal;
+const mapStateToProps = (state) => {
+  return {
+    user: state.currentUser.currentUser,
+  };
+};
+
+export default connect(mapStateToProps)(UserEditorModal);

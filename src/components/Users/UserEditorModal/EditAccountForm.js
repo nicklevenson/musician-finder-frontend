@@ -12,21 +12,27 @@ class EditAccountForm extends Component {
     return (
       <form>
         <div className="form-group">
-          <label for="name">Name</label>
-          <input type="text" placeholder="name" />
+          <label htmlFor="username">Username</label>
+          <input
+            name="username"
+            onKeyUp={this.props.handleInputChange}
+            type="text"
+            placeholder="username"
+          />
         </div>
         <div className="form-group">
-          <label for="email">Email</label>
-          <input type="text" placeholder="email" />
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            onKeyUp={this.props.handleInputChange}
+            placeholder="email"
+          />
         </div>
         <div className="form-group">
-          <label for="location">Location</label>
+          <label htmlFor="location">Location</label>
           <input type="text" placeholder="location" />
         </div>
-        <div className="form-group">
-          <label for="username">Username</label>
-          <input type="text" placeholder="username" />
-        </div>
+
         <button className="save-btn" type="button">
           Update User
         </button>
