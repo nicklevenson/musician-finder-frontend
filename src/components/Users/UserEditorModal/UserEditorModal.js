@@ -21,7 +21,12 @@ class UserEditorModal extends Component {
   componentDidMount() {}
 
   getActiveForm() {
-    return <this.state.activeForm handleInputChange={this.handleInputChange} />;
+    return (
+      <this.state.activeForm
+        user={this.state.user}
+        handleInputChange={this.handleInputChange}
+      />
+    );
   }
 
   handleInputChange(e) {

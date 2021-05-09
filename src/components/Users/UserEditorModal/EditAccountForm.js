@@ -1,13 +1,6 @@
 import { Component } from "react";
 
 class EditAccountForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {}
-
   render() {
     return (
       <form>
@@ -15,7 +8,8 @@ class EditAccountForm extends Component {
           <label htmlFor="username">Username</label>
           <input
             name="username"
-            onKeyUp={this.props.handleInputChange}
+            onChange={this.props.handleInputChange}
+            value={this.props.user.username}
             type="text"
             placeholder="username"
           />
@@ -24,13 +18,19 @@ class EditAccountForm extends Component {
           <label htmlFor="email">Email</label>
           <input
             type="text"
-            onKeyUp={this.props.handleInputChange}
+            onChange={this.props.handleInputChange}
+            value={this.props.user.email}
             placeholder="email"
           />
         </div>
         <div className="form-group">
           <label htmlFor="location">Location</label>
-          <input type="text" placeholder="location" />
+          <input
+            type="text"
+            onChange={this.props.handleInputChange}
+            value={this.props.user.location}
+            placeholder="location"
+          />
         </div>
 
         <button className="save-btn" type="button">
