@@ -4,16 +4,52 @@ import {Icon, Image} from "semantic-ui-react";
 import ConnectForm from "./ConnectForm";
 
 class PreviewUserCard extends React.Component {
+  state = {
+    similarTags: []
+  }
+
+  componentDidMount(){
+    if (this.props.shownUserId === this.props.user.id){
+      this.fetchSimilarTags()
+    }
+  }
+
+  componentDidUpdate(prevProps){
+    if (this.props.shownUserId === this.props.user.id && this.props.shownUserId !== prevProps.shownUserId){
+      this.fetchSimilarTags()
+    }
+  }
+
+
+  fetchSimilarTags = () => {
+    console.log("fetching")
+    const userId = this.props.user.id;
+    fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/get_similar_tags/${sessionStorage.userId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({ similarTags: json });
+      })
+      .catch(function (error) {
+        alert("Error getting tags.");
+      });
+  };
+
   renderSimilarTags = () => {
     if (
-      this.props.similar_tags &&
-      this.props.similar_tags.length !== 0 &&
-      this.props.user.id !== sessionStorage.userId
+      this.state.similarTags.length > 0
     ) {
       return (
         <div style={{ height: "1em" }}>
           <div className="card-content">
-            You both like: {this.props.similar_tags.slice(0, 3).join(", ")}
+            You both like: {this.state.similarTags.map(tag => tag.name).slice(0, 3).join(", ")}
           </div>
         </div>
       );
@@ -61,8 +97,8 @@ class PreviewUserCard extends React.Component {
                 ? this.props.user.bio.substring(0, 70) + "..."
                 : "No bio given"}
             </div>
-{/* 
-            <div className="card-meta">{this.renderSimilarTags()}</div> */}
+
+            <div className="card-meta">{this.renderSimilarTags()}</div>
           </div>
           <div className="card-content" extra textAlign="center">
             <button>
