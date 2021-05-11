@@ -67,7 +67,7 @@ class PreviewUserCard extends React.Component {
           <div className="card-content" extra textAlign="center">
             <button>
               <Icon name="user" />
-              {this.props.user.connected_users_with_tags.length || "0"}{" "}
+              {this.props.user.connected_users.length || "0"}{" "}
               Connections
             </button>
           </div>
