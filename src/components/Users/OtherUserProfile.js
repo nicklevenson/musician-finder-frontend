@@ -12,12 +12,12 @@ class OtherUserProfile extends Component {
     if (
       this.props.similar_tags &&
       this.props.similar_tags.length > 0 &&
-      this.props.currentUser.id !== this.props.user.id
+      this.props.currentUser?.id !== this.props?.user?.id
     ) {
       return (
         <Card.Content>
           You both like: <br />
-          {this.props.similar_tags.join(", ")}
+          {this.props.similar_tags.map(tag => tag.name).join(", ")}
         </Card.Content>
       );
     }
