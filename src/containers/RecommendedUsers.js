@@ -62,7 +62,7 @@ class RecommendedUsers extends React.Component {
           <div className="cards-container">
             {this.props.recommendedUsers?.map((u, index) =>
               <div className={this.state.activeIndex === index ? "active card" : "inactive card"}>
-                <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={index} cardChange={this.cardChange}/>
+                <PreviewUserCard user={u} key={index} cardChange={this.cardChange}/>
               </div>
             )} 
           </div>

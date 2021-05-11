@@ -42,7 +42,7 @@ class ConnectForm extends React.Component{
             </Button>
           </>
          )
-      }else if(this.props.connectedUsers.map(u=>u.user.id).includes(this.props.focusedUser.id)){
+      }else if(this.props.connectedUsers.map(user=>user.id).includes(this.props.focusedUser.id)){
         return(
           <Button size="tiny" disabled>
             <Button.Content>You and {this.props.focusedUser.username} are connected</Button.Content>

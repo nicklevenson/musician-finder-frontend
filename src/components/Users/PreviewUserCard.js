@@ -61,8 +61,8 @@ class PreviewUserCard extends React.Component {
                 ? this.props.user.bio.substring(0, 70) + "..."
                 : "No bio given"}
             </div>
-
-            <div className="card-meta">{this.renderSimilarTags()}</div>
+{/* 
+            <div className="card-meta">{this.renderSimilarTags()}</div> */}
           </div>
           <div className="card-content" extra textAlign="center">
             <button>
