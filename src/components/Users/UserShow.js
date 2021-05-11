@@ -70,7 +70,7 @@ class UserShow extends React.Component {
           {this.state.shownUser.id === this.props.currentUser.id ? (
             <CurrentUserProfile />
           ) : (
-            <OtherUserProfile user={this.state.shownUser} />
+            <OtherUserProfile user={this.state.shownUser} similar_tags={this.state.similar_tags}/>
           )}
         </>
       );

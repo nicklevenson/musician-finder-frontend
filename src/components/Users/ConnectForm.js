@@ -38,7 +38,7 @@ class ConnectForm extends React.Component {
         );
       } else if (
         this.props.incomingRequests
-          .map((u) => u.user.id)
+          .map((user) => user.id)
           .includes(this.props.focusedUser.id)
       ) {
         return (
@@ -54,7 +54,7 @@ class ConnectForm extends React.Component {
         );
       } else if (
         this.props.connectedUsers
-          .map((u) => u.user.id)
+          .map((user) => user.id)
           .includes(this.props.focusedUser.id)
       ) {
         return (
