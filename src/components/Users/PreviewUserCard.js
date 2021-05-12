@@ -5,7 +5,8 @@ import ConnectForm from "./ConnectForm";
 
 class PreviewUserCard extends React.Component {
   state = {
-    similarTags: []
+    similarTags: [],
+    connections: []
   }
 
   componentDidMount(){
@@ -17,6 +18,7 @@ class PreviewUserCard extends React.Component {
   componentDidUpdate(prevProps){
     if (this.props.shownUserId === this.props.user.id && this.props.shownUserId !== prevProps.shownUserId){
       this.fetchSimilarTags()
+      this.fetchConnections()
     }
   }
 
@@ -41,6 +43,26 @@ class PreviewUserCard extends React.Component {
         alert("Error getting tags.");
       });
   };
+
+  fetchConnections = () => {
+    const userId = this.props.user.id
+    fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/connected_users`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({connections: json});
+      })
+      .catch(function (error) {
+        alert("Error getting User Connections.");
+      });
+  }
 
   renderSimilarTags = () => {
     if (
@@ -103,7 +125,7 @@ class PreviewUserCard extends React.Component {
           <div className="card-content" extra textAlign="center">
             <button>
               <Icon name="user" />
-              {this.props.user.connected_users.length || "0"}{" "}
+              {this.state.connections.length || "0"}{" "}
               Connections
             </button>
           </div>
