@@ -56,8 +56,8 @@ class OtherUserProfile extends Component {
         <div>
           <button>
             <Icon name="user" />
-            {this.props.user.connected_users_with_tags
-              ? this.props.user.connected_users_with_tags.length
+            {this.props.user.connected_users
+              ? this.props.user.connected_users.length
               : null}{" "}
             Connections
           </button>
