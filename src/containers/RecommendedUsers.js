@@ -15,8 +15,11 @@ class RecommendedUsers extends React.Component {
     this.props.fetchUserRecs()
   }
 
-  componentDidUpdate(){
+  componentDidUpdate(prevProps, prevState){
     this.setMargin()
+    if (prevProps.recommendedUsers !== this.props.recommendedUsers){
+      this.setState({activeIndex: 0})
+    }
   }
 
   cardChange = (e) => {
