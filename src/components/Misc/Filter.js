@@ -2,12 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import RangeSlider from './RangeSlider'
 import InstrumentOptions from './InstrumentOptions'
+import GenreOptions from './GenreOptions'
 import {fetchUserRecs} from '../../actions/useractions'
 class Filter extends React.Component {
   state = {
     hidden: true,
     rangeSliderValue: 500,
-    instruments: []
+    instruments: [],
+    genres: []
   }
 
   handleRangeSliderChange = (e) => {
@@ -23,11 +25,21 @@ class Filter extends React.Component {
     }
   }
 
+  setGenres = (genre) => {
+    const newGenre = {name: genre, id: this.state.genres.length}
+    if (!this.state.genres.map(gen => gen.name).includes(genre)){
+      this.setState((state) => ({
+        genres: state.genres.concat(newGenre)
+      }))
+    }
+  }
+
   sendFilters = (e) => {
     e.preventDefault()
     const paramsobj = {
       mileRange: this.state.rangeSliderValue,
-      instruments: this.state.instruments.map(inst => inst.name)
+      instruments: this.state.instruments.map(inst => inst.name),
+      genres: this.state.genres.map(gen => gen.name)
     }
     this.props.fetchUserRecs(paramsobj)
   }
@@ -48,6 +60,14 @@ class Filter extends React.Component {
     this.setState({instruments: newInstrumentArray})
   }
 
+
+  handleDeleteGenre = (e, genre) => {
+    e.preventDefault()
+    const genreArray = [...this.state.genres]
+    const newGenreArray = genreArray.filter(gen=> gen.id !== genre.id);
+    this.setState({genres: newGenreArray})
+  }
+
   render(){
     return(
       <div className="filter">
@@ -57,6 +77,7 @@ class Filter extends React.Component {
           <div className="filter-items">
             <RangeSlider rangeSliderValue={this.state.rangeSliderValue} changeFunction={this.handleRangeSliderChange}/>
             <InstrumentOptions setInstruments={this.setInstruments}/><br/>
+            <GenreOptions setGenres={this.setGenres}/>
             <button onClick={this.sendFilters}>Apply Filters</button><hr/><br/>
           </div>
         :
@@ -73,6 +94,14 @@ class Filter extends React.Component {
             <div className="filter-tag" key={instrument.id}>
               {instrument.name}
               <button onClick={e => this.handleDeleteInstrument(e, instrument)}>X</button>
+            </div>
+          )})}
+
+          {this.state.genres?.map(genre => {
+            return( 
+            <div className="filter-tag" key={genre.id}>
+              {genre.name}
+              <button onClick={e => this.handleDeleteGenre(e, genre)}>X</button>
             </div>
           )})}
         </div>
