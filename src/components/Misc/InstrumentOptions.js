@@ -7,22 +7,30 @@ class InstrumentOptions extends React.Component {
     inputQuery: ""
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state) {
+      this.props.setInstruments(this.state.instruments.map(inst => inst.name))
+    }
+  }
+
   setInputQuery = (e) => {
     this.setState({inputQuery: e.target.value})
   }
 
   handleClick = (e) => {
     e.preventDefault()
-    this.setState((state) => ({
-      instruments: state.instruments.concat({name: state.inputQuery, id: state.instruments.length + 1})
-    }))
+    if (!this.state.instruments.map(inst => inst.name).includes(this.state.inputQuery)){
+      this.setState((state) => ({
+        instruments: state.instruments.concat({name: state.inputQuery, id: state.instruments.length + 1})
+      }))
+    }
   }
 
   handleDelete = (e, instrument) => {
     e.preventDefault()
     const instrumentArray = [...this.state.instruments]
     const newInstrumentArray = instrumentArray.filter(inst=> inst.id !== instrument.id);
-    console.log(newInstrumentArray)
+
     this.setState({instruments: newInstrumentArray})
   }
   render(){
@@ -41,7 +49,7 @@ class InstrumentOptions extends React.Component {
 
         <div className="instrument-filter-results">
           {this.state.instruments?.map(instrument => {
-            return <div className="instrument-filter-tag">
+            return <div className="instrument-filter-tag" key={instrument.id}>
               {instrument.name}
               <button onClick={e => this.handleDelete(e, instrument)}>X</button>
             </div>

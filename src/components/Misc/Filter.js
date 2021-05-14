@@ -7,10 +7,15 @@ class Filter extends React.Component {
   state = {
     hidden: true,
     rangeSliderValue: 500,
+    instruments: []
   }
 
   handleRangeSliderChange = (e) => {
     this.setState({rangeSliderValue: parseInt(e.target.value)})
+  }
+
+  setInstruments = (instruments) => {
+    this.setState({instruments: instruments})
   }
 
   sendFilters = (e) => {
@@ -37,7 +42,7 @@ class Filter extends React.Component {
         {!this.state.hidden ? 
           <div className="filter-items">
             <RangeSlider rangeSliderValue={this.state.rangeSliderValue} changeFunction={this.handleRangeSliderChange}/>
-            <InstrumentOptions/>
+            <InstrumentOptions setInstruments={this.setInstruments}/>
             <button onClick={this.sendFilters}>Apply Filters</button>
           </div>
         :
