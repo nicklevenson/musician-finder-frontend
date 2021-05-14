@@ -26,7 +26,8 @@ class Filter extends React.Component {
   sendFilters = (e) => {
     e.preventDefault()
     const paramsobj = {
-      mileRange: this.state.rangeSliderValue
+      mileRange: this.state.rangeSliderValue,
+      instruments: this.state.instruments.map(inst => inst.name)
     }
     this.props.fetchUserRecs(paramsobj)
   }
