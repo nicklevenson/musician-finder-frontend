@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import RangeSlider from './RangeSlider'
+import InstrumentOptions from './InstrumentOptions'
 import {fetchUserRecs} from '../../actions/useractions'
 class Filter extends React.Component {
   state = {
@@ -36,6 +37,7 @@ class Filter extends React.Component {
         {!this.state.hidden ? 
           <div className="filter-items">
             <RangeSlider rangeSliderValue={this.state.rangeSliderValue} changeFunction={this.handleRangeSliderChange}/>
+            <InstrumentOptions/>
             <button onClick={this.sendFilters}>Apply Filters</button>
           </div>
         :
