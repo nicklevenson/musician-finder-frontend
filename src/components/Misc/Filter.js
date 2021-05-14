@@ -42,6 +42,7 @@ class Filter extends React.Component {
       genres: this.state.genres.map(gen => gen.name)
     }
     this.props.fetchUserRecs(paramsobj)
+    this.setState({hidden: true})
   }
 
   handleVisibilityToggle = () => {
