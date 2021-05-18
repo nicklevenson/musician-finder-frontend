@@ -58,7 +58,6 @@ class UserShow extends React.Component {
   };
 
   render() {
-    console.log(this.state.shownUser);
     if (this.state.shownUser.loading === true){
       return (
         <>

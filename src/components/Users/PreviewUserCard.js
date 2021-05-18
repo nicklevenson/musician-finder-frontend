@@ -6,28 +6,31 @@ import ConnectForm from "./ConnectForm";
 class PreviewUserCard extends React.Component {
   state = {
     similarTags: [],
-    connections: []
+    genres: [],
+    instruments: [],
+    connections: [],
+    
   }
 
   componentDidMount(){
     if (this.props.shownUserId === this.props.user.id){
-      this.fetchSimilarTags()
+      this.fetchSupportingInfo()
     }
   }
 
   componentDidUpdate(prevProps){
     if (this.props.shownUserId === this.props.user.id && this.props.shownUserId !== prevProps.shownUserId){
-      this.fetchSimilarTags()
+      this.fetchSupportingInfo()
       this.fetchConnections()
     }
   }
 
 
-  fetchSimilarTags = () => {
+  fetchSupportingInfo = () => {
     console.log("fetching")
     const userId = this.props.user.id;
     fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/get_similar_tags/${sessionStorage.userId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/get_supporting_info/${sessionStorage.userId}`,
       {
         method: "GET",
         headers: {
@@ -37,7 +40,11 @@ class PreviewUserCard extends React.Component {
     )
       .then((res) => res.json())
       .then((json) => {
-        this.setState({ similarTags: json });
+        this.setState({
+          similarTags: json.similar_tags,
+          instruments: json.instruments,
+          genres: json.genres
+        });
       })
       .catch(function (error) {
         alert("Error getting tags.");
