@@ -132,19 +132,24 @@ class PreviewUserCard extends React.Component {
           <div className="card-content" extra textAlign="center">
             <button>
               <Icon name="user" />
-              {this.state.connections.length || "0"}{" "}
-              Connections
+              {this.state.connections.length || "0"} Connections
             </button>
           </div>
+          {this.state.instruments.length > 0 ? (
+            <div>Plays: {this.state.instruments?.join(", ")}</div>
+          ) : null}
+
+          {this.state.genres.length > 0 ? (
+            <div>Genres: {this.state.genres?.join(", ")}</div>
+          ) : null}
+
           <div className="card-content">
             <ConnectForm focusedUser={this.props.user} />
-            {this.props.cardChange ? 
-              <button size="tiny" onClick={e => this.props.cardChange(e)}>
+            {this.props.cardChange ? (
+              <button size="tiny" onClick={(e) => this.props.cardChange(e)}>
                 Next Plz!
-              </button> :
-              null
-            }
-           
+              </button>
+            ) : null}
           </div>
         </div>
       </div>
