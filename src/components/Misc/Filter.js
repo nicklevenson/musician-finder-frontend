@@ -70,45 +70,72 @@ class Filter extends React.Component {
   }
 
   render(){
-    return(
+    return (
       <div className="filter">
-        <div className="filter-toggle" onClick={e => this.handleVisibilityToggle()}>Filter Users</div>
-        <hr/>
-        {!this.state.hidden ? 
+        <div
+          className="filter-toggle"
+          onClick={(e) => this.handleVisibilityToggle()}
+        >
+          Filter Users
+        </div>
+        <hr />
+        {!this.state.hidden ? (
           <div className="filter-items">
-            <RangeSlider rangeSliderValue={this.state.rangeSliderValue} changeFunction={this.handleRangeSliderChange}/>
-            <InstrumentOptions setInstruments={this.setInstruments}/><br/>
-            <GenreOptions setGenres={this.setGenres}/>
-            <button onClick={this.sendFilters}>Apply Filters</button><hr/><br/>
+            <RangeSlider
+              rangeSliderValue={this.state.rangeSliderValue}
+              changeFunction={this.handleRangeSliderChange}
+            />
+            <InstrumentOptions setInstruments={this.setInstruments} />
+            <br />
+            <GenreOptions setGenres={this.setGenres} />
           </div>
-        :
-          null
-        }
+        ) : null}
 
-        
         <div className="filter-state">
           <div className="filter-tag">
-            Range: {this.state.rangeSliderValue >= 500 ? "500+ Miles Away" : this.state.rangeSliderValue + " Miles Away"}
+            Range:{" "}
+            {this.state.rangeSliderValue >= 500
+              ? "500+ Miles Away"
+              : this.state.rangeSliderValue + " Miles Away"}
           </div>
-          {this.state.instruments?.map(instrument => {
-            return( 
-            <div className="filter-tag" key={instrument.id}>
-              {instrument.name}
-              <button onClick={e => this.handleDeleteInstrument(e, instrument)}>X</button>
-            </div>
-          )})}
+          {this.state.instruments?.map((instrument) => {
+            return (
+              <div className="filter-tag" key={instrument.id}>
+                {instrument.name}
+                {!this.state.hidden ? (
+                  <button
+                    onClick={(e) => this.handleDeleteInstrument(e, instrument)}
+                  >
+                    X
+                  </button>
+                ) : null}
+              </div>
+            );
+          })}
 
-          {this.state.genres?.map(genre => {
-            return( 
-            <div className="filter-tag" key={genre.id}>
-              {genre.name}
-              <button onClick={e => this.handleDeleteGenre(e, genre)}>X</button>
-            </div>
-          )})}
+          {this.state.genres?.map((genre) => {
+            return (
+              <div className="filter-tag" key={genre.id}>
+                {genre.name}
+                {!this.state.hidden ? (
+                  <button onClick={(e) => this.handleDeleteGenre(e, genre)}>
+                    X
+                  </button>
+                ) : null}
+              </div>
+            );
+          })}
+
+          {!this.state.hidden ? (
+            <>
+              <hr />
+              <br />
+              <button onClick={this.sendFilters}>Apply Filters</button>
+            </>
+          ) : null}
         </div>
-
       </div>
-    )
+    );
   }
 }
 const mapDispatchToProps = (dispatch) => {
