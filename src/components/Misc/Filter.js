@@ -88,6 +88,8 @@ class Filter extends React.Component {
             <InstrumentOptions setInstruments={this.setInstruments} />
             <br />
             <GenreOptions setGenres={this.setGenres} />
+            <br />
+            <hr/>
           </div>
         ) : null}
 
@@ -98,6 +100,7 @@ class Filter extends React.Component {
               ? "500+ Miles Away"
               : this.state.rangeSliderValue + " Miles Away"}
           </div>
+          
           {this.state.instruments?.map((instrument) => {
             return (
               <div className="filter-tag" key={instrument.id}>
@@ -129,7 +132,6 @@ class Filter extends React.Component {
           {!this.state.hidden ? (
             <>
               <hr />
-              <br />
               <button onClick={this.sendFilters}>Apply Filters</button>
             </>
           ) : null}
