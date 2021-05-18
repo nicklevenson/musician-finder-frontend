@@ -62,8 +62,8 @@ class RecommendedUsers extends React.Component {
   }
 
   render() {
-    if (!this.props.currentUser.id) {
-      window.location.href = "/login";
+    if (!sessionStorage.jwt) {
+      window.location.href="/login"
     } else {
       const shownUserId =
         this.props?.recommendedUsers[this.state.activeIndex]?.id || null;

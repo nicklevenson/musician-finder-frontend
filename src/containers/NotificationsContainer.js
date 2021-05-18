@@ -9,7 +9,7 @@ class NotificationsContainer extends React.Component {
     this.props.fetchUserNotifications();
   };
   render() {
-    if (this.props.currentUser.id) {
+    if (sessionStorage.jwt) {
       return (
         <div>
           <h1>Notifications</h1>
@@ -21,7 +21,7 @@ class NotificationsContainer extends React.Component {
         </div>
       );
     } else {
-       window.location.href = "/login";
+      return <Redirect to="/login"></Redirect>;
     }
   }
 }
