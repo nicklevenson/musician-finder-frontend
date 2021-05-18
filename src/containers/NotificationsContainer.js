@@ -9,7 +9,7 @@ class NotificationsContainer extends React.Component {
     this.props.fetchUserNotifications();
   };
   render() {
-    if (sessionStorage.jwt) {
+    if (this.props.currentUser.id) {
       return (
         <div>
           <h1>Notifications</h1>
@@ -21,7 +21,7 @@ class NotificationsContainer extends React.Component {
         </div>
       );
     } else {
-      return <Redirect to="/login"></Redirect>;
+       window.location.href = "/login";
     }
   }
 }
@@ -35,6 +35,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     notifications: state.currentUser.notifications,
+    currentUser: state.currentUser.currentUser
   };
 };
 

@@ -11,6 +11,7 @@ class RecommendedUsers extends React.Component {
     activeIndex: 0,
     margin: 0
   }
+
   componentDidMount() {
     this.props.fetchUserRecs()
   }
@@ -61,19 +62,37 @@ class RecommendedUsers extends React.Component {
   }
 
   render() {
-    const shownUserId = this.props?.recommendedUsers[this.state.activeIndex]?.id || null
-    return(
-      <div className="recommended-users">
-          <Filter/>
+    if (!this.props.currentUser.id) {
+      window.location.href = "/login";
+    } else {
+      const shownUserId =
+        this.props?.recommendedUsers[this.state.activeIndex]?.id || null;
+      return (
+        <div className="recommended-users">
+          <Filter />
           <div className="cards-container">
-            {this.props.recommendedUsers?.map((u, index) =>
-              <div className={this.state.activeIndex === index ? "active card" : "inactive card"}>
-                <PreviewUserCard user={u} currentUser={this.props.currentUser} key={u.id} cardChange={this.cardChange} shownUserId={shownUserId}/>
+            {this.props?.recommendedUsers?.map((u, index) => (
+              <div
+                className={
+                  this.state.activeIndex === index
+                    ? "active card"
+                    : "inactive card"
+                }
+              >
+                <PreviewUserCard
+                  user={u}
+                  currentUser={this.props.currentUser}
+                  key={u.id}
+                  cardChange={this.cardChange}
+                  shownUserId={shownUserId}
+                />
               </div>
-            )} 
+            ))}
           </div>
-      </div>
-    )
+        </div>
+      );
+    }
+    
   }
 }
 

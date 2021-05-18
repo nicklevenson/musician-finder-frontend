@@ -25,6 +25,7 @@ class App extends React.Component {
         this.props.fetchUserNotifications()
       }, 100000)
     }
+    
   }
 
   componentWillUnmount(){
