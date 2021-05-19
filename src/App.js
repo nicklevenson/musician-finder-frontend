@@ -13,30 +13,35 @@ import UserShow from "./components/Users/UserShow";
 import ProfileContainer from "./containers/ProfileContainer";
 import Logout from "./components/Navigation/Logout";
 
-import { fetchUser, fetchUserChatrooms, fetchUserNotifications } from "./actions/useractions";
+import {
+  fetchUser,
+  fetchUserChatrooms,
+  fetchUserNotifications,
+} from "./actions/useractions";
 import LoginContainer from "./containers/LoginContainer";
 import LocationSearch from "./components/Users/LocationSearch";
+import { fetchAllLists } from "./actions/listactions";
 class App extends React.Component {
   componentDidMount() {
     if (sessionStorage.userId) {
-      this.props.fetchUser()
+      this.props.fetchUser();
       this.timer = setInterval(() => {
         this.props.fetchUserChatrooms();
-        this.props.fetchUserNotifications()
-      }, 100000)
+        this.props.fetchUserNotifications();
+      }, 100000);
+      this.props.fetchAllLists();
     }
-    
   }
 
-  componentWillUnmount(){
-    clearInterval(this.timer)
-    this.timer = null
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    this.timer = null;
   }
   render() {
     return (
       <div className="App">
         <Nav currentUser={this.props.currentUser} />
-        <LocationSearch/>
+        <LocationSearch />
         <div>
           <Switch>
             <Route exact path="/home" component={HomeContainer}></Route>
@@ -75,7 +80,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUser: () => dispatch(fetchUser()),
     fetchUserChatrooms: () => dispatch(fetchUserChatrooms()),
-    fetchUserNotifications: () => dispatch(fetchUserNotifications())
+    fetchUserNotifications: () => dispatch(fetchUserNotifications()),
+    fetchAllLists: () => dispatch(fetchAllLists()),
   };
 };
 

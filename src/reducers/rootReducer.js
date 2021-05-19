@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux'
 import userReducer from './userReducer.js'
-const rootReducer = combineReducers({currentUser: userReducer})
+import listReducer from './listReducer.js'
+const rootReducer = combineReducers({currentUser: userReducer, lists: listReducer})
 export default rootReducer
