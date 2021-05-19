@@ -12,7 +12,6 @@ import RecommendedUsers from "./containers/RecommendedUsers";
 import UserShow from "./components/Users/UserShow";
 import ProfileContainer from "./containers/ProfileContainer";
 import Logout from "./components/Navigation/Logout";
-
 import {
   fetchUser,
   fetchUserChatrooms,
@@ -21,6 +20,7 @@ import {
 import LoginContainer from "./containers/LoginContainer";
 import LocationSearch from "./components/Users/LocationSearch";
 import { fetchAllLists } from "./actions/listactions";
+
 class App extends React.Component {
   componentDidMount() {
     if (sessionStorage.userId) {
