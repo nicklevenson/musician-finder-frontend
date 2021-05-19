@@ -1,37 +1,55 @@
-import React from 'react'
-
+import React from "react";
+import { connect } from "react-redux";
 
 class GenreOptions extends React.Component {
   state = {
-    inputQuery: ""
-  }
+    inputQuery: "",
+    results: [],
+  };
 
   setInputQuery = (e) => {
-    this.setState({inputQuery: e.target.value})
-  }
+    this.setState({ inputQuery: e.target.value });
+    const filteredGenres = this.props.genres
+      .filter((genre) => {
+        return genre.toLowerCase().includes(e.target.value.toLowerCase());
+      })
+      .splice(0, 9);
+    this.setState({ results: filteredGenres });
+  };
 
   handleClick = (e) => {
-    e.preventDefault()
-    this.props.setGenres(this.state.inputQuery)
-  }
+    e.preventDefault();
+    const selection = e.target.innerText;
+    this.props.setGenres(selection);
+  };
 
-  
-  render(){
-    return(
+  render() {
+    return (
       <div className="genres-filter">
         <label htmlFor="genres filter">By Genres</label>
-        <br/>
-        <input 
-          name="genres filter" 
-          className="filter-input" 
-          placeholder="Search for Genre" 
+        <br />
+        <input
+          name="genres filter"
+          className="filter-input"
+          placeholder="Search for Genre"
           value={this.state.inputQuery}
-          onInput={e => this.setInputQuery(e)}
+          onInput={(e) => this.setInputQuery(e)}
         />
-        <button onClick={e => this.handleClick(e)}>Add</button>
+
+        <div className="genre-results" onClick={(e) => this.handleClick(e)}>
+          {this.state.results.map((result) => {
+            return <div>{result}</div>;
+          })}
+        </div>
       </div>
-    )
+    );
   }
 }
 
-export default GenreOptions
+const mapStateToProps = (state) => {
+  return {
+    genres: state.lists.genres,
+  };
+};
+
+export default connect(mapStateToProps)(GenreOptions);
