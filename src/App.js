@@ -17,9 +17,9 @@ import {
   fetchUserChatrooms,
   fetchUserNotifications,
 } from "./actions/useractions";
+import { fetchAllLists } from "./actions/listactions";
 import LoginContainer from "./containers/LoginContainer";
 import LocationSearch from "./components/Users/LocationSearch";
-import { fetchAllLists } from "./actions/listactions";
 
 class App extends React.Component {
   componentDidMount() {

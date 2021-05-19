@@ -19,8 +19,8 @@ class UserTag extends Component {
   }
 
   getImage() {
-    if (this.props.info.spotify_image_url) {
-      return <img src={this.props.info.spotify_image_url} alt="artist" />;
+    if (this.props.info.image_url) {
+      return <img src={this.props.info.image_url} alt="artist" />;
     } else return "";
   }
 
