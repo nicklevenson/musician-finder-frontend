@@ -6,9 +6,9 @@ import ConnectionsContainer from "./ConnectionsContainer";
 // import LoginCard from "../components/LoginCard";
 // import IncomingRequestsContainer from "./IncomingRequestsContainer";
 class HomeContainer extends React.Component {
-  state = { activeItem: 'recommended' }
+  state = { activeItem: "recommended" };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   // renderUserConnections = () => {
   //   if (this.props.currentUser.connected_users_with_tags) {
@@ -23,24 +23,28 @@ class HomeContainer extends React.Component {
   // };
 
   render() {
-    const { activeItem } = this.state
+    const { activeItem } = this.state;
     return (
-      <>
-        <Menu tabular style={{margin:"auto", width:"min-content"}}>
+      <div className="home-container">
+        <Menu tabular style={{ margin: "auto", width: "min-content" }}>
           <Menu.Item
-            name='recommended'
-            active={activeItem === 'recommended'}
+            name="recommended"
+            active={activeItem === "recommended"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name='connections'
-            active={activeItem === 'connections'}
+            name="connections"
+            active={activeItem === "connections"}
             onClick={this.handleItemClick}
           />
         </Menu>
 
-        {activeItem === "connections" ? <ConnectionsContainer/> : <RecommendedUsers/>}
-      </>
+        {activeItem === "connections" ? (
+          <ConnectionsContainer />
+        ) : (
+          <RecommendedUsers />
+        )}
+      </div>
     );
   }
 }

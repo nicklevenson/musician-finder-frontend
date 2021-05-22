@@ -94,10 +94,10 @@ class PreviewUserCard extends React.Component {
     return (
       <div className="preview-user-card">
         <div className="card-content">
-          <Image
-            size="large"
+          <img
+            className="user-photo"
             src={this.props.user.photo || this.props.user.providerImage}
-            centered
+            alt="User photo"
           />
         </div>
         <div className="card-content">
@@ -137,7 +137,7 @@ class PreviewUserCard extends React.Component {
           <div>Genres: {this.state.genres?.join(", ")}</div>
         ) : null}
 
-        <div className="card-content">
+        <div className="connect-form">
           <ConnectForm focusedUser={this.props.user} />
           {this.props.cardChange ? (
             <button size="tiny" onClick={(e) => this.props.cardChange(e)}>

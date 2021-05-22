@@ -1,28 +1,40 @@
 @use "../variables" as v;
 
 .recommended-users {
+  display: grid;
+  grid-template: 15% 85% / 1fr;
   text-align: center;
+  height: 100%;
 }
 
 .cards-container {
-  height: min-content;
+  grid-row: 2;
+  height: 90%;
   overflow: hidden;
   white-space: nowrap;
-  transition: ease-in-out;
-  transition-duration: 1s;
-  // scroll-behavior: smooth;
 }
 .card {
-  display: inline-block;
+  grid-row: 2;
+  display: inline-flex;
   width: 100%;
+  height: 100%;
 }
 
 .preview-user-card {
-  border: solid thin v.$light-gray;
-  padding: 1rem;
+  border: solid thin;
+  border-color: v.$gray;
   box-shadow: 1px 1px 6px v.$light-gray;
-  height: 450px;
+  height: 100%;
   width: 80vw;
   max-width: 350px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 5%;
+}
+
+.user-photo {
+  width: 100%;
+  height: auto;
 }

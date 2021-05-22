@@ -1,6 +1,8 @@
 @use "../variables" as v;
 
 .filter {
+  grid-column: 1 / 3;
+  z-index: 50;
   width: 70%;
   max-width: 500px;
   background-color: v.$light-gray;
@@ -8,4 +10,3 @@
   padding: 1rem;
   margin: auto;
 }
-
