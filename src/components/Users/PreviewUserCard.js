@@ -1,6 +1,6 @@
 import React from "react";
 // import {Link} from 'react-router-dom'
-import { Icon, Image } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
 import ConnectForm from "./ConnectForm";
 
 class PreviewUserCard extends React.Component {
@@ -97,7 +97,7 @@ class PreviewUserCard extends React.Component {
           <img
             className="user-photo"
             src={this.props.user.photo || this.props.user.providerImage}
-            alt="User photo"
+            alt="User"
           />
         </div>
         <div className="card-content">
