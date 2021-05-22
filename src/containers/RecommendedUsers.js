@@ -17,7 +17,10 @@ class RecommendedUsers extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     this.setMargin();
-    if (prevProps.recommendedUsers != this.props.recommendedUsers) {
+    if (
+      prevProps.recommendedUsers[0]?.username !==
+      this.props.recommendedUsers[0]?.username
+    ) {
       this.setState({ activeIndex: 0 });
       this.setState({ margin: 0 });
     }

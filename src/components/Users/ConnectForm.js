@@ -67,7 +67,7 @@ class ConnectForm extends React.Component {
       ) {
         return (
           <button className="connect-button" disabled>
-            You and {this.props.focusedUser.username} are connected
+            Connected
           </button>
         );
       } else if (this.props.currentUser.id === this.props.focusedUser.id) {
@@ -76,11 +76,9 @@ class ConnectForm extends React.Component {
         return (
           <button
             className="connect-button"
-            size="tiny"
-            animated
             onClick={this.handleConnectionRequest}
           >
-            Request Connection
+            Let's Jam
           </button>
         );
       }
