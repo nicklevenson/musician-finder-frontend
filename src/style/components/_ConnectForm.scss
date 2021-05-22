@@ -3,14 +3,19 @@
 .connect-form {
   display: grid;
   grid-template-columns: 50% 50%;
+  grid-gap: 5px;
 }
 .connect-button {
   background-color: black !important;
   color: white;
-  padding: 4px 1rem 4px 1rem;
   border-radius: 10px;
 
   &:hover {
     cursor: pointer;
   }
+}
+
+.next-button {
+  border: solid thin black !important;
+  border-radius: 10px;
 }

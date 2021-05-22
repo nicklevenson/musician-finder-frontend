@@ -123,7 +123,7 @@ class PreviewUserCard extends React.Component {
 
           <div className="card-meta">{this.renderSimilarTags()}</div>
         </div>
-        <div className="card-content" extra textAlign="center">
+        <div className="card-content" textAlign="center">
           <button>
             <Icon name="user" />
             {this.state.connections.length || "0"} Connections
@@ -140,7 +140,10 @@ class PreviewUserCard extends React.Component {
         <div className="connect-form">
           <ConnectForm focusedUser={this.props.user} />
           {this.props.cardChange ? (
-            <button size="tiny" onClick={(e) => this.props.cardChange(e)}>
+            <button
+              className="next-button"
+              onClick={(e) => this.props.cardChange(e)}
+            >
               Next Plz!
             </button>
           ) : null}

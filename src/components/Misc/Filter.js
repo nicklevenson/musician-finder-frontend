@@ -1,82 +1,85 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import RangeSlider from './RangeSlider'
-import InstrumentOptions from './InstrumentOptions'
-import GenreOptions from './GenreOptions'
-import {fetchUserRecs} from '../../actions/useractions'
+import React from "react";
+import { connect } from "react-redux";
+import RangeSlider from "./RangeSlider";
+import InstrumentOptions from "./InstrumentOptions";
+import GenreOptions from "./GenreOptions";
+import { fetchUserRecs } from "../../actions/useractions";
 class Filter extends React.Component {
   state = {
     hidden: true,
     rangeSliderValue: 500,
     instruments: [],
-    genres: []
-  }
+    genres: [],
+  };
 
   handleRangeSliderChange = (e) => {
-    this.setState({rangeSliderValue: parseInt(e.target.value)})
-  }
+    this.setState({ rangeSliderValue: parseInt(e.target.value) });
+  };
 
   setInstruments = (instrument) => {
-    const newInstrument = {name: instrument, id: this.state.instruments.length}
-    if (!this.state.instruments.map(inst => inst.name).includes(instrument)){
+    const newInstrument = {
+      name: instrument,
+      id: this.state.instruments.length,
+    };
+    if (!this.state.instruments.map((inst) => inst.name).includes(instrument)) {
       this.setState((state) => ({
-        instruments: state.instruments.concat(newInstrument)
-      }))
+        instruments: state.instruments.concat(newInstrument),
+      }));
     }
-  }
+  };
 
   setGenres = (genre) => {
-    const newGenre = {name: genre, id: this.state.genres.length}
-    if (!this.state.genres.map(gen => gen.name).includes(genre)){
+    const newGenre = { name: genre, id: this.state.genres.length };
+    if (!this.state.genres.map((gen) => gen.name).includes(genre)) {
       this.setState((state) => ({
-        genres: state.genres.concat(newGenre)
-      }))
+        genres: state.genres.concat(newGenre),
+      }));
     }
-  }
+  };
 
   sendFilters = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const paramsobj = {
       mileRange: this.state.rangeSliderValue,
-      instruments: this.state.instruments.map(inst => inst.name),
-      genres: this.state.genres.map(gen => gen.name)
-    }
-    this.props.fetchUserRecs(paramsobj)
-    this.setState({hidden: true})
-  }
+      instruments: this.state.instruments.map((inst) => inst.name),
+      genres: this.state.genres.map((gen) => gen.name),
+    };
+    this.props.fetchUserRecs(paramsobj);
+    this.setState({ hidden: true });
+  };
 
   handleVisibilityToggle = () => {
     if (this.state.hidden === true) {
-      this.setState({hidden: false})
-    }else{
-      this.setState({hidden: true})
+      this.setState({ hidden: false });
+    } else {
+      this.setState({ hidden: true });
     }
-  }
-
+  };
 
   handleDeleteInstrument = (e, instrument) => {
-    e.preventDefault()
-    const instrumentArray = [...this.state.instruments]
-    const newInstrumentArray = instrumentArray.filter(inst=> inst.id !== instrument.id);
-    this.setState({instruments: newInstrumentArray})
-  }
-
+    e.preventDefault();
+    const instrumentArray = [...this.state.instruments];
+    const newInstrumentArray = instrumentArray.filter(
+      (inst) => inst.id !== instrument.id
+    );
+    this.setState({ instruments: newInstrumentArray });
+  };
 
   handleDeleteGenre = (e, genre) => {
-    e.preventDefault()
-    const genreArray = [...this.state.genres]
-    const newGenreArray = genreArray.filter(gen=> gen.id !== genre.id);
-    this.setState({genres: newGenreArray})
-  }
+    e.preventDefault();
+    const genreArray = [...this.state.genres];
+    const newGenreArray = genreArray.filter((gen) => gen.id !== genre.id);
+    this.setState({ genres: newGenreArray });
+  };
 
-  render(){
+  render() {
     return (
       <div className="filter">
         <div
           className="filter-toggle"
           onClick={(e) => this.handleVisibilityToggle()}
         >
-          Filter Users
+          Apply Filters
         </div>
         <hr />
         {!this.state.hidden ? (
@@ -89,7 +92,7 @@ class Filter extends React.Component {
             <br />
             <GenreOptions setGenres={this.setGenres} />
             <br />
-            <hr/>
+            <hr />
           </div>
         ) : null}
 
@@ -100,7 +103,7 @@ class Filter extends React.Component {
               ? "500+ Miles Away"
               : this.state.rangeSliderValue + " Miles Away"}
           </div>
-          
+
           {this.state.instruments?.map((instrument) => {
             return (
               <div className="filter-tag" key={instrument.id}>
@@ -132,7 +135,7 @@ class Filter extends React.Component {
           {!this.state.hidden ? (
             <>
               <hr />
-              <button onClick={this.sendFilters}>Apply Filters</button>
+              <button onClick={this.sendFilters}>Apply</button>
             </>
           ) : null}
         </div>
@@ -142,7 +145,8 @@ class Filter extends React.Component {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUserRecs: (filterParamsObject) => dispatch(fetchUserRecs(filterParamsObject))
-  }
-}
-export default connect(null, mapDispatchToProps)(Filter)
+    fetchUserRecs: (filterParamsObject) =>
+      dispatch(fetchUserRecs(filterParamsObject)),
+  };
+};
+export default connect(null, mapDispatchToProps)(Filter);
