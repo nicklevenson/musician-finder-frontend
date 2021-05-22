@@ -79,9 +79,9 @@ class Filter extends React.Component {
           className="filter-toggle"
           onClick={(e) => this.handleVisibilityToggle()}
         >
-          Apply Filters
+          Filter Users
         </div>
-        <hr />
+
         {!this.state.hidden ? (
           <div className="filter-items">
             <RangeSlider
@@ -92,53 +92,50 @@ class Filter extends React.Component {
             <br />
             <GenreOptions setGenres={this.setGenres} />
             <br />
-            <hr />
+
+            <div className="filter-state">
+              <div className="filter-tag">
+                Range:{" "}
+                {this.state.rangeSliderValue >= 500
+                  ? "500+ Miles Away"
+                  : this.state.rangeSliderValue + " Miles Away"}
+              </div>
+
+              {this.state.instruments?.map((instrument) => {
+                return (
+                  <div className="filter-tag" key={instrument.id}>
+                    {instrument.name}
+                    {!this.state.hidden ? (
+                      <button
+                        onClick={(e) =>
+                          this.handleDeleteInstrument(e, instrument)
+                        }
+                      >
+                        X
+                      </button>
+                    ) : null}
+                  </div>
+                );
+              })}
+
+              {this.state.genres?.map((genre) => {
+                return (
+                  <div className="filter-tag" key={genre.id}>
+                    {genre.name}
+                    {!this.state.hidden ? (
+                      <button onClick={(e) => this.handleDeleteGenre(e, genre)}>
+                        X
+                      </button>
+                    ) : null}
+                  </div>
+                );
+              })}
+
+              <hr />
+              <button onClick={this.sendFilters}>Apply Filters</button>
+            </div>
           </div>
         ) : null}
-
-        <div className="filter-state">
-          <div className="filter-tag">
-            Range:{" "}
-            {this.state.rangeSliderValue >= 500
-              ? "500+ Miles Away"
-              : this.state.rangeSliderValue + " Miles Away"}
-          </div>
-
-          {this.state.instruments?.map((instrument) => {
-            return (
-              <div className="filter-tag" key={instrument.id}>
-                {instrument.name}
-                {!this.state.hidden ? (
-                  <button
-                    onClick={(e) => this.handleDeleteInstrument(e, instrument)}
-                  >
-                    X
-                  </button>
-                ) : null}
-              </div>
-            );
-          })}
-
-          {this.state.genres?.map((genre) => {
-            return (
-              <div className="filter-tag" key={genre.id}>
-                {genre.name}
-                {!this.state.hidden ? (
-                  <button onClick={(e) => this.handleDeleteGenre(e, genre)}>
-                    X
-                  </button>
-                ) : null}
-              </div>
-            );
-          })}
-
-          {!this.state.hidden ? (
-            <>
-              <hr />
-              <button onClick={this.sendFilters}>Apply</button>
-            </>
-          ) : null}
-        </div>
       </div>
     );
   }
