@@ -1,6 +1,6 @@
 import React from "react";
-// import {Link} from 'react-router-dom'
 import { Icon } from "semantic-ui-react";
+import GenericTag from "../Tags/GenericTag";
 import ConnectForm from "./ConnectForm";
 
 class PreviewUserCard extends React.Component {
@@ -116,12 +116,22 @@ class PreviewUserCard extends React.Component {
 
           <div className="card-instruments">
             {this.state.instruments.length > 0 ? (
-              <div>Plays: {this.state.instruments?.join(", ")}</div>
+              <div>
+                Plays:{" "}
+                {this.state.instruments?.map((inst) => {
+                  return <GenericTag tag={inst} />;
+                })}
+              </div>
             ) : null}
           </div>
           <div className="card-genres">
             {this.state.genres.length > 0 ? (
-              <div>Genres: {this.state.genres?.join(", ")}</div>
+              <div>
+                Genres:{" "}
+                {this.state.genres?.map((genre) => {
+                  return <GenericTag tag={genre} />;
+                })}
+              </div>
             ) : null}
           </div>
           <br />
