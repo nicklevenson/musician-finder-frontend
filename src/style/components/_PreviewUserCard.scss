@@ -12,6 +12,13 @@
   display: grid;
   grid-template-rows: 1fr 7%;
   padding: 1rem;
+
+  ::-webkit-scrollbar:horizontal {
+    height: 1px;
+  }
+  ::-webkit-scrollbar:vertical {
+    width: 0px;
+  }
 }
 
 .card-content {
