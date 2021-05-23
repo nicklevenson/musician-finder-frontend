@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "semantic-ui-react";
 import GenericTag from "../Tags/GenericTag";
+import SimilarTag from "../Tags/SimilarTag";
 import ConnectForm from "./ConnectForm";
 
 class PreviewUserCard extends React.Component {
@@ -78,10 +79,9 @@ class PreviewUserCard extends React.Component {
         <div style={{ height: "1em" }}>
           <div className="card-content">
             You both like:{" "}
-            {this.state.similarTags
-              .map((tag) => tag.name)
-              .slice(0, 3)
-              .join(", ")}
+            {this.state.similarTags.map((tag) => (
+              <SimilarTag tag={tag.name} />
+            ))}
           </div>
         </div>
       );
@@ -114,6 +114,9 @@ class PreviewUserCard extends React.Component {
           </div>
           <br />
 
+          <div className="card-similarities">{this.renderSimilarTags()}</div>
+          <br />
+
           <div className="card-instruments">
             {this.state.instruments.length > 0 ? (
               <div>
@@ -139,9 +142,6 @@ class PreviewUserCard extends React.Component {
               ? this.props.user.bio.substring(0, 70) + "..."
               : "I'm a musician!"}
           </div>
-          <br />
-
-          <div className="card-similarities">{this.renderSimilarTags()}</div>
           <br />
 
           <div className="card-artists">Top Artists:</div>
