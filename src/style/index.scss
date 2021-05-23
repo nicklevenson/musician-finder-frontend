@@ -14,6 +14,7 @@
 @use "./components/LocationSlider";
 @use "./components/RecommendedUsers";
 @use "./components/ConnectForm";
+@use "./components/PreviewUserCard";
 
 .App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing

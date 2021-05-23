@@ -1,0 +1,29 @@
+@use "../variables" as v;
+
+.preview-user-card {
+  border: solid thin;
+  border-color: v.$gray;
+  box-shadow: 1px 1px 6px v.$light-gray;
+  height: 100%;
+  width: 80vw;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: 50% 1fr 5%;
+}
+
+.user-photo {
+  grid-row: 1;
+  width: 100%;
+  height: auto;
+}
+
+.card-info {
+  text-align: left;
+}
+
+.card-header {
+  font-size: 2rem;
+}

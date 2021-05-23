@@ -93,49 +93,55 @@ class PreviewUserCard extends React.Component {
   render() {
     return (
       <div className="preview-user-card">
-        <div className="card-content">
+        <div className="card-photo">
           <img
             className="user-photo"
             src={this.props.user.photo || this.props.user.providerImage}
             alt="User"
           />
         </div>
-        <div className="card-content">
+        <div className="card-info">
           <div className="card-header">
             <a href={`users/${this.props.user.id}`}>
               {this.props.user.username}
             </a>
           </div>
-          {/* <Card.Meta>
-              <span className='date'>Joined {this.props.user.created_at.split("T")[0]}</span>
-            </Card.Meta> */}
+          <br />
+
           <div className="card-meta">
             <span className="location">
               Location: {this.props.user.location || "Earth"}
             </span>
           </div>
+          <br />
 
-          <div className="card-content">
+          <div className="card-meta">
             {this.props.user.bio
               ? this.props.user.bio.substring(0, 70) + "..."
               : "No bio given"}
           </div>
+          <br />
+          <div className="card-similarities">{this.renderSimilarTags()}</div>
 
-          <div className="card-meta">{this.renderSimilarTags()}</div>
-        </div>
-        <div className="card-content" textAlign="center">
-          <button>
-            <Icon name="user" />
-            {this.state.connections.length || "0"} Connections
-          </button>
-        </div>
-        {this.state.instruments.length > 0 ? (
-          <div>Plays: {this.state.instruments?.join(", ")}</div>
-        ) : null}
+          <br />
+          <div className="card-meta" textAlign="center">
+            <button>
+              <Icon name="user" />
+              {this.state.connections.length || "0"} Connections
+            </button>
+          </div>
 
-        {this.state.genres.length > 0 ? (
-          <div>Genres: {this.state.genres?.join(", ")}</div>
-        ) : null}
+          <br />
+          <div className="card-meta">
+            {this.state.instruments.length > 0 ? (
+              <div>Plays: {this.state.instruments?.join(", ")}</div>
+            ) : null}
+
+            {this.state.genres.length > 0 ? (
+              <div>Genres: {this.state.genres?.join(", ")}</div>
+            ) : null}
+          </div>
+        </div>
 
         <div className="connect-form">
           <ConnectForm focusedUser={this.props.user} />
