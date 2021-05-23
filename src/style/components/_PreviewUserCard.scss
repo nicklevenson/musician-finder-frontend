@@ -29,6 +29,11 @@
   padding: 1rem;
 }
 
+.card-tags {
+  width: 100%;
+  white-space: pre-wrap;
+}
+
 .card-header {
   color: v.$dark;
   font-size: 2rem;

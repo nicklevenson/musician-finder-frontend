@@ -112,6 +112,13 @@ class PreviewUserCard extends React.Component {
               </a>
             </div>
 
+            <div className="card-meta" textAlign="center">
+              <button>
+                <Icon name="user" />
+                {this.state.connections.length || "0"} Connections
+              </button>
+            </div>
+
             <div className="card-location">
               <span className="location">
                 Location: {this.props.user.location || "Earth"}
@@ -146,6 +153,7 @@ class PreviewUserCard extends React.Component {
                 ? this.props.user.bio.substring(0, 70) + "..."
                 : "I'm a musician!"}
             </div>
+            <br />
 
             {this.state.spotify_tags.length > 0 ? (
               <>
@@ -161,15 +169,14 @@ class PreviewUserCard extends React.Component {
               </>
             ) : null}
 
-            <div className="card-meta" textAlign="center">
-              <button>
-                <Icon name="user" />
-                {this.state.connections.length || "0"} Connections
-              </button>
-            </div>
-
             {this.state.generic_tags.length > 0 ? (
-              <div className="card-interests">Other Interests</div>
+              <div className="card-interests card-tags">
+                <b>Other Interests:</b>
+                <br />
+                {this.state.generic_tags.map((tag) => {
+                  return <GenericTag tag={tag.name} />;
+                })}
+              </div>
             ) : null}
           </div>
         </div>
