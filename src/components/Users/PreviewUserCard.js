@@ -82,12 +82,10 @@ class PreviewUserCard extends React.Component {
     if (this.state.similarTags.length > 0) {
       return (
         <div className="card-similarities">
-          <div className="card-content">
-            You both like:{" "}
-            {this.state.similarTags.map((tag) => (
-              <SimilarTag tag={tag.name} />
-            ))}
-          </div>
+          You both like:{" "}
+          {this.state.similarTags.map((tag) => (
+            <SimilarTag tag={tag.name} />
+          ))}
         </div>
       );
     } else {
@@ -137,15 +135,6 @@ class PreviewUserCard extends React.Component {
                 </>
               ) : null}
               <br />
-              {this.state.genres.length > 0 ? (
-                <>
-                  Genres:{" "}
-                  {this.state.genres?.map((genre) => {
-                    return <GenericTag tag={genre} />;
-                  })}
-                  <br />
-                </>
-              ) : null}
             </div>
 
             <div className="card-bio">
@@ -168,6 +157,18 @@ class PreviewUserCard extends React.Component {
                 <br />
               </>
             ) : null}
+
+            <div className="card-tags">
+              {this.state.genres.length > 0 ? (
+                <>
+                  Genres:{" "}
+                  {this.state.genres?.map((genre) => {
+                    return <GenericTag tag={genre} />;
+                  })}
+                  <br />
+                </>
+              ) : null}
+            </div>
 
             {this.state.generic_tags.length > 0 ? (
               <div className="card-interests card-tags">
