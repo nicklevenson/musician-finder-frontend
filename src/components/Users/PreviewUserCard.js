@@ -117,22 +117,21 @@ class PreviewUserCard extends React.Component {
           <div className="card-similarities">{this.renderSimilarTags()}</div>
           <br />
 
-          <div className="card-instruments">
+          <div className="card-tags">
             {this.state.instruments.length > 0 ? (
-              <div>
+              <>
                 {this.state.instruments?.map((inst) => {
                   return <GenericTag tag={inst} />;
                 })}
-              </div>
+              </>
             ) : null}
-          </div>
-          <div className="card-genres">
+
             {this.state.genres.length > 0 ? (
-              <div>
+              <>
                 {this.state.genres?.map((genre) => {
                   return <GenericTag tag={genre} />;
                 })}
-              </div>
+              </>
             ) : null}
           </div>
           <br />
