@@ -10,6 +10,8 @@ class PreviewUserCard extends React.Component {
     genres: [],
     instruments: [],
     connections: [],
+    generic_tags: [],
+    spotify_tags: [],
   };
 
   componentDidMount() {
@@ -46,6 +48,8 @@ class PreviewUserCard extends React.Component {
           similarTags: json.similar_tags,
           instruments: json.instruments,
           genres: json.genres,
+          generic_tags: json.generic_tags,
+          spotify_tags: json.spotify_tags,
         });
       })
       .catch(function (error) {
