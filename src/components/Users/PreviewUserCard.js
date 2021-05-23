@@ -106,40 +106,44 @@ class PreviewUserCard extends React.Component {
               {this.props.user.username}
             </a>
           </div>
-          <br />
 
-          <div className="card-meta">
+          <div className="card-location">
             <span className="location">
               Location: {this.props.user.location || "Earth"}
             </span>
           </div>
           <br />
 
-          <div className="card-meta">
+          <div className="card-instruments">
+            {this.state.instruments.length > 0 ? (
+              <div>Plays: {this.state.instruments?.join(", ")}</div>
+            ) : null}
+          </div>
+          <div className="card-genres">
+            {this.state.genres.length > 0 ? (
+              <div>Genres: {this.state.genres?.join(", ")}</div>
+            ) : null}
+          </div>
+          <br />
+
+          <div className="card-bio">
             {this.props.user.bio
               ? this.props.user.bio.substring(0, 70) + "..."
               : "No bio given"}
           </div>
           <br />
-          <div className="card-similarities">{this.renderSimilarTags()}</div>
 
+          <div className="card-similarities">{this.renderSimilarTags()}</div>
           <br />
+
+          <div className="card-artists">Top Artists:</div>
+          <br />
+
           <div className="card-meta" textAlign="center">
             <button>
               <Icon name="user" />
               {this.state.connections.length || "0"} Connections
             </button>
-          </div>
-
-          <br />
-          <div className="card-meta">
-            {this.state.instruments.length > 0 ? (
-              <div>Plays: {this.state.instruments?.join(", ")}</div>
-            ) : null}
-
-            {this.state.genres.length > 0 ? (
-              <div>Genres: {this.state.genres?.join(", ")}</div>
-            ) : null}
           </div>
         </div>
 
