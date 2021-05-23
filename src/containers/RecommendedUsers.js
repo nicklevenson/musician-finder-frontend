@@ -15,15 +15,12 @@ class RecommendedUsers extends React.Component {
     this.props.fetchUserRecs();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  resetIndexAndMargin = () => {
+    this.setState({ activeIndex: 0, margin: 0 });
+  };
+
+  componentDidUpdate() {
     this.setMargin();
-    if (
-      prevProps.recommendedUsers[0]?.username !==
-      this.props.recommendedUsers[0]?.username
-    ) {
-      this.setState({ activeIndex: 0 });
-      this.setState({ margin: 0 });
-    }
   }
 
   cardChange = (e) => {
@@ -70,7 +67,7 @@ class RecommendedUsers extends React.Component {
         this.props?.recommendedUsers[this.state.activeIndex]?.id || null;
       return (
         <div className="recommended-users">
-          <Filter />
+          <Filter resetIndexAndMargin={this.resetIndexAndMargin} />
           <div className="cards-container">
             {this.props?.recommendedUsers?.map((u, index) => (
               <div

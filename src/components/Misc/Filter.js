@@ -46,6 +46,7 @@ class Filter extends React.Component {
     };
     this.props.fetchUserRecs(paramsobj);
     this.setState({ hidden: true });
+    this.props.resetIndexAndMargin();
   };
 
   handleVisibilityToggle = () => {
