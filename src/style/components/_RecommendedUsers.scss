@@ -2,14 +2,14 @@
 
 .recommended-users {
   display: grid;
-  grid-template: 10% 90% / 1fr;
+  grid-template: 5% 95% / 1fr;
   text-align: center;
-  height: 100%;
+  height: 90%;
 }
 
 .cards-container {
   grid-row: 2;
-  height: 90%;
+  height: 100%;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -18,4 +18,5 @@
   display: inline-flex;
   width: 100%;
   height: 100%;
+  padding: 1rem;
 }

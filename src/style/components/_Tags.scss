@@ -6,10 +6,33 @@
   height: min-content;
   margin: 0.3rem;
   padding: 0.3rem;
-  background-color: v.$light-gray;
+  background-color: v.$gray;
   border-radius: 5px;
 }
 
 .similar-tag {
   background-color: lightcoral;
+}
+
+.spotify-artist-tag {
+  padding: 0;
+  background-color: transparent;
+  height: min-content;
+  width: 5rem;
+}
+.artist-image {
+  position: absolute;
+  top: 0;
+  height: 5rem;
+  width: 5rem;
+}
+.artist-name {
+  position: absolute;
+  z-index: 10;
+  height: 5rem;
+  width: 5rem;
+  height: min-content;
+  white-space: pre-wrap;
+  word-break: break-word !important;
+  text-align: center;
 }

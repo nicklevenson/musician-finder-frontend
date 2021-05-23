@@ -2,6 +2,7 @@ import React from "react";
 import { Icon } from "semantic-ui-react";
 import GenericTag from "../Tags/GenericTag";
 import SimilarTag from "../Tags/SimilarTag";
+import SpotifyArtistTag from "../Tags/SpotifyArtistTag";
 import ConnectForm from "./ConnectForm";
 
 class PreviewUserCard extends React.Component {
@@ -80,7 +81,7 @@ class PreviewUserCard extends React.Component {
   renderSimilarTags = () => {
     if (this.state.similarTags.length > 0) {
       return (
-        <div style={{ height: "1em" }}>
+        <div className="card-similarities">
           <div className="card-content">
             You both like:{" "}
             {this.state.similarTags.map((tag) => (
@@ -90,74 +91,88 @@ class PreviewUserCard extends React.Component {
         </div>
       );
     } else {
-      return <div style={{ height: "1em" }}></div>;
+      return null;
     }
   };
 
   render() {
     return (
       <div className="preview-user-card">
-        <div className="card-photo">
+        <div className="card-content">
           <img
             className="user-photo"
             src={this.props.user.photo || this.props.user.providerImage}
             alt="User"
           />
-        </div>
-        <div className="card-info">
-          <div className="card-header">
-            <a href={`users/${this.props.user.id}`}>
-              {this.props.user.username}
-            </a>
-          </div>
 
-          <div className="card-location">
-            <span className="location">
-              Location: {this.props.user.location || "Earth"}
-            </span>
-          </div>
-          <br />
+          <div className="card-info">
+            <div className="card-header">
+              <a href={`users/${this.props.user.id}`}>
+                {this.props.user.username}
+              </a>
+            </div>
 
-          <div className="card-similarities">{this.renderSimilarTags()}</div>
-          <br />
+            <div className="card-location">
+              <span className="location">
+                Location: {this.props.user.location || "Earth"}
+              </span>
+            </div>
 
-          <div className="card-tags">
-            {this.state.instruments.length > 0 ? (
+            {this.renderSimilarTags()}
+
+            <div className="card-tags">
+              {this.state.instruments.length > 0 ? (
+                <>
+                  Plays:{" "}
+                  {this.state.instruments?.map((inst) => {
+                    return <GenericTag tag={inst} />;
+                  })}
+                </>
+              ) : null}
+              <br />
+              {this.state.genres.length > 0 ? (
+                <>
+                  Genres:{" "}
+                  {this.state.genres?.map((genre) => {
+                    return <GenericTag tag={genre} />;
+                  })}
+                  <br />
+                </>
+              ) : null}
+            </div>
+
+            <div className="card-bio">
+              {this.props.user.bio
+                ? this.props.user.bio.substring(0, 70) + "..."
+                : "I'm a musician!"}
+            </div>
+
+            {this.state.spotify_tags.length > 0 ? (
               <>
-                {this.state.instruments?.map((inst) => {
-                  return <GenericTag tag={inst} />;
-                })}
+                <div className="card-artists">
+                  Top Artists:
+                  <div className="card-artists-container">
+                    {this.state.spotify_tags.map((tag) => {
+                      return <SpotifyArtistTag tag={tag} />;
+                    })}
+                  </div>
+                </div>
+                <br />
               </>
             ) : null}
 
-            {this.state.genres.length > 0 ? (
-              <>
-                {this.state.genres?.map((genre) => {
-                  return <GenericTag tag={genre} />;
-                })}
-              </>
+            <div className="card-meta" textAlign="center">
+              <button>
+                <Icon name="user" />
+                {this.state.connections.length || "0"} Connections
+              </button>
+            </div>
+
+            {this.state.generic_tags.length > 0 ? (
+              <div className="card-interests">Other Interests</div>
             ) : null}
           </div>
-          <br />
-
-          <div className="card-bio">
-            {this.props.user.bio
-              ? this.props.user.bio.substring(0, 70) + "..."
-              : "I'm a musician!"}
-          </div>
-          <br />
-
-          <div className="card-artists">Top Artists:</div>
-          <br />
-
-          <div className="card-meta" textAlign="center">
-            <button>
-              <Icon name="user" />
-              {this.state.connections.length || "0"} Connections
-            </button>
-          </div>
         </div>
-
         <div className="connect-form">
           <ConnectForm focusedUser={this.props.user} />
           {this.props.cardChange ? (

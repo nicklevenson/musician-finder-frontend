@@ -5,6 +5,7 @@ import NotificationIcon from "../Notifications/NotificationIcon";
 import MessageIcon from "../Messages/MessageIcon";
 import anime from "animejs";
 import history from "../../history";
+
 class Nav extends Component {
   constructor(props) {
     super(props);
