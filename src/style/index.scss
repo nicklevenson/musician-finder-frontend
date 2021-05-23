@@ -15,7 +15,7 @@
 @use "./components/RecommendedUsers";
 @use "./components/ConnectForm";
 @use "./components/PreviewUserCard";
-
+@use "./components/Tags";
 .App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing
   min-height: 100vh;

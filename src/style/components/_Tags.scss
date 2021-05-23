@@ -1,0 +1,11 @@
+@use "../variables" as v;
+
+.generic-tag {
+  display: inline-block;
+  width: min-content;
+  height: min-content;
+  margin: 0.3rem;
+  padding: 0.3rem;
+  background-color: v.$light-gray;
+  border-radius: 5px;
+}

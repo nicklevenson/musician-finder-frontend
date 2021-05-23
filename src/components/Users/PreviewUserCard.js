@@ -117,7 +117,6 @@ class PreviewUserCard extends React.Component {
           <div className="card-instruments">
             {this.state.instruments.length > 0 ? (
               <div>
-                Plays:{" "}
                 {this.state.instruments?.map((inst) => {
                   return <GenericTag tag={inst} />;
                 })}
@@ -127,7 +126,6 @@ class PreviewUserCard extends React.Component {
           <div className="card-genres">
             {this.state.genres.length > 0 ? (
               <div>
-                Genres:{" "}
                 {this.state.genres?.map((genre) => {
                   return <GenericTag tag={genre} />;
                 })}
@@ -139,7 +137,7 @@ class PreviewUserCard extends React.Component {
           <div className="card-bio">
             {this.props.user.bio
               ? this.props.user.bio.substring(0, 70) + "..."
-              : "No bio given"}
+              : "I'm a musician!"}
           </div>
           <br />
 
