@@ -97,11 +97,13 @@ class PreviewUserCard extends React.Component {
     return (
       <div className="preview-user-card">
         <div className="card-content">
-          <img
-            className="user-photo"
-            src={this.props.user.photo || this.props.user.providerImage}
-            alt="User"
-          />
+          <div className="user-photo-container">
+            <img
+              className="user-photo"
+              src={this.props.user.photo || this.props.user.providerImage}
+              alt="User"
+            />
+          </div>
 
           <div className="card-info">
             <div className="card-header">

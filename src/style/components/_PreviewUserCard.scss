@@ -28,7 +28,15 @@
   overflow-y: auto;
 }
 
+.user-photo-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
 .user-photo {
+  position: absolute;
+  top: 0;
   grid-row: 1;
   width: 100%;
   height: auto;
