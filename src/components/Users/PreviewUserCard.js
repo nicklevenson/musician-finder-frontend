@@ -110,13 +110,6 @@ class PreviewUserCard extends React.Component {
               </a>
             </div>
 
-            <div className="card-meta" textAlign="center">
-              <button>
-                <Icon name="user" />
-                {this.state.connections.length || "0"} Connections
-              </button>
-            </div>
-
             <div className="card-location">
               <span className="location">
                 Location: {this.props.user.location || "Earth"}
@@ -179,6 +172,13 @@ class PreviewUserCard extends React.Component {
                 })}
               </div>
             ) : null}
+
+            <div className="card-meta" textAlign="center">
+              <button>
+                <Icon name="user" />
+                {this.state.connections.length || "0"} Connections
+              </button>
+            </div>
           </div>
         </div>
         <div className="connect-form">

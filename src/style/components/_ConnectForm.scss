@@ -15,12 +15,14 @@
   align-self: end;
   background-color: black !important;
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 80%;
+  max-width: 200px;
   height: 80%;
   &:hover {
     cursor: pointer;
   }
+  padding: 0.5rem;
 }
 
 .next-button {

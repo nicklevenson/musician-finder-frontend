@@ -133,7 +133,9 @@ class Filter extends React.Component {
               })}
 
               <hr />
-              <button onClick={this.sendFilters}>Apply Filters</button>
+              <button className="connect-button" onClick={this.sendFilters}>
+                Apply Filters
+              </button>
             </div>
           </div>
         ) : null}
