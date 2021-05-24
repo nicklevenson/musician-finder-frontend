@@ -110,6 +110,13 @@ class PreviewUserCard extends React.Component {
               </a>
             </div>
 
+            <div className="card-connections">
+              <button>
+                <Icon name="user" />
+                {this.state.connections.length || "0"} Connections
+              </button>
+            </div>
+
             <div className="card-location">
               <span className="location">
                 Location: {this.props.user.location || "Earth"}
@@ -131,9 +138,7 @@ class PreviewUserCard extends React.Component {
             </div>
 
             <div className="card-bio">
-              {this.props.user.bio
-                ? this.props.user.bio.substring(0, 70) + "..."
-                : "I'm a musician!"}
+              {this.props.user.bio ? this.props.user.bio : "I'm a musician!"}
             </div>
             <br />
 
@@ -171,13 +176,6 @@ class PreviewUserCard extends React.Component {
                 })}
               </div>
             ) : null}
-
-            <div className="card-meta" textAlign="center">
-              <button>
-                <Icon name="user" />
-                {this.state.connections.length || "0"} Connections
-              </button>
-            </div>
           </div>
         </div>
         <div className="connect-form">

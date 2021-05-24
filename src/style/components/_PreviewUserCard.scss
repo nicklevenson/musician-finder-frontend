@@ -48,10 +48,17 @@
 .card-location {
   color: v.$gray;
 }
+.card-connections button {
+  padding: 0;
+}
+
+.card-bio {
+  font-style: italic;
+}
 
 .card-artists-container {
   position: relative;
   width: 100%;
-  height: 6rem;
+  height: 7rem;
   overflow-x: auto;
 }
