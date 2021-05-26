@@ -13,7 +13,7 @@ class InstrumentOptions extends React.Component {
       .filter((instrument) => {
         return instrument.toLowerCase().includes(e.target.value.toLowerCase());
       })
-      .splice(0, 9);
+      .splice(0, 30);
     this.setState({ results: filteredInstruments });
   };
 
@@ -37,7 +37,7 @@ class InstrumentOptions extends React.Component {
         />
 
         <div
-          className="instruments-results"
+          className="instruments-results options"
           onClick={(e) => this.handleClick(e)}
         >
           {this.state.results.map((result) => {

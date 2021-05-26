@@ -13,7 +13,7 @@ class GenreOptions extends React.Component {
       .filter((genre) => {
         return genre.toLowerCase().includes(e.target.value.toLowerCase());
       })
-      .splice(0, 9);
+      .splice(0, 30);
     this.setState({ results: filteredGenres });
   };
 
@@ -36,7 +36,10 @@ class GenreOptions extends React.Component {
           onInput={(e) => this.setInputQuery(e)}
         />
 
-        <div className="genre-results" onClick={(e) => this.handleClick(e)}>
+        <div
+          className="genre-results options"
+          onClick={(e) => this.handleClick(e)}
+        >
           {this.state.results.map((result) => {
             return <div>{result}</div>;
           })}
