@@ -101,6 +101,7 @@ class Filter extends React.Component {
                   ? "500+ Miles Away"
                   : this.state.rangeSliderValue + " Miles Away"}
               </div>
+              <br />
 
               {this.state.instruments?.map((instrument) => {
                 return (
