@@ -1,10 +1,9 @@
 @use "../variables" as v;
 
-
 .chatroom {
   height: 100%;
   display: grid;
-  grid-template: .5fr 5fr .5fr / 100%;
+  grid-template: 0.5fr 5fr 0.5fr / 100%;
 }
 
 .chatroom-header {
@@ -14,9 +13,10 @@
 
 .messages-container {
   padding: 2rem;
-  overflow: auto; 
+  overflow: auto;
   grid-area: 2 / 1 / 2 / 2;
-  display: grid;
+  display: flex !important;
+  flex-direction: column-reverse !important;
 }
 
 .new-message-container {

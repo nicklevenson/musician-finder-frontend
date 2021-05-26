@@ -3,18 +3,21 @@
 .new-message {
   width: 100%;
   display: grid;
-  grid-template: 100% / 90% 10%;
+  grid-template: 100% / 80% min-content;
 }
 
 .new-message-input {
   grid-column: 1;
+
+  input {
+    width: 100%;
+    border-radius: 5px;
+    border: solid thin grey;
+    height: 2rem;
+  }
+  button {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
-
-.new-message-input input {
-  width: 100%;
-  border-radius: 5px;
-  border: solid thin grey;
-  height: 3rem;
-}
-
-
