@@ -1,25 +1,53 @@
 @use "../variables" as v;
 
-
 .chatroom {
   height: 100%;
   display: grid;
-  grid-template: .5fr 5fr .5fr / 100%;
-}
+  grid-template: 0.5fr 5fr 0.5fr / 100%;
 
-.chatroom-header {
-  padding: 1rem;
-  grid-area: 1 / 1 / 1 / 2;
-}
+  .chatroom-header {
+    padding: 1rem;
+    grid-area: 1 / 1 / 1 / 2;
+  }
 
-.messages-container {
-  padding: 2rem;
-  overflow: auto; 
-  grid-area: 2 / 1 / 2 / 2;
-  display: grid;
-}
+  .messages-container {
+    padding: 2rem;
+    overflow: auto;
+    grid-area: 2 / 1 / 2 / 2;
+    display: flex !important;
+    flex-direction: column-reverse !important;
+  }
 
-.new-message-container {
-  margin: 0 1rem 0 1rem;
-  grid-area: 3 / 1 / 4 / 2;
+  .new-message-container {
+    margin: 0 1rem 0 1rem;
+    grid-area: 3 / 1 / 4 / 2;
+  }
+
+  .message {
+    display: block;
+    width: 90%;
+    margin-top: 1rem;
+  }
+
+  .new-message {
+    width: 100%;
+    display: grid;
+    grid-template: 100% / 80% min-content;
+
+    .new-message-input {
+      grid-column: 1;
+
+      input {
+        width: 100%;
+        border-radius: 5px;
+        border: solid thin grey;
+        height: 2rem;
+      }
+      button {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }

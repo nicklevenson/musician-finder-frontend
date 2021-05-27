@@ -18,13 +18,12 @@ export const setAllUsers = (users) => ({
 });
 export const setUserChatrooms = (chatrooms) => ({
   type: "SET_USER_CHATROOMS",
-  payload: chatrooms
-})
+  payload: chatrooms,
+});
 export const setUserNotifications = (notifications) => ({
   type: "SET_USER_NOTIFICATIONS",
-  payload: notifications
-})
-
+  payload: notifications,
+});
 
 export const fetchAllUsers = () => {
   return async (dispatch) => {
@@ -32,8 +31,6 @@ export const fetchAllUsers = () => {
     if (response) dispatch(setAllUsers(response));
   };
 };
-
-
 
 export const fetchUser = () => {
   return (dispatch) => {
@@ -47,11 +44,10 @@ export const fetchUser = () => {
       .then((res) => res.json())
       .then((json) => {
         dispatch(setUser(json));
-        dispatch(fetchUserRecs());
         dispatch(fetchConnections(userId));
         dispatch(fetchIncomingRequests());
         dispatch(fetchUserChatrooms());
-        dispatch(fetchUserNotifications())
+        dispatch(fetchUserNotifications());
       })
       .catch(function (error) {
         alert("Error getting User.");
@@ -71,10 +67,7 @@ export const updateUser = (user_info) => {
       },
       body: JSON.stringify({ user: user_info }),
     };
-    fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}`,
-      configObj
-    )
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`, configObj)
       .then((res) => res.json())
       .then((json) => {
         dispatch(fetchUser());
@@ -82,8 +75,8 @@ export const updateUser = (user_info) => {
       .catch(function (error) {
         alert("Error requesting connection.");
       });
-  }
-}
+  };
+};
 
 export const fetchUserRecs = (filterParamsObject) => {
   return (dispatch) => {
@@ -96,16 +89,17 @@ export const fetchUserRecs = (filterParamsObject) => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({filterParamsObject: filterParamsObject || {noFilter: true}}),
-    }
+      body: JSON.stringify({
+        filterParamsObject: filterParamsObject || { noFilter: true },
+      }),
+    };
     fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users`, configObj
-      )
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users`,
+      configObj
+    )
       .then((res) => res.json())
       .then((json) => {
-        if (json[0]){
-          dispatch(setRecommendedUsers(json));
-        }
+        dispatch(setRecommendedUsers(json));
       })
       .catch(function (error) {
         alert("Error getting User.");
@@ -252,8 +246,8 @@ export const fetchUserNotifications = () => {
       .catch(function (error) {
         alert("Error getting notifications.");
       });
-  }
-}
+  };
+};
 
 export const fetchUserChatrooms = () => {
   return (dispatch) => {
@@ -274,8 +268,8 @@ export const fetchUserChatrooms = () => {
       .catch(function (error) {
         alert("Error getting chatrooms.");
       });
-  }
-}
+  };
+};
 
 export const sendMessage = (messageObject) => {
   return (dispatch) => {
@@ -288,10 +282,7 @@ export const sendMessage = (messageObject) => {
       },
       body: JSON.stringify({ message: messageObject }),
     };
-    fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/messages`,
-      configObj
-    )
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/messages`, configObj)
       .then((res) => res.json())
       .then((json) => {
         dispatch(fetchUserChatrooms());
@@ -300,7 +291,7 @@ export const sendMessage = (messageObject) => {
         alert("Error sending message.");
       });
   };
-}
+};
 
 export const makeMessageRead = (chatroom_id) => {
   return (dispatch) => {
@@ -313,10 +304,7 @@ export const makeMessageRead = (chatroom_id) => {
       },
       body: JSON.stringify({ chatroom_id: chatroom_id }),
     };
-    fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/messages/make_read`,
-      configObj
-    )
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/messages/make_read`, configObj)
       .then((res) => res.json())
       .then((json) => {
         dispatch(fetchUserChatrooms());
@@ -325,4 +313,4 @@ export const makeMessageRead = (chatroom_id) => {
         alert("Error making message read.");
       });
   };
-}
+};

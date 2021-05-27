@@ -26,6 +26,16 @@ const helpers = {
       return;
     }
   },
+
+  titleize: (string) => {
+    const words = string.split(" ");
+    return words
+      .map((word) => {
+        const wordLength = word.length;
+        return word.substr(0, 1).toUpperCase() + word.substr(1, wordLength - 1);
+      })
+      .join(" ");
+  },
 };
 
 export default helpers;

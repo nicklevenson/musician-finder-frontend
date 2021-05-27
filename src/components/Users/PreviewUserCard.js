@@ -1,31 +1,41 @@
 import React from "react";
-// import {Link} from 'react-router-dom'
-import {Icon, Image} from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
+import GenericTag from "../Tags/GenericTag";
+import SimilarTag from "../Tags/SimilarTag";
+import SpotifyArtistTag from "../Tags/SpotifyArtistTag";
 import ConnectForm from "./ConnectForm";
 
 class PreviewUserCard extends React.Component {
   state = {
-    similarTags: []
-  }
+    similarTags: [],
+    genres: [],
+    instruments: [],
+    connections: [],
+    generic_tags: [],
+    spotify_tags: [],
+  };
 
-  componentDidMount(){
-    if (this.props.shownUserId === this.props.user.id){
-      this.fetchSimilarTags()
+  componentDidMount() {
+    if (this.props.shownUserId === this.props.user.id) {
+      this.fetchSupportingInfo();
     }
   }
 
-  componentDidUpdate(prevProps){
-    if (this.props.shownUserId === this.props.user.id && this.props.shownUserId !== prevProps.shownUserId){
-      this.fetchSimilarTags()
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.shownUserId === this.props.user.id &&
+      this.props.shownUserId !== prevProps.shownUserId
+    ) {
+      this.fetchSupportingInfo();
+      this.fetchConnections();
     }
   }
 
-
-  fetchSimilarTags = () => {
-    console.log("fetching")
+  fetchSupportingInfo = () => {
+    console.log("fetching");
     const userId = this.props.user.id;
     fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/get_similar_tags/${sessionStorage.userId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/get_supporting_info/${sessionStorage.userId}`,
       {
         method: "GET",
         headers: {
@@ -35,88 +45,151 @@ class PreviewUserCard extends React.Component {
     )
       .then((res) => res.json())
       .then((json) => {
-        this.setState({ similarTags: json });
+        this.setState({
+          similarTags: json.similar_tags,
+          instruments: json.instruments,
+          genres: json.genres,
+          generic_tags: json.generic_tags,
+          spotify_tags: json.spotify_tags,
+        });
       })
       .catch(function (error) {
         alert("Error getting tags.");
       });
   };
 
+  fetchConnections = () => {
+    const userId = this.props.user.id;
+    fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/connected_users`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({ connections: json });
+      })
+      .catch(function (error) {
+        alert("Error getting User Connections.");
+      });
+  };
+
   renderSimilarTags = () => {
-    if (
-      this.state.similarTags.length > 0
-    ) {
+    if (this.state.similarTags.length > 0) {
       return (
-        <div style={{ height: "1em" }}>
-          <div className="card-content">
-            You both like: {this.state.similarTags.map(tag => tag.name).slice(0, 3).join(", ")}
-          </div>
+        <div className="card-similarities">
+          <b>You both like: </b>
+          {this.state.similarTags.map((tag) => (
+            <SimilarTag tag={tag.name} />
+          ))}
         </div>
       );
     } else {
-      return <div style={{ height: "1em" }}></div>;
+      return null;
     }
   };
 
   render() {
     return (
-      <div
-        style={{
-          display: "inline-block",
-          margin: "1vw",
-          width: "80%",
-          maxWidth: "min-content",
-          textAlign: "center",
-        }}
-      >
-        <div className="preview-user-card">
-          <div className="card-content">
-            <Image
-              size="large"
+      <div className="preview-user-card">
+        <div className="card-content">
+          <div className="user-photo-container">
+            <img
+              className="user-photo"
               src={this.props.user.photo || this.props.user.providerImage}
-              centered
+              alt="User"
             />
           </div>
-          <div className="card-content">
+
+          <div className="card-info">
             <div className="card-header">
               <a href={`users/${this.props.user.id}`}>
                 {this.props.user.username}
               </a>
             </div>
-            {/* <Card.Meta>
-              <span className='date'>Joined {this.props.user.created_at.split("T")[0]}</span>
-            </Card.Meta> */}
-            <div className="card-meta">
+
+            <div className="card-connections">
+              <button>
+                <Icon name="user" />
+                {this.state.connections.length || "0"} Connections
+              </button>
+            </div>
+
+            <div className="card-location">
               <span className="location">
                 Location: {this.props.user.location || "Earth"}
               </span>
             </div>
 
-            <div className="card-content">
-              {this.props.user.bio
-                ? this.props.user.bio.substring(0, 70) + "..."
-                : "No bio given"}
+            {this.renderSimilarTags()}
+
+            <div className="card-tags">
+              {this.state.instruments.length > 0 ? (
+                <>
+                  <b>Plays: </b>
+                  {this.state.instruments?.map((inst) => {
+                    return <GenericTag tag={inst} />;
+                  })}
+                </>
+              ) : null}
+              <br />
             </div>
 
-            <div className="card-meta">{this.renderSimilarTags()}</div>
+            <div className="card-bio">
+              {this.props.user.bio ? this.props.user.bio : "I'm a musician!"}
+            </div>
+            <br />
+
+            {this.state.spotify_tags.length > 0 ? (
+              <>
+                <div className="card-artists">
+                  <b>Top Artists: </b>
+                  <div className="card-artists-container">
+                    {this.state.spotify_tags.map((tag) => {
+                      return <SpotifyArtistTag tag={tag} />;
+                    })}
+                  </div>
+                </div>
+                <br />
+              </>
+            ) : null}
+
+            <div className="card-tags">
+              {this.state.genres.length > 0 ? (
+                <>
+                  <b>Genres: </b>
+                  {this.state.genres?.map((genre) => {
+                    return <GenericTag tag={genre} />;
+                  })}
+                  <br />
+                </>
+              ) : null}
+            </div>
+
+            {this.state.generic_tags.length > 0 ? (
+              <div className="card-interests card-tags">
+                <b>Other Interests:</b>
+                {this.state.generic_tags.map((tag) => {
+                  return <GenericTag tag={tag.name} />;
+                })}
+              </div>
+            ) : null}
           </div>
-          <div className="card-content" extra textAlign="center">
-            <button>
-              <Icon name="user" />
-              {this.props.user.connected_users.length || "0"}{" "}
-              Connections
+        </div>
+        <div className="connect-form">
+          <ConnectForm focusedUser={this.props.user} />
+          {this.props.cardChange ? (
+            <button
+              className="next-button"
+              onClick={(e) => this.props.cardChange(e)}
+            >
+              Next Plz!
             </button>
-          </div>
-          <div className="card-content">
-            <ConnectForm focusedUser={this.props.user} />
-            {this.props.cardChange ? 
-              <button size="tiny" onClick={e => this.props.cardChange(e)}>
-                Next Plz!
-              </button> :
-              null
-            }
-           
-          </div>
+          ) : null}
         </div>
       </div>
     );

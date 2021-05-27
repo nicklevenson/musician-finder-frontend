@@ -1,43 +1,23 @@
 @use "../variables" as v;
 
 .recommended-users {
+  display: grid;
+  grid-template: 5% 95% / 1fr;
   text-align: center;
+  height: 100%;
+  max-height: 800px;
+
+  .cards-container {
+    grid-row: 2;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .card {
+    grid-row: 2;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+  }
 }
-
-.cards-container {
-  height: min-content;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: ease-in-out;
-  transition-duration: 1s;
-  // scroll-behavior: smooth;
-  
-  
-}
-.card {
-  display: inline-block;
-  width: 100%;
-}
-
-
-// .active.card {
-//   animation-name: slideIn;
-//   animation-duration: 1s;
-  
-// }
-// @keyframes slideIn {
-//   from {
-//     margin-left: 100%;
-//     width: 200%;
-//   }
-
-//   to {
-//     margin-left: 0%;
-//     width: 100%;
-//   }
-// }
-
-// .inactive.card {
-//   // display: none;
-// }
-

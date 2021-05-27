@@ -35,6 +35,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     notifications: state.currentUser.notifications,
+    currentUser: state.currentUser.currentUser
   };
 };
 

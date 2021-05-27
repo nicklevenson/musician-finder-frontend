@@ -1,11 +1,46 @@
 @use "../variables" as v;
 
 .filter {
-  width: 70%;
-  max-width: 500px;
-  background-color: v.$light-gray;
+  position: relative;
+  align-self: start;
+  grid-column: 1 / 3;
+  z-index: 50;
+  width: 100%;
+  max-width: 400px;
+  border: solid thin v.$dark;
+  background-color: white;
   text-align: center;
-  padding: 1rem;
-  margin: auto;
+  padding: 0.5rem;
+  margin: 0 auto 0 auto;
+
+  .options {
+    margin: auto;
+    width: 50%;
+    max-height: 7rem;
+    overflow-y: auto;
+    background-color: v.$light-gray;
+  }
+  .options div {
+    padding: 0.2rem;
+    border-bottom: solid thin v.$gray;
+    &:hover {
+      cursor: pointer;
+      background-color: v.$gray;
+    }
+  }
+  .filter-tag {
+    display: inline-block;
+    width: max-content;
+    height: min-content;
+    margin: 0.3rem;
+    padding: 0.3rem;
+    background-color: v.$gray;
+    border-radius: 5px;
+  }
 }
 
+.filter-toggle {
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -6,13 +6,13 @@
 @use "./components//UserTag";
 @use "./messaging";
 @use "./components//Chatroom";
-@use "./components//Message";
-@use "./components/NewMessage";
-@use "./components/ChatroomPreview";
 @use "./components/Alert";
 @use "./components/Filter";
 @use "./components/LocationSlider";
 @use "./components/RecommendedUsers";
+@use "./components/ConnectForm";
+@use "./components/PreviewUserCard";
+@use "./components/Tags";
 .App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing
   min-height: 100vh;
@@ -30,6 +30,9 @@
     background: none;
     &:hover {
       cursor: pointer;
+    }
+    &:focus {
+      outline: none;
     }
   }
 

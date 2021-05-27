@@ -2,8 +2,9 @@ import { Component } from "react";
 import { Icon } from "semantic-ui-react";
 import ProfileImage from "../Users/ProfileImage";
 import NotificationIcon from "../Notifications/NotificationIcon";
-import MessageIcon from "../Messages/MessageIcon"
+import MessageIcon from "../Messages/MessageIcon";
 import anime from "animejs";
+import history from "../../history";
 
 class Nav extends Component {
   constructor(props) {
@@ -14,22 +15,32 @@ class Nav extends Component {
     };
   }
 
+  componentDidUpdate() {
+    console.log("updated");
+  }
+
   handleItemClick = (e) => {
     e.preventDefault();
     let index = 0;
 
     while (!e.target.getAttribute("name")) {
-      console.log(e.target);
       if (index > 4) return false;
       e.target = e.target.parentNode;
       index++;
     }
-
-    window.location.href = `/${e.target.getAttribute("name")}`;
-    this.setState({
-      isActive: false,
-      activeItem: e.target.getAttribute("name"),
-    });
+    // window.location.href = `/${e.target.getAttribute("name")}`;
+    this.setState(
+      {
+        isActive: false,
+        activeItem: e.target.getAttribute("name"),
+      },
+      () => {
+        history.push(`/${e.target.getAttribute("name")}`);
+      }
+    );
+    this.animateButtonsOut();
+    document.querySelector(".hamburger").classList.toggle("is-active");
+    // history.push(`/${e.target.getAttribute("name")}`);
   };
 
   handleHamburgerClick = (e) => {
@@ -130,7 +141,7 @@ class Nav extends Component {
             </button>
 
             <button name="messaging" onClick={(e) => this.handleItemClick(e)}>
-              <MessageIcon/>
+              <MessageIcon />
               Messages
             </button>
 

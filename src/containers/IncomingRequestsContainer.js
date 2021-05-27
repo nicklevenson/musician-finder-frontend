@@ -12,8 +12,8 @@ class IncomingRequestsContainer extends React.Component {
       return(
         <>
           <div>
-            {this.props.incomingRequests.map(u => 
-                <PreviewUserCard user={u.user} similar_tags={u.similar_tags} key={u.id + "previewcardrequest"}/>
+            {this.props.incomingRequests.map(user => 
+                <PreviewUserCard user={user} key={user.id + "previewcardrequest"} shownUserId={user.id}/>
             )}
           </div>
         </>
