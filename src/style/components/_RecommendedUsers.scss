@@ -6,18 +6,18 @@
   text-align: center;
   height: 100%;
   max-height: 800px;
-}
 
-.cards-container {
-  grid-row: 2;
-  height: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.card {
-  grid-row: 2;
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
+  .cards-container {
+    grid-row: 2;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .card {
+    grid-row: 2;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+  }
 }

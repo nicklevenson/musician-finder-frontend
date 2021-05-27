@@ -5,14 +5,28 @@
   grid-template: 90vh / 1fr 3fr;
   margin: auto;
   max-width: 1000px;
-}
 
-.chatroom-previews {
-  grid-area: 1 / 1 / 2 / 2;
-  border: solid thin lightgray;
-}
+  .chatroom-previews {
+    grid-area: 1 / 1 / 2 / 2;
+    border: solid thin lightgray;
+  }
 
-.shown-chatroom {
-  grid-area: 1 / 2 / 2 / 3;
-  border: solid thin lightgray;
+  .shown-chatroom {
+    grid-area: 1 / 2 / 2 / 3;
+    border: solid thin lightgray;
+  }
+
+  .chatroom-preview {
+    display: flex;
+    align-items: center;
+    border-bottom: solid thin lightgray;
+  }
+
+  .chatroom-preview-selected {
+    background-color: v.$gray;
+  }
+
+  .chatroom-preview-unread {
+    background-color: v.$green;
+  }
 }

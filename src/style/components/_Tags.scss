@@ -19,22 +19,23 @@
   background-color: transparent;
   height: min-content;
   width: 6rem;
-}
-.artist-image {
-  position: absolute;
-  top: 0;
-  height: 6rem;
-  width: 6rem;
-}
-.artist-name {
-  color: v.$white;
-  background-color: rgba(85, 83, 83, 0.288);
-  position: absolute;
-  z-index: 10;
-  height: 6rem;
-  width: 6rem;
-  top: 0;
-  white-space: pre-wrap;
-  word-break: break-word !important;
-  text-align: center;
+
+  .artist-image {
+    position: absolute;
+    top: 0;
+    height: 6rem;
+    width: 6rem;
+  }
+  .artist-name {
+    color: v.$white;
+    background-color: rgba(85, 83, 83, 0.288);
+    position: absolute;
+    z-index: 10;
+    height: 6rem;
+    width: 6rem;
+    top: 0;
+    white-space: pre-wrap;
+    word-break: break-word !important;
+    text-align: center;
+  }
 }
