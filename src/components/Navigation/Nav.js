@@ -150,19 +150,28 @@ class Nav extends Component {
 
         <div className="main-nav-dropdown-menu">
           <>
-            <button name="home" onClick={(e) => this.handleItemClick(e)}>
+            <button
+              name="home"
+              onClick={(e) => this.handleItemClick(e)}
+              aria-label="navigate home"
+            >
               <Icon name="home" size="large" />
-              Home
             </button>
 
-            <button name="messaging" onClick={(e) => this.handleItemClick(e)}>
+            <button
+              name="messaging"
+              onClick={(e) => this.handleItemClick(e)}
+              aria-label="navigate messages"
+            >
               <MessageIcon />
-              Messages
             </button>
 
-            <button name="profile" onClick={(e) => this.handleItemClick(e)}>
+            <button
+              name="profile"
+              onClick={(e) => this.handleItemClick(e)}
+              aria-label="navigate profile"
+            >
               <ProfileImage />
-              Profile
             </button>
           </>
         </div>
