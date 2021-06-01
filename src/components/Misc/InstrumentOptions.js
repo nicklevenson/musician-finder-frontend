@@ -34,15 +34,19 @@ class InstrumentOptions extends React.Component {
           placeholder="Search for Instrument"
           value={this.state.inputQuery}
           onInput={(e) => this.setInputQuery(e)}
+          aria-label="instrument search"
+          autoComplete="off"
         />
 
         <div
           className="instruments-results options"
           onClick={(e) => this.handleClick(e)}
         >
-          {this.state.results.map((result) => {
-            return <div>{result}</div>;
-          })}
+          {this.state.inputQuery !== ""
+            ? this.state.results.map((result) => {
+                return <div>{result}</div>;
+              })
+            : null}
         </div>
       </div>
     );

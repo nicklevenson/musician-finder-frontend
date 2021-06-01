@@ -112,6 +112,7 @@ class Filter extends React.Component {
                         onClick={(e) =>
                           this.handleDeleteInstrument(e, instrument)
                         }
+                        aria-label="remove filter attribute"
                       >
                         X
                       </button>
@@ -125,7 +126,10 @@ class Filter extends React.Component {
                   <div className="filter-tag" key={genre.id}>
                     {genre.name}
                     {!this.state.hidden ? (
-                      <button onClick={(e) => this.handleDeleteGenre(e, genre)}>
+                      <button
+                        onClick={(e) => this.handleDeleteGenre(e, genre)}
+                        aria-label="remove filter attribute"
+                      >
                         X
                       </button>
                     ) : null}
@@ -134,7 +138,11 @@ class Filter extends React.Component {
               })}
 
               <hr />
-              <button className="connect-button" onClick={this.sendFilters}>
+              <button
+                className="connect-button"
+                onClick={this.sendFilters}
+                aria-label="apply filters"
+              >
                 Apply Filters
               </button>
             </div>
