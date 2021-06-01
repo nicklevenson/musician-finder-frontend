@@ -23,7 +23,7 @@
       }
       &.is-active {
         :first-child {
-          transform: translateY(1.2rem) rotate(-55deg);
+          transform: translateY(1.2rem) rotate(55deg);
         }
       }
       div {
