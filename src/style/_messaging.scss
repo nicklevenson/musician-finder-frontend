@@ -24,6 +24,11 @@
     display: flex;
     align-items: center;
     border-bottom: solid thin lightgray;
+
+    &:hover {
+      cursor: pointer;
+      font-weight: bold;
+    }
   }
 
   .chatroom-preview-selected {
