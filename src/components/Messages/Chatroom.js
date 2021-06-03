@@ -38,21 +38,23 @@ class Chatroom extends React.Component {
     );
     return (
       <>
-        <div
-          className="back-button"
-          onClick={(e) => this.props.handleBackToPreview()}
-        >
-          <i>Go Back</i>
-        </div>
         <div className="chatroom">
           <div className="chatroom-header">
-            <Image
-              size="tiny"
-              src={otherUser.photo || otherUser.providerImage}
-              circular
-              inline
-            />
-            <b> {otherUser.username}</b>
+            <div
+              className="back-button"
+              onClick={(e) => this.props.handleBackToPreview()}
+            >
+              <i>Back</i>
+            </div>
+            <div className="chatting-with">
+              <Image
+                size="tiny"
+                src={otherUser.photo || otherUser.providerImage}
+                circular
+                inline
+              />
+              <b> {otherUser.username}</b>
+            </div>
           </div>
 
           <div className="messages-container">
