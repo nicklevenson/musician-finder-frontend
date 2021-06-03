@@ -44,7 +44,10 @@ class ChatroomPreview extends React.Component {
           inline
         />
         <div style={{ display: "inline-block" }}>
-          <p>{otherUser.username}</p>
+          <div>
+            <b>{otherUser.username}</b>
+          </div>
+
           <i>
             {this.props.chatroom?.messages[
               this.props.chatroom.messages.length - 1

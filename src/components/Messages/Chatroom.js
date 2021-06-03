@@ -48,7 +48,7 @@ class Chatroom extends React.Component {
             </div>
             <div className="chatting-with">
               <Image
-                size="tiny"
+                size="mini"
                 src={otherUser.photo || otherUser.providerImage}
                 circular
                 inline
