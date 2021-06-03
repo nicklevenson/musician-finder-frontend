@@ -37,37 +37,47 @@ class Chatroom extends React.Component {
       (u) => u.id !== this.props.currentUser.id
     );
     return (
-      <div className="chatroom">
-        <div className="chatroom-header">
-          <Image
-            size="tiny"
-            src={otherUser.photo || otherUser.providerImage}
-            circular
-            inline
-          />
-          <b> {otherUser.username}</b>
+      <>
+        <div
+          className="back-button"
+          onClick={(e) => this.props.handleBackToPreview()}
+        >
+          <i>Go Back</i>
         </div>
+        <div className="chatroom">
+          <div className="chatroom-header">
+            <Image
+              size="tiny"
+              src={otherUser.photo || otherUser.providerImage}
+              circular
+              inline
+            />
+            <b> {otherUser.username}</b>
+          </div>
 
-        <div className="messages-container">
-          {chatroom.messages.length < 1 ? <h5>Start a conversation</h5> : null}
+          <div className="messages-container">
+            {chatroom.messages.length < 1 ? (
+              <h5>Start a conversation</h5>
+            ) : null}
 
-          {chatroom.messages.reverse().map((message) => {
-            return (
-              <Message
-                message={message}
-                key={message.id}
-                currentUserMessage={
-                  this.props.currentUser.id === message.user_id ? true : null
-                }
-              />
-            );
-          })}
+            {chatroom.messages.reverse().map((message) => {
+              return (
+                <Message
+                  message={message}
+                  key={message.id}
+                  currentUserMessage={
+                    this.props.currentUser.id === message.user_id ? true : null
+                  }
+                />
+              );
+            })}
+          </div>
+
+          <div className="new-message-container">
+            <NewMessage chatroomId={chatroom.id} />
+          </div>
         </div>
-
-        <div className="new-message-container">
-          <NewMessage chatroomId={chatroom.id} />
-        </div>
-      </div>
+      </>
     );
   }
 }
