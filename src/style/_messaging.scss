@@ -3,30 +3,27 @@
 .messaging-container {
   display: grid;
   grid-template: 85vh / 1fr;
-  padding-top: 1rem;
-  margin: auto;
+  margin: 1rem auto auto auto;
   max-width: 500px;
-
+  background-color: v.$light-gray;
   .chatroom-previews {
     grid-area: 1 / 1 / 2 / 2;
-    border: solid thin lightgray;
-    height: min-content;
+
     overflow-y: auto;
   }
 
   .shown-chatroom {
     grid-area: 1 / 1 / 2 / 2;
-    border: solid thin lightgray;
   }
 
   .chatroom-preview {
+    padding: 0.5rem;
     display: flex;
     align-items: center;
     border-bottom: solid thin lightgray;
 
     &:hover {
       cursor: pointer;
-      font-weight: bold;
     }
   }
 
