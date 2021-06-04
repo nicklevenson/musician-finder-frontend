@@ -34,15 +34,19 @@ class GenreOptions extends React.Component {
           placeholder="Search for Genre"
           value={this.state.inputQuery}
           onInput={(e) => this.setInputQuery(e)}
+          aria-label="genre search"
+          autoComplete="off"
         />
 
         <div
           className="genre-results options"
           onClick={(e) => this.handleClick(e)}
         >
-          {this.state.results.map((result) => {
-            return <div>{result}</div>;
-          })}
+          {this.state.inputQuery !== ""
+            ? this.state.results.map((result) => {
+                return <div>{result}</div>;
+              })
+            : null}
         </div>
       </div>
     );
