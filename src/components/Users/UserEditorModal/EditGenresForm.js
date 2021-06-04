@@ -24,6 +24,13 @@ class EditGenresForm extends Component {
     }));
   };
 
+  removeGenre = (e, genre) => {
+    e.preventDefault();
+    this.setState((state) => ({
+      genres: state.genres.filter((gen) => gen !== genre),
+    }));
+  };
+
   render() {
     return (
       <>
@@ -33,7 +40,11 @@ class EditGenresForm extends Component {
           </div>
           <div>
             {this.state.genres.map((genre) => (
-              <GenericTag tag={genre} />
+              <GenericTag
+                tag={genre}
+                editable={true}
+                removeGenre={this.removeGenre}
+              />
             ))}
           </div>
           <button
