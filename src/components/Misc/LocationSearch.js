@@ -46,13 +46,23 @@ class LocationSearch extends React.Component {
     };
     this.props.handleLocationChange(locationObj);
   };
+
+  inputIsValid = () => {
+    if (this.props.selectedLocation === this.state.query) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   render() {
     return (
       <>
+        {!this.inputIsValid() ? <i>Please select a valid location</i> : null}
         <input
           aria-label="location search"
           value={this.state.query}
           onChange={(e) => this.handleChange(e)}
+          className={this.inputIsValid() ? null : "input-error"}
         />
         <div className="location-results">
           {this.state.results.map((result) => (

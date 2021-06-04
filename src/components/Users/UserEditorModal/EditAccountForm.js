@@ -10,11 +10,15 @@ class EditAccountForm extends Component {
   };
 
   handleUpdate = () => {
-    this.props.updateUser({
-      location: this.state.location,
-      lat: this.state.lat,
-      lng: this.state.lng,
-    });
+    if (this.state.location && this.state.lat && this.state.lng) {
+      this.props.updateUser({
+        location: this.state.location,
+        lat: this.state.lat,
+        lng: this.state.lng,
+      });
+    } else {
+      this.setState({ validLocation: false });
+    }
   };
 
   handleLocationChange = (locationObj) => {
@@ -54,7 +58,9 @@ class EditAccountForm extends Component {
           <LocationSearch
             handleLocationChange={this.handleLocationChange}
             location={this.props.user.location}
+            selectedLocation={this.state.location}
           />
+          {/* {!this.state.validLocation ? <i>Invalid Location Entry</i> : null} */}
         </div>
 
         <button
@@ -62,7 +68,7 @@ class EditAccountForm extends Component {
           type="button"
           onClick={(e) => this.handleUpdate()}
         >
-          Update User
+          Update Account
         </button>
       </form>
     );

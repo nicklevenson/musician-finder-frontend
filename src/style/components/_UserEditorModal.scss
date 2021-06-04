@@ -26,6 +26,10 @@
       box-shadow: v.$box-shadow;
     }
   }
+
+  .input-error {
+    border: solid thin red;
+  }
   label {
     color: v.$dark;
     opacity: 0.8;
