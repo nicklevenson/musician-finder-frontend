@@ -41,19 +41,18 @@ class UserEditorModal extends Component {
 
   handleFormToggleClick(e) {
     e.preventDefault();
-    let availableForms = [
-      EditAccountForm,
-      EditGenresForm,
-      EditInstrumentsForm,
-      EditTagsForm,
-    ];
     let target = e.target.getAttribute("data-form");
     console.log("clicked form toggle button!", target);
-    availableForms.forEach((form) => {
-      if (form.name === target) {
-        this.setState({ activeForm: form });
-      }
-    });
+    switch (target) {
+      case "EditGenresForm":
+        return this.setState({ activeForm: EditGenresForm });
+      case "EditInstrumentsForm":
+        return this.setState({ activeForm: EditInstrumentsForm });
+      case "EditTagsForm":
+        return this.setState({ activeForm: EditTagsForm });
+      default:
+        return this.setState({ activeForm: EditAccountForm });
+    }
   }
 
   render() {
@@ -108,7 +107,7 @@ class UserEditorModal extends Component {
               Tags
             </button>
           </div>
-          {<activeForm actions={something} />}
+          {activeForm}
         </div>
       </div>
     );
