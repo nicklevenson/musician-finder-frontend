@@ -108,7 +108,7 @@ class UserEditorModal extends Component {
               Tags
             </button>
           </div>
-          {activeForm}
+          {<activeForm actions={something} />}
         </div>
       </div>
     );

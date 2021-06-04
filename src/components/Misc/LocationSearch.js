@@ -3,11 +3,8 @@ import { connect } from "react-redux";
 
 class LocationSearch extends React.Component {
   state = {
-    query: "",
+    query: this.props.location,
     results: [],
-    locationName: null,
-    lng: null,
-    lat: null,
   };
 
   componentDidUpdate() {
