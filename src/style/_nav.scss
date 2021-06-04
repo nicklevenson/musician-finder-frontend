@@ -23,7 +23,7 @@
       }
       &.is-active {
         :first-child {
-          transform: translateY(1.2rem) rotate(-55deg);
+          transform: translateY(1.2rem) rotate(55deg);
         }
       }
       div {
@@ -35,6 +35,11 @@
     }
     .main-logo-container button {
       @include v.flexbox-col;
+    }
+
+    .notification-link {
+      position: relative;
+      height: 100%;
     }
   }
   .main-nav-dropdown-menu {

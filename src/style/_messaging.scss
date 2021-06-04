@@ -2,24 +2,29 @@
 
 .messaging-container {
   display: grid;
-  grid-template: 90vh / 1fr 3fr;
-  margin: auto;
-  max-width: 1000px;
-
+  grid-template: 85vh / 1fr;
+  margin: 2.5% auto 2.5% auto;
+  max-width: 500px;
+  background-color: v.$light-gray;
   .chatroom-previews {
     grid-area: 1 / 1 / 2 / 2;
-    border: solid thin lightgray;
+
+    overflow-y: auto;
   }
 
   .shown-chatroom {
-    grid-area: 1 / 2 / 2 / 3;
-    border: solid thin lightgray;
+    grid-area: 1 / 1 / 2 / 2;
   }
 
   .chatroom-preview {
+    padding: 1rem;
     display: flex;
     align-items: center;
     border-bottom: solid thin lightgray;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .chatroom-preview-selected {

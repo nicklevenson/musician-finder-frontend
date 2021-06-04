@@ -6,8 +6,21 @@
   grid-template: 0.5fr 5fr 0.5fr / 100%;
 
   .chatroom-header {
-    padding: 1rem;
+    background-color: v.$gray;
+    padding: 0.5rem;
     grid-area: 1 / 1 / 1 / 2;
+    display: grid;
+    grid-template: 100% / min-content 1fr;
+    align-items: center;
+    .back-button {
+      justify-self: left;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .chatting-with {
+      justify-self: right;
+    }
   }
 
   .messages-container {
@@ -21,6 +34,8 @@
   .new-message-container {
     margin: 0 1rem 0 1rem;
     grid-area: 3 / 1 / 4 / 2;
+    display: grid;
+    align-items: center;
   }
 
   .message {
