@@ -1,7 +1,6 @@
 const helpers = {
   formatDate: (date) => {
     try {
-      console.log("formatting date", typeof date);
       if (typeof date === "string") {
         let datesToNums = [];
         date.slice(0, 10);
@@ -9,7 +8,6 @@ const helpers = {
         date.forEach((int, index) => {
           if (index === 1) int -= 1;
           datesToNums.push(parseInt(int));
-          console.log(datesToNums);
         });
         let utc = Date.UTC(...datesToNums);
         let f = new Intl.DateTimeFormat("en", {
