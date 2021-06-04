@@ -1,9 +1,19 @@
+import { connect } from "react-redux";
 import { Component } from "react";
 import GenreOptions from "../../Misc/GenreOptions";
 import GenericTag from "../../Tags/GenericTag";
+import { updateUser } from "../../../actions/useractions";
 class EditGenresForm extends Component {
   state = {
     genres: this.props.user.genres.map((genre) => genre.name),
+  };
+
+  updateGenres = () => {
+    this.props.updateUser({
+      genres_attributes: this.state.genres.map((genre) => {
+        return { name: genre };
+      }),
+    });
   };
 
   setGenres = (genre) => {
@@ -25,7 +35,11 @@ class EditGenresForm extends Component {
               <GenericTag tag={genre} />
             ))}
           </div>
-          <button className="save-btn" type="button">
+          <button
+            className="save-btn"
+            type="button"
+            onClick={(e) => this.updateGenres()}
+          >
             Update Genres
           </button>
         </form>
@@ -34,4 +48,10 @@ class EditGenresForm extends Component {
   }
 }
 
-export default EditGenresForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateUser: (userParams) => dispatch(updateUser(userParams)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(EditGenresForm);
