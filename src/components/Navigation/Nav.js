@@ -19,6 +19,11 @@ class Nav extends Component {
     console.log("updated");
   }
 
+  handleNotificationClick = (e) => {
+    e.preventDefault();
+    history.push(`/notifications`);
+  };
+
   handleItemClick = (e) => {
     e.preventDefault();
     let index = 0;
@@ -117,13 +122,6 @@ class Nav extends Component {
     return (
       <>
         <div className="main-navigation">
-          <div className="main-logo-container">
-            <button target="/home">
-              <Icon name="music" size="large" />
-              <i>PB&Jam</i>
-            </button>
-          </div>
-
           <div
             className="hamburger"
             onClick={(e) => this.handleHamburgerClick(e)}
@@ -132,30 +130,48 @@ class Nav extends Component {
             <div></div>
             <div></div>
           </div>
+
+          <div className="main-logo-container">
+            <button target="/home">
+              <Icon name="music" size="large" />
+              <i>PB&Jam</i>
+            </button>
+          </div>
+
+          <button
+            className="notification-link"
+            name="notifications"
+            onClick={(e) => this.handleNotificationClick(e)}
+            aria-label="notifications"
+          >
+            <NotificationIcon />
+          </button>
         </div>
+
         <div className="main-nav-dropdown-menu">
           <>
-            <button name="home" onClick={(e) => this.handleItemClick(e)}>
+            <button
+              name="home"
+              onClick={(e) => this.handleItemClick(e)}
+              aria-label="navigate home"
+            >
               <Icon name="home" size="large" />
-              Home
-            </button>
-
-            <button name="messaging" onClick={(e) => this.handleItemClick(e)}>
-              <MessageIcon />
-              Messages
             </button>
 
             <button
-              name="notifications"
+              name="messaging"
               onClick={(e) => this.handleItemClick(e)}
+              aria-label="navigate messages"
             >
-              <NotificationIcon />
-              Notifications
+              <MessageIcon />
             </button>
 
-            <button name="profile" onClick={(e) => this.handleItemClick(e)}>
+            <button
+              name="profile"
+              onClick={(e) => this.handleItemClick(e)}
+              aria-label="navigate profile"
+            >
               <ProfileImage />
-              Profile
             </button>
           </>
         </div>
