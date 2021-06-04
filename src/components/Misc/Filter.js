@@ -113,6 +113,7 @@ class Filter extends React.Component {
                           this.handleDeleteInstrument(e, instrument)
                         }
                         aria-label="remove filter attribute"
+                        className="delete-button"
                       >
                         X
                       </button>

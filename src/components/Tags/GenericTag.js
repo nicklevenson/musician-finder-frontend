@@ -8,6 +8,7 @@ const GenericTag = (props) => {
         <button
           className="delete-button"
           onClick={(e) => props.removeGenre(e, props.tag)}
+          aria-label="remove this item"
         >
           X
         </button>
