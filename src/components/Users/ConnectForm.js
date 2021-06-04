@@ -1,24 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Button, Icon } from "semantic-ui-react";
 import {
   requestConnection,
   acceptConnection,
   rejectConnection,
 } from "../../actions/useractions.js";
 class ConnectForm extends React.Component {
-  handleConnectionRequest = (e) => {
-    e.preventDefault();
+  handleConnectionRequest = () => {
     //we need to send current user id and the requested id
     this.props.requestConnection(this.props.focusedUser.id);
   };
 
-  handleConnectionAccept = (e) => {
-    e.preventDefault();
+  handleConnectionAccept = () => {
     this.props.acceptConnection(this.props.focusedUser.id);
   };
 
-  handleConnectionReject = (e) => {
-    e.preventDefault();
+  handleConnectionReject = () => {
     this.props.rejectConnection(this.props.focusedUser.id);
   };
 
@@ -34,9 +32,9 @@ class ConnectForm extends React.Component {
           .includes(this.props.focusedUser.id)
       ) {
         return (
-          <button className="connect-button" disabled>
-            Pending
-          </button>
+          <Button size="tiny" disabled>
+            <Button.Content>Pending</Button.Content>
+          </Button>
         );
       } else if (
         this.props.incomingRequests
@@ -66,27 +64,29 @@ class ConnectForm extends React.Component {
           .includes(this.props.focusedUser.id)
       ) {
         return (
-          <button className="connect-button" disabled>
-            Connected
-          </button>
+          <Button size="tiny" disabled>
+            <Button.Content>
+              You and {this.props.focusedUser.username} are connected
+            </Button.Content>
+          </Button>
         );
       } else if (this.props.currentUser.id === this.props.focusedUser.id) {
         return null;
       } else {
         return (
-          <button
-            className="connect-button"
-            onClick={this.handleConnectionRequest}
-          >
-            Let's Jam
-          </button>
+          <Button size="tiny" animated onClick={this.handleConnectionRequest}>
+            <Button.Content visible>Request Connection</Button.Content>
+            <Button.Content hidden>
+              Send? <Icon name="arrow right" />
+            </Button.Content>
+          </Button>
         );
       }
     } else {
       return (
-        <button className="connect-button" disabled>
-          Login To Connect
-        </button>
+        <Button size="tiny" disabled>
+          <Button.Content>Login To Connect</Button.Content>
+        </Button>
       );
     }
   }

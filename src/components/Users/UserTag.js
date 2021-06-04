@@ -6,14 +6,11 @@ class UserTag extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    console.log("mounting User Tag", this.props);
-  }
+  componentDidMount() {}
 
   getContainerClass() {
     let parentClass = "user-tag";
     let { tag_type } = this.props.info;
-    console.log(tag_type);
     if (tag_type === "spotify_artist") parentClass += " spotify";
     return parentClass;
   }
@@ -24,13 +21,35 @@ class UserTag extends Component {
     } else return "";
   }
 
+  isEditable() {
+    try {
+      if (this.props.isEditable) {
+        return (
+          <button
+            type="button"
+            data-id={this.props.tagId}
+            onClick={this.props.removeTag}
+            className="tag-delete-btn"
+          >
+            X
+          </button>
+        );
+      } else return "";
+    } catch (err) {
+      console.warn("error adding delete button to pin", err);
+      return "";
+    }
+  }
+
   render() {
     const parentClass = this.getContainerClass();
     const image = this.getImage();
+    const deleteBt = this.isEditable();
     return (
       <div className={parentClass}>
         <div className="tag-title">{this.props.info.name}</div>
         <div className="image-container">{image}</div>
+        {deleteBt}
       </div>
     );
   }

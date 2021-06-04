@@ -4,9 +4,11 @@
 @use "./components/CurrentUserProfile";
 @use "./components/UserNotification";
 @use "./components//UserTag";
+@use "./components/UserEditorModal";
 @use "./messaging";
 @use "./components//Chatroom";
 @use "./components/Alert";
+@use "./components/BackDrop";
 @use "./components/Filter";
 @use "./components/LocationSlider";
 @use "./components/RecommendedUsers";

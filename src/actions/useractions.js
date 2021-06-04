@@ -99,7 +99,9 @@ export const fetchUserRecs = (filterParamsObject) => {
     )
       .then((res) => res.json())
       .then((json) => {
-        dispatch(setRecommendedUsers(json));
+        if (json[0]) {
+          dispatch(setRecommendedUsers(json));
+        }
       })
       .catch(function (error) {
         alert("Error getting User.");

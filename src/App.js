@@ -19,7 +19,7 @@ import {
 } from "./actions/useractions";
 import { fetchAllLists } from "./actions/listactions";
 import LoginContainer from "./containers/LoginContainer";
-import LocationSearch from "./components/Users/LocationSearch";
+// import LocationSearch from "./components/Users/LocationSearch";
 
 class App extends React.Component {
   componentDidMount() {
