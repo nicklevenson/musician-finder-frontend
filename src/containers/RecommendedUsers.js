@@ -24,6 +24,7 @@ class RecommendedUsers extends React.Component {
   }
 
   cardChange = (e) => {
+    const container = document.querySelector(".cards-container");
     if (this.state.activeIndex === this.props.recommendedUsers.length - 1) {
       this.setState({ activeIndex: 0 });
     } else {
@@ -35,7 +36,7 @@ class RecommendedUsers extends React.Component {
       this.setState({ margin: 0 });
     } else {
       this.setState((state) => ({
-        margin: state.margin + window.innerWidth,
+        margin: state.margin + container.clientWidth,
       }));
     }
   };
