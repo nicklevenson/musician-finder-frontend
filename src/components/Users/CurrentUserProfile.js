@@ -16,7 +16,7 @@ class CurrentUserProfile extends Component {
       tagsExpanded: false,
     };
   }
-  defaultProps = {
+  static defaultProps = {
     user: {
       tags: [],
     }
