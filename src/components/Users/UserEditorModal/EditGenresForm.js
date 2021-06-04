@@ -8,7 +8,8 @@ class EditGenresForm extends Component {
     genres: this.props.user.genres.map((genre) => genre.name),
   };
 
-  updateGenres = () => {
+  updateGenres = (e) => {
+    e.preventDefault();
     this.props.updateUser({
       genres_attributes: this.state.genres.map((genre) => {
         return { name: genre };
@@ -38,7 +39,7 @@ class EditGenresForm extends Component {
           <button
             className="save-btn"
             type="button"
-            onClick={(e) => this.updateGenres()}
+            onClick={(e) => this.updateGenres(e)}
           >
             Update Genres
           </button>
