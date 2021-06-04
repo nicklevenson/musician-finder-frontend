@@ -1,12 +1,27 @@
 import { Component } from "react";
-
+import LocationSearch from "../../Misc/LocationSearch";
 class EditAccountForm extends Component {
+  state = {
+    location: this.props.user.location,
+    lat: this.props.user.lat,
+    lng: this.props.user.lng,
+  };
+
+  handleLocationChange = (locationObj) => {
+    this.setState({
+      location: locationObj.location,
+      lat: locationObj.lat,
+      lng: locationObj.lng,
+    });
+  };
+
   render() {
     return (
       <form>
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input
+            disabled="true"
             name="username"
             onChange={this.props.handleInputChange}
             value={this.props.user.username}
@@ -17,6 +32,7 @@ class EditAccountForm extends Component {
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
+            disabled="true"
             type="text"
             onChange={this.props.handleInputChange}
             value={this.props.user.email}
@@ -25,12 +41,7 @@ class EditAccountForm extends Component {
         </div>
         <div className="form-group">
           <label htmlFor="location">Location</label>
-          <input
-            type="text"
-            onChange={this.props.handleInputChange}
-            value={this.props.user.location}
-            placeholder="location"
-          />
+          <LocationSearch handleLocationChange={this.handleLocationChange} />
         </div>
 
         <button className="save-btn" type="button">

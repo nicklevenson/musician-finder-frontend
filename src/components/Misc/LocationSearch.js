@@ -38,17 +38,22 @@ class LocationSearch extends React.Component {
 
   handleResultClick = (e, result) => {
     const location = result.city + ", " + result.admin_name;
-    this.setState({ locationName: location });
+    // this.setState({ locationName: location });
     this.setState({ query: location });
-    this.setState({ lng: result.lng });
-    this.setState({ lat: result.lat });
+    // this.setState({ lng: result.lng });
+    // this.setState({ lat: result.lat });
+    const locationObj = {
+      location: location,
+      lng: result.lng,
+      lat: result.lat,
+    };
+    this.props.handleLocationChange(locationObj);
   };
   render() {
     return (
       <>
-        <label htmlFor="search for location">Search for location</label>
         <input
-          name="search for location"
+          aria-label="location search"
           value={this.state.query}
           onChange={(e) => this.handleChange(e)}
         />
