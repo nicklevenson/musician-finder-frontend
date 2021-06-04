@@ -222,7 +222,7 @@ export const rejectConnection = (requesting_user_id) => {
         dispatch(fetchUser());
       })
       .catch((error) => {
-        ("Error requesting connection: \n", error);
+        console.warn("error requesting connection: \n", error);
       });
   };
 };
