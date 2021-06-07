@@ -14,6 +14,7 @@ class EditAccountForm extends Component {
     appleMusicLink: this.props.user.apple_music_link || "",
     instagramLink: this.props.user.instagram_link || "",
     updated: false,
+    canUpdate: false,
   };
 
   handleUpdate = () => {
@@ -36,10 +37,10 @@ class EditAccountForm extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.checkIfUpdated(prevProps)) {
-      this.setState({ updated: true });
+      this.setState({ updated: true, canUpdate: false });
     }
     if (this.userCanUpdate(prevState)) {
-      this.setState({ updated: false });
+      this.setState({ updated: false, canUpdate: true });
     }
   }
 
@@ -195,13 +196,15 @@ class EditAccountForm extends Component {
           />
         </div>
 
-        <button
-          className="save-btn"
-          type="button"
-          onClick={(e) => this.handleUpdate()}
-        >
-          {this.state.updated ? "Updated" : "Update Account"}
-        </button>
+        {this.state.canUpdate ? (
+          <button
+            className="save-btn"
+            type="button"
+            onClick={(e) => this.handleUpdate()}
+          >
+            {this.state.updated ? "Updated" : "Update Account"}
+          </button>
+        ) : null}
       </form>
     );
   }
