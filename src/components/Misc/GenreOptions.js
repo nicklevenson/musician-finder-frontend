@@ -21,12 +21,13 @@ class GenreOptions extends React.Component {
     e.preventDefault();
     const selection = e.target.innerText;
     this.props.setGenres(selection);
+    this.setState({ results: [], inputQuery: "" });
   };
 
   render() {
     return (
       <div className="genres-filter">
-        <label htmlFor="genres filter">By Genres</label>
+        <label htmlFor="genres filter">Genres</label>
         <br />
         <input
           name="genres filter"

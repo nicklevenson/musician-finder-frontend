@@ -3,11 +3,8 @@ import { connect } from "react-redux";
 
 class LocationSearch extends React.Component {
   state = {
-    query: "",
+    query: this.props.location,
     results: [],
-    locationName: null,
-    lng: null,
-    lat: null,
   };
 
   componentDidUpdate() {
@@ -38,21 +35,36 @@ class LocationSearch extends React.Component {
 
   handleResultClick = (e, result) => {
     const location = result.city + ", " + result.admin_name;
-    this.setState({ locationName: location });
-    this.setState({ query: location });
-    this.setState({ lng: result.lng });
-    this.setState({ lat: result.lat });
+    // this.setState({ locationName: location });
+    this.setState({ query: location, results: [] });
+    // this.setState({ lng: result.lng });
+    // this.setState({ lat: result.lat });
+    const locationObj = {
+      location: location,
+      lng: result.lng,
+      lat: result.lat,
+    };
+    this.props.handleLocationChange(locationObj);
+  };
+
+  inputIsValid = () => {
+    if (this.props.selectedLocation === this.state.query) {
+      return true;
+    } else {
+      return false;
+    }
   };
   render() {
     return (
       <>
-        <label htmlFor="search for location">Search for location</label>
+        {!this.inputIsValid() ? <i>Please select a valid location</i> : null}
         <input
-          name="search for location"
+          aria-label="location search"
           value={this.state.query}
           onChange={(e) => this.handleChange(e)}
+          className={this.inputIsValid() ? null : "input-error"}
         />
-        <div className="location-results">
+        <div className="location-results options">
           {this.state.results.map((result) => (
             <div
               key={result.city + ", " + result.admin_name}

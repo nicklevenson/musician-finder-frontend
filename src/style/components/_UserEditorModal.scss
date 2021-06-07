@@ -1,0 +1,115 @@
+@use "../variables" as v;
+.user-editor-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100000;
+  background-color: v.$white;
+  max-height: 100vh;
+  overflow-y: scroll;
+
+  input {
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    transition: v.$transition;
+    border: v.$border;
+    border-radius: 6px;
+    box-shadow: v.$button-box-shadow;
+
+    &:focus {
+      outline: v.$blue;
+    }
+    &:hover {
+      box-shadow: v.$box-shadow;
+    }
+  }
+
+  .update-ready input {
+    border: solid thin v.$green;
+  }
+
+  .input-error {
+    border: solid thin red;
+  }
+  label {
+    color: v.$dark;
+    opacity: 0.8;
+    text-transform: lowercase;
+    font-weight: light;
+  }
+  h3 {
+    margin: 0;
+    padding: 2rem;
+    background: v.$light-gray;
+  }
+
+  .form-container {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 25% 75%;
+  }
+
+  .form-toggle {
+    display: flex;
+    align-items: flex-start;
+    margin: 1rem;
+    margin-left: 0;
+    flex-direction: column;
+    button {
+      margin-bottom: 2rem;
+      font-size: 1.7rem;
+    }
+  }
+
+  .form-group {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    left: auto;
+    bottom: auto;
+    font-size: 2rem;
+    transition: v.$transition;
+    &:hover {
+      color: v.$red;
+    }
+  }
+  .save-btn {
+    padding: 1rem 2rem;
+    background-color: v.$blue;
+    color: v.$white;
+    border-radius: v.$border-radius;
+    box-shadow: v.$button-box-shadow;
+    transition: v.$transition;
+
+    &:hover {
+      box-shadow: v.$box-shadow;
+    }
+  }
+
+  .options {
+    margin: auto;
+    width: 100%;
+    max-height: 7rem;
+    overflow-y: auto;
+    background-color: v.$light-gray;
+  }
+  .options div {
+    padding: 0.2rem;
+    border-bottom: solid thin v.$gray;
+    &:hover {
+      cursor: pointer;
+      background-color: v.$gray;
+    }
+  }
+}

@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { Icon } from "semantic-ui-react";
 import UserNotification from "./UserNotification";
 import UserTag from "./UserTag";
+import BackDrop from "../BackDrop";
+import UserEditorModal from "./UserEditorModal/UserEditorModal";
 
 import helpers from "../../globalHelpers";
 
@@ -14,13 +16,11 @@ class CurrentUserProfile extends Component {
       formattedDate: "",
       notificationsExpanded: false,
       tagsExpanded: false,
+      showUserEditorModal: false,
     };
+
+    this.toggleUserEditorModal = this.toggleUserEditorModal.bind(this);
   }
-  static defaultProps = {
-    user: {
-      tags: [],
-    }
-  };
   componentDidMount() {
     this.formatDate(this.props.user.created_at);
   }
@@ -38,6 +38,37 @@ class CurrentUserProfile extends Component {
     });
   }
 
+  toggleUserEditorModal(e) {
+    e.preventDefault();
+    try {
+      console.log("user editor modal toggle", e.target);
+      this.setState({ showUserEditorModal: !this.state.showUserEditorModal });
+    } catch (err) {
+      console.warn("error with edit user click event", err);
+      return false;
+    }
+  }
+
+  renderUserEditorModal() {
+    try {
+      let { showUserEditorModal } = this.state;
+      if (showUserEditorModal) {
+        return (
+          <>
+            <BackDrop zIndex="10" />
+            <UserEditorModal
+              handleInputChange={this.handleInputChange}
+              closeEvent={this.toggleUserEditorModal}
+            />
+          </>
+        );
+      } else return "";
+    } catch (err) {
+      console.warn("error rendering user editor modal", err);
+      return "";
+    }
+  }
+
   toggleTags(e) {
     e.preventDefault();
     this.setState({
@@ -47,6 +78,7 @@ class CurrentUserProfile extends Component {
   }
 
   render() {
+    let modal = this.renderUserEditorModal();
     return (
       <div className="user-profile-container">
         <div className="notifications-and-tags-container">
@@ -61,13 +93,9 @@ class CurrentUserProfile extends Component {
             </button>
             <div className="notifications-container">
               {this?.state?.notificationsExpanded
-                ? this?.props?.notifications?.map(
-                    (notification, index) => {
-                      return (
-                        <UserNotification info={notification} key={index} />
-                      );
-                    }
-                  )
+                ? this?.props?.notifications?.map((notification, index) => {
+                    return <UserNotification info={notification} key={index} />;
+                  })
                 : ""}
             </div>
           </div>
@@ -90,11 +118,14 @@ class CurrentUserProfile extends Component {
           </div>
         </div>
         <div className="user-profile">
-          <div className="blue-backdrop"></div>
           <Link className="logout-btn" to="/logout">
             <Icon fitted name="sign-out" />
           </Link>
-          <button className="edit-profile-btn">
+          <button
+            type="button"
+            onClick={(e) => this.toggleUserEditorModal(e)}
+            className="edit-profile-btn"
+          >
             <Icon fitted name="edit" />
           </button>
           <div className="user-profile-image-container">
@@ -117,15 +148,22 @@ class CurrentUserProfile extends Component {
             <div>{this.props.user.bio || "No bio given"}</div>
           </div>
         </div>
+        {modal}
       </div>
     );
   }
 }
 
+CurrentUserProfile.defaultProps = {
+  user: {
+    tags: [],
+  },
+};
+
 const mapStateToProps = (state) => {
   return {
     user: state.currentUser.currentUser,
-    notifications: state.currentUser.notifications
+    notifications: state.currentUser.notifications,
   };
 };
 

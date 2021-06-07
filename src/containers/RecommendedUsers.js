@@ -78,12 +78,11 @@ class RecommendedUsers extends React.Component {
                     ? "active card"
                     : "inactive card"
                 }
-                key={u.id}
+                key={u.username + u.id}
               >
                 <PreviewUserCard
                   user={u}
                   currentUser={this.props.currentUser}
-                  key={`${u.id}--${this.props.currentUser}`}
                   cardChange={this.cardChange}
                   shownUserId={shownUserId}
                 />

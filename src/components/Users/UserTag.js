@@ -1,11 +1,6 @@
 import { Component } from "react";
 
 class UserTag extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   getContainerClass() {
     let parentClass = "user-tag";
     let { tag_type } = this.props.info;
@@ -19,13 +14,35 @@ class UserTag extends Component {
     } else return "";
   }
 
+  isEditable() {
+    try {
+      if (this.props.isEditable) {
+        return (
+          <button
+            type="button"
+            data-id={this.props.tagId}
+            onClick={(e) => this.props.removeTag(e, this.props.info)}
+            className="tag-delete-btn"
+          >
+            X
+          </button>
+        );
+      } else return "";
+    } catch (err) {
+      console.warn("error adding delete button to pin", err);
+      return "";
+    }
+  }
+
   render() {
     const parentClass = this.getContainerClass();
     const image = this.getImage();
+    const deleteBt = this.isEditable();
     return (
       <div className={parentClass}>
         <div className="tag-title">{this.props.info.name}</div>
         <div className="image-container">{image}</div>
+        {deleteBt}
       </div>
     );
   }
