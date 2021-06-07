@@ -16,6 +16,9 @@ class EditInstrumentsForm extends Component {
     if (prevState.instruments !== this.state.instruments) {
       this.setState({ canUpdate: true });
     }
+    if (prevProps.user.instruments !== this.props.user.instruments) {
+      this.setState({ canUpdate: false });
+    }
   }
 
   updateInstruments = (e) => {

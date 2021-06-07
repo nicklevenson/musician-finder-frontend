@@ -13,6 +13,9 @@ class EditGenresForm extends Component {
     if (prevState.genres !== this.state.genres) {
       this.setState({ canUpdate: true });
     }
+    if (prevProps.user.genres !== this.props.user.genres) {
+      this.setState({ canUpdate: false });
+    }
   }
 
   updateGenres = (e) => {
