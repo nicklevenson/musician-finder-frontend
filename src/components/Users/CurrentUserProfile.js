@@ -16,13 +16,12 @@ class CurrentUserProfile extends Component {
       tagsExpanded: false,
     };
   }
-  defaultProps = {
+  static defaultProps = {
     user: {
       tags: [],
     }
   };
   componentDidMount() {
-    console.log("mounting current user profile", this.props);
     this.formatDate(this.props.user.created_at);
   }
 
@@ -33,7 +32,6 @@ class CurrentUserProfile extends Component {
 
   toggleNotifications(e) {
     e.preventDefault();
-    console.log("toggle notifications");
     this.setState({
       notificationsExpanded: !this.state.notificationsExpanded,
       tagsExpanded: false,
@@ -42,7 +40,6 @@ class CurrentUserProfile extends Component {
 
   toggleTags(e) {
     e.preventDefault();
-    console.log("toggle tags");
     this.setState({
       notificationsExpanded: false,
       tagsExpanded: !this.state.tagsExpanded,

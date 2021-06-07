@@ -15,10 +15,6 @@ class Nav extends Component {
     };
   }
 
-  componentDidUpdate() {
-    console.log("updated");
-  }
-
   handleNotificationClick = (e) => {
     e.preventDefault();
     history.push(`/notifications`);
@@ -65,7 +61,6 @@ class Nav extends Component {
   };
 
   animateButtonsIn = () => {
-    console.log("animating buttons!");
     let buttons = document.querySelectorAll(".main-nav-dropdown-menu button");
     let nav = document.querySelector(".main-nav-dropdown-menu");
     nav.classList.toggle("is-active");
@@ -91,7 +86,6 @@ class Nav extends Component {
   };
 
   animateButtonsOut = () => {
-    console.log("animating buttons out!");
     let buttons = document.querySelectorAll(".main-nav-dropdown-menu button");
     let nav = document.querySelector(".main-nav-dropdown-menu");
     setTimeout(() => nav.classList.toggle("is-active"), 800);

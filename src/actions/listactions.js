@@ -33,8 +33,8 @@ export const fetchInstruments = () => {
       .then((json) => {
         dispatch(setInstruments(json));
       })
-      .catch(function (error) {
-        console.log("Error getting Instruments.");
+      .catch((error) =>{
+        console.log("Error getting Instruments: \n", error);
       });
   };
 };
@@ -51,8 +51,8 @@ export const fetchGenres = () => {
       .then((json) => {
         dispatch(setGenres(json));
       })
-      .catch(function (error) {
-        console.log("Error getting genres.");
+      .catch((error) => {
+        console.log("Error getting genres: \n", error);
       });
   };
 };
@@ -69,7 +69,7 @@ export const fetchCities = () => {
       .then((json) => {
         dispatch(setCities(json));
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log("Error getting Instruments.");
       });
   };
