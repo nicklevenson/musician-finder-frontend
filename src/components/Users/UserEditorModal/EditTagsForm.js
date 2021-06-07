@@ -10,11 +10,15 @@ class EditTagsForm extends Component {
     tagUrl: "",
     tagError: false,
     errorMessage: false,
+    editable: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.tagError && prevState.errorMessage) {
       this.setState({ tagError: false, errorMessage: false });
+    }
+    if (prevState.tags !== this.state.tags) {
+      this.setState({ editable: true });
     }
   }
 
@@ -24,6 +28,7 @@ class EditTagsForm extends Component {
       this.props.updateUser({
         tags_attributes: this.state.tags,
       });
+      this.setState({ editable: false });
     }
   };
 
@@ -147,13 +152,16 @@ class EditTagsForm extends Component {
         >
           Add Tag
         </button>
-        <button
-          className="save-btn"
-          type="button"
-          onClick={(e) => this.updateUserTags(e)}
-        >
-          Update My Tags
-        </button>
+
+        {this.state.editable ? (
+          <button
+            className="save-btn"
+            type="button"
+            onClick={(e) => this.updateUserTags(e)}
+          >
+            Update My Tags
+          </button>
+        ) : null}
 
         {tags}
       </form>
