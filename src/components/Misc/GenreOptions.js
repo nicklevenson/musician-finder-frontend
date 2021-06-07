@@ -21,6 +21,7 @@ class GenreOptions extends React.Component {
     e.preventDefault();
     const selection = e.target.innerText;
     this.props.setGenres(selection);
+    this.setState({ results: [], inputQuery: "" });
   };
 
   render() {

@@ -21,6 +21,7 @@ class InstrumentOptions extends React.Component {
     e.preventDefault();
     const selection = e.target.innerText;
     this.props.setInstruments(selection);
+    this.setState({ results: [], inputQuery: "" });
   };
 
   render() {
