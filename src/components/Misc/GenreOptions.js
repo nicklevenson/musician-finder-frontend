@@ -26,7 +26,7 @@ class GenreOptions extends React.Component {
   render() {
     return (
       <div className="genres-filter">
-        <label htmlFor="genres filter">By Genres</label>
+        <label htmlFor="genres filter">Genres</label>
         <br />
         <input
           name="genres filter"
