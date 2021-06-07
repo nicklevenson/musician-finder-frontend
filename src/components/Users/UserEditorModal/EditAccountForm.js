@@ -34,9 +34,12 @@ class EditAccountForm extends Component {
     }
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.checkIfUpdated(prevProps)) {
       this.setState({ updated: true });
+    }
+    if (this.userCanUpdate(prevState)) {
+      this.setState({ updated: false });
     }
   }
 
@@ -53,6 +56,24 @@ class EditAccountForm extends Component {
       prevUser.spotify_link !== user.spotify_link ||
       prevUser.apple_music_link !== user.apple_music_link ||
       prevUser.instagram_link !== user.instagram_link
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  userCanUpdate = (prevState) => {
+    if (
+      prevState.location !== this.state.location ||
+      prevState.lat !== this.state.lat ||
+      prevState.lng !== this.state.lng ||
+      prevState.soundCloudLink !== this.state.soundCloudLink ||
+      prevState.bandcampLink !== this.state.bandcampLink ||
+      prevState.youtubeLink !== this.state.youtubeLink ||
+      prevState.spotifyLink !== this.state.spotifyLink ||
+      prevState.appleMusicLink !== this.state.appleMusicLink ||
+      prevState.instagramLink !== this.state.instagramLink
     ) {
       return true;
     } else {
