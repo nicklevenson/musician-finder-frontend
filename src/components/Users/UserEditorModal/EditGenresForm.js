@@ -6,7 +6,14 @@ import { updateUser } from "../../../actions/useractions";
 class EditGenresForm extends Component {
   state = {
     genres: this.props.user.genres.map((genre) => genre.name),
+    canUpdate: false,
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.genres !== this.state.genres) {
+      this.setState({ canUpdate: true });
+    }
+  }
 
   updateGenres = (e) => {
     e.preventDefault();
@@ -47,13 +54,15 @@ class EditGenresForm extends Component {
               />
             ))}
           </div>
-          <button
-            className="save-btn"
-            type="button"
-            onClick={(e) => this.updateGenres(e)}
-          >
-            Update Genres
-          </button>
+          {this.state.canUpdate ? (
+            <button
+              className="save-btn"
+              type="button"
+              onClick={(e) => this.updateGenres(e)}
+            >
+              Update Genres
+            </button>
+          ) : null}
         </form>
       </>
     );
