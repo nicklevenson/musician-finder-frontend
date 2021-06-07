@@ -13,6 +13,7 @@ class EditAccountForm extends Component {
     spotifyLink: this.props.user.spotify_link || "",
     appleMusicLink: this.props.user.apple_music_link || "",
     instagramLink: this.props.user.instagram_link || "",
+    updated: false,
   };
 
   handleUpdate = () => {
@@ -30,6 +31,32 @@ class EditAccountForm extends Component {
       });
     } else {
       this.setState({ validLocation: false });
+    }
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.checkIfUpdated(prevProps)) {
+      this.setState({ updated: true });
+    }
+  }
+
+  checkIfUpdated = (prevProps) => {
+    const prevUser = prevProps.user;
+    const user = this.props.user;
+    if (
+      prevUser.location !== user.location ||
+      prevUser.lat !== user.lat ||
+      prevUser.lng !== user.lng ||
+      prevUser.soundcloud_link !== user.soundcloud_link ||
+      prevUser.bandcamp_link !== user.bandcamp_link ||
+      prevUser.youtube_link !== user.youtube_link ||
+      prevUser.spotify_link !== user.spotify_link ||
+      prevUser.apple_music_link !== user.apple_music_link ||
+      prevUser.instagram_link !== user.instagram_link
+    ) {
+      return true;
+    } else {
+      return false;
     }
   };
 
@@ -152,7 +179,7 @@ class EditAccountForm extends Component {
           type="button"
           onClick={(e) => this.handleUpdate()}
         >
-          Update Account
+          {this.state.updated ? "Updated" : "Update Account"}
         </button>
       </form>
     );
