@@ -9,13 +9,23 @@ class EditTagsForm extends Component {
     tagImage: "",
     tagUrl: "",
     tagError: false,
+    errorMessage: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.tagError) {
-      this.setState({ tagError: false });
+    if (prevState.tagError && prevState.errorMessage) {
+      this.setState({ tagError: false, errorMessage: false });
     }
   }
+
+  updateUserTags = (e) => {
+    e.preventDefault();
+    if (this.props.tags !== this.state.tags) {
+      this.props.updateUser({
+        tags_attributes: this.state.tags,
+      });
+    }
+  };
 
   renderTags = () => {
     try {
@@ -26,7 +36,7 @@ class EditTagsForm extends Component {
               <UserTag
                 isEditable="true"
                 removeTag={this.removeTag}
-                key={tag.id}
+                key={tag.id || tag.name}
                 tagId={tag.id}
                 info={tag}
               />
@@ -64,16 +74,32 @@ class EditTagsForm extends Component {
     e.preventDefault();
     const tag = {
       name: this.state.tagName,
-      image_url: this.state.tagUrl,
+      image_url: this.state.tagImage,
       link: this.state.tagUrl,
       tag_type: "custom",
     };
-    if (tag.name !== "") {
+    if (
+      tag.name !== "" &&
+      !this.state.tags.map((tag) => tag.name).includes(this.state.tagName)
+    ) {
       this.setState((state) => ({
         tags: [tag].concat(state.tags),
+        tagName: "",
+        tagUrl: "",
+        tagImage: "",
       }));
-    } else {
-      this.setState({ tagError: true });
+    }
+    if (this.state.tags.map((tag) => tag.name).includes(this.state.tagName)) {
+      this.setState({
+        tagError: true,
+        errorMessage: "Tag names must be unique",
+      });
+    }
+    if (tag.name === "") {
+      this.setState({
+        tagError: true,
+        errorMessage: "Can't be blank",
+      });
     }
   };
 
@@ -83,7 +109,7 @@ class EditTagsForm extends Component {
       <form>
         <div className="form-group">
           <label htmlFor="tag-name">Tag Name</label>
-          {this.state.tagError ? <i>Can't be blank</i> : null}
+          {this.state.errorMessage ? <i>{this.state.errorMessage}</i> : null}
           <input
             name="tag-name"
             type="text"
@@ -121,7 +147,11 @@ class EditTagsForm extends Component {
         >
           Add Tag
         </button>
-        <button className="save-btn" type="button">
+        <button
+          className="save-btn"
+          type="button"
+          onClick={(e) => this.updateUserTags(e)}
+        >
           Update My Tags
         </button>
 
