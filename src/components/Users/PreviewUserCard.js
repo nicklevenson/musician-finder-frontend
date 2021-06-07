@@ -15,6 +15,10 @@ class PreviewUserCard extends React.Component {
     spotify_tags: [],
   };
 
+  static defaultProps = {
+    key: "",
+  };
+
   componentDidMount() {
     if (this.props.shownUserId === this.props.user.id) {
       this.fetchSupportingInfo();
@@ -32,7 +36,6 @@ class PreviewUserCard extends React.Component {
   }
 
   fetchSupportingInfo = () => {
-    console.log("fetching");
     const userId = this.props.user.id;
     fetch(
       `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/get_supporting_info/${sessionStorage.userId}`,
@@ -54,7 +57,7 @@ class PreviewUserCard extends React.Component {
         });
       })
       .catch(function (error) {
-        alert("Error getting tags.");
+        console.warn("error getting user: \n", error);
       });
   };
 
@@ -73,8 +76,8 @@ class PreviewUserCard extends React.Component {
       .then((json) => {
         this.setState({ connections: json });
       })
-      .catch(function (error) {
-        alert("Error getting User Connections.");
+      .catch((error) => {
+        console.warn("Error getting User Connections: \n", error);
       });
   };
 

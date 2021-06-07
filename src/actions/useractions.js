@@ -50,7 +50,7 @@ export const fetchUser = () => {
         dispatch(fetchUserNotifications());
       })
       .catch(function (error) {
-        alert("Error getting User.");
+        console.warn('error getting user: \n', error)
       });
   };
 };
@@ -72,8 +72,8 @@ export const updateUser = (user_info) => {
       .then((json) => {
         dispatch(fetchUser());
       })
-      .catch(function (error) {
-        alert("Error requesting connection.");
+      .catch((error) => {
+        console.warn("Error requesting connection: \n", error);
       });
   };
 };
@@ -104,7 +104,7 @@ export const fetchUserRecs = (filterParamsObject) => {
         }
       })
       .catch(function (error) {
-        alert("Error getting User.");
+        console.warn('error getting user recommendations: \n', error)
       });
   };
 };
@@ -124,7 +124,7 @@ export const fetchConnections = (userId) => {
         dispatch(setConnections(json));
       })
       .catch(function (error) {
-        alert("Error getting User Connections.");
+        console.warn('error getting user connections: \n', error)
       });
   };
 };
@@ -145,8 +145,8 @@ export const fetchIncomingRequests = () => {
       .then((json) => {
         dispatch(setIncomingRequests(json));
       })
-      .catch(function (error) {
-        alert("Error getting User.");
+      .catch(error =>  {
+        console.warn('error getting user: \n', error)
       });
   };
 };
@@ -171,8 +171,8 @@ export const requestConnection = (requested_id) => {
       .then((json) => {
         dispatch(fetchUser());
       })
-      .catch(function (error) {
-        alert("Error requesting connection.");
+      .catch((error) => {
+        console.warn("Error requesting connection: \n", error);
       });
   };
 };
@@ -197,8 +197,8 @@ export const acceptConnection = (requesting_user_id) => {
       .then((json) => {
         dispatch(fetchUser());
       })
-      .catch(function (error) {
-        alert("Error requesting connection.");
+      .catch((error) => {
+        console.warn("Error requesting connection: \n", error);
       });
   };
 };
@@ -223,8 +223,8 @@ export const rejectConnection = (requesting_user_id) => {
       .then((json) => {
         dispatch(fetchUser());
       })
-      .catch(function (error) {
-        alert("Error requesting connection.");
+      .catch((error) => {
+        console.warn("error requesting connection: \n", error);
       });
   };
 };
@@ -246,7 +246,7 @@ export const fetchUserNotifications = () => {
         dispatch(setUserNotifications(json));
       })
       .catch(function (error) {
-        alert("Error getting notifications.");
+        console.warn('error getting notifications: \n', error);
       });
   };
 };
@@ -267,8 +267,8 @@ export const fetchUserChatrooms = () => {
       .then((json) => {
         dispatch(setUserChatrooms(json));
       })
-      .catch(function (error) {
-        alert("Error getting chatrooms.");
+      .catch((error) => {
+        console.warn("Error getting chatrooms: \n", error);
       });
   };
 };
@@ -289,8 +289,8 @@ export const sendMessage = (messageObject) => {
       .then((json) => {
         dispatch(fetchUserChatrooms());
       })
-      .catch(function (error) {
-        alert("Error sending message.");
+      .catch((error) => {
+        console.warn("Error sending message: \n", error);
       });
   };
 };
@@ -311,8 +311,8 @@ export const makeMessageRead = (chatroom_id) => {
       .then((json) => {
         dispatch(fetchUserChatrooms());
       })
-      .catch(function (error) {
-        alert("Error making message read.");
+      .catch((error) => {
+        console.warn("Error making message read: \n", error);
       });
   };
 };

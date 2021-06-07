@@ -32,8 +32,8 @@ class UserShow extends React.Component {
       .then((json) => {
         this.setState({ shownUser: json });
       })
-      .catch(function (error) {
-        alert("Error getting shown user.");
+      .catch((error) => {
+        console.warn("Error getting shown user: \n", error);
       });
   };
 
@@ -52,8 +52,8 @@ class UserShow extends React.Component {
       .then((json) => {
         this.setState({ similar_tags: json });
       })
-      .catch(function (error) {
-        alert("Error getting tags.");
+      .catch((error) => {
+        console.warn("Error getting tags: \n", error);
       });
   };
 

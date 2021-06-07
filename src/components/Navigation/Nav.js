@@ -15,10 +15,6 @@ class Nav extends Component {
     };
   }
 
-  componentDidUpdate() {
-    console.log("updated");
-  }
-
   handleNotificationClick = (e) => {
     e.preventDefault();
     history.push(`/notifications`);

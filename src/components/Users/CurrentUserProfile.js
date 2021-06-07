@@ -21,7 +21,6 @@ class CurrentUserProfile extends Component {
 
     this.toggleUserEditorModal = this.toggleUserEditorModal.bind(this);
   }
-
   componentDidMount() {
     this.formatDate(this.props.user.created_at);
   }
