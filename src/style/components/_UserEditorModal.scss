@@ -27,6 +27,10 @@
     }
   }
 
+  .update-ready input {
+    border: solid thin v.$green;
+  }
+
   .input-error {
     border: solid thin red;
   }

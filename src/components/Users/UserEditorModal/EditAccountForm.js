@@ -111,7 +111,7 @@ class EditAccountForm extends Component {
 
   render() {
     return (
-      <form>
+      <form className={this.state.canUpdate ? "update-ready" : null}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input

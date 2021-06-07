@@ -46,7 +46,7 @@ class EditInstrumentsForm extends Component {
   render() {
     return (
       <>
-        <form>
+        <form className={this.state.canUpdate ? "update-ready" : null}>
           <div className="form-group">
             <InstrumentOptions setInstruments={this.setInstruments} />
           </div>

@@ -44,7 +44,7 @@ class EditGenresForm extends Component {
   render() {
     return (
       <>
-        <form>
+        <form className={this.state.canUpdate ? "update-ready" : null}>
           <div className="form-group">
             <GenreOptions setGenres={this.setGenres} />
           </div>

@@ -36,7 +36,7 @@ class LocationSearch extends React.Component {
   handleResultClick = (e, result) => {
     const location = result.city + ", " + result.admin_name;
     // this.setState({ locationName: location });
-    this.setState({ query: location });
+    this.setState({ query: location, results: [] });
     // this.setState({ lng: result.lng });
     // this.setState({ lat: result.lat });
     const locationObj = {
@@ -64,7 +64,7 @@ class LocationSearch extends React.Component {
           onChange={(e) => this.handleChange(e)}
           className={this.inputIsValid() ? null : "input-error"}
         />
-        <div className="location-results">
+        <div className="location-results options">
           {this.state.results.map((result) => (
             <div
               key={result.city + ", " + result.admin_name}
