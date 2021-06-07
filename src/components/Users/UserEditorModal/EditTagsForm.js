@@ -8,7 +8,14 @@ class EditTagsForm extends Component {
     tagName: "",
     tagImage: "",
     tagUrl: "",
+    tagError: false,
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.tagError) {
+      this.setState({ tagError: false });
+    }
+  }
 
   renderTags = () => {
     try {
@@ -70,9 +77,13 @@ class EditTagsForm extends Component {
       link: this.state.tagUrl,
       tag_type: "custom",
     };
-    this.setState((state) => ({
-      tags: [tag].concat(state.tags),
-    }));
+    if (tag.name !== "") {
+      this.setState((state) => ({
+        tags: [tag].concat(state.tags),
+      }));
+    } else {
+      this.setState({ tagError: true });
+    }
   };
 
   render() {
@@ -81,12 +92,15 @@ class EditTagsForm extends Component {
       <form>
         <div className="form-group">
           <label htmlFor="tag-name">Tag Name</label>
+          {this.state.tagError ? <i>Can't be blank</i> : null}
           <input
             name="tag-name"
             type="text"
             placeholder="Breakfast Potato"
             value={this.state.tagName}
             onInput={(e) => this.handleInputChange(e)}
+            required={true}
+            className={this.state.tagError ? "input-error" : null}
           />
         </div>
         <div className="form-group">
