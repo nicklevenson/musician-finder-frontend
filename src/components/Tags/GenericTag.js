@@ -7,7 +7,7 @@ const GenericTag = (props) => {
       {props.editable ? (
         <button
           className="delete-button"
-          onClick={(e) => props.removeGenre(e, props.tag)}
+          onClick={(e) => props.removeTag(e, props.tag)}
           aria-label="remove this item"
         >
           X

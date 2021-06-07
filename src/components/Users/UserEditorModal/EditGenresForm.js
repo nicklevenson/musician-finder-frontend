@@ -50,7 +50,7 @@ class EditGenresForm extends Component {
               <GenericTag
                 tag={genre}
                 editable={true}
-                removeGenre={this.removeGenre}
+                removeTag={this.removeGenre}
               />
             ))}
           </div>
