@@ -1,13 +1,6 @@
 import { Component } from "react";
 
 class UserTag extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {}
-
   getContainerClass() {
     let parentClass = "user-tag";
     let { tag_type } = this.props.info;
@@ -28,7 +21,7 @@ class UserTag extends Component {
           <button
             type="button"
             data-id={this.props.tagId}
-            onClick={this.props.removeTag}
+            onClick={(e) => this.props.removeTag(e, this.props.info)}
             className="tag-delete-btn"
           >
             X

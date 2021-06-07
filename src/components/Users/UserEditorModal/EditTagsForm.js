@@ -40,20 +40,11 @@ class EditTagsForm extends Component {
     }
   };
 
-  removeTag = (e) => {
+  removeTag = (e, tag) => {
     e.preventDefault();
-    let id = e.target;
-    id = id.getAttribute("data-id");
-    id = parseInt(id);
-    let tags = this.state.tags;
-
-    tags.forEach((tag, index) => {
-      if (tag.id === id) {
-        tags.splice(index, 1);
-        return;
-      }
-    });
-    this.setState({ tags });
+    this.setState((state) => ({
+      tags: state.tags.filter((t) => t.name !== tag.name),
+    }));
   };
 
   handleInputChange = (e) => {
