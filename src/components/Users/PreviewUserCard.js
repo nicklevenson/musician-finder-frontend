@@ -84,7 +84,7 @@ class PreviewUserCard extends React.Component {
         <div className="card-similarities">
           <b>You both like: </b>
           {this.state.similarTags.map((tag) => (
-            <SimilarTag tag={tag.name} />
+            <SimilarTag tag={tag} key={tag} />
           ))}
         </div>
       );
@@ -132,7 +132,7 @@ class PreviewUserCard extends React.Component {
                 <>
                   <b>Plays: </b>
                   {this.state.instruments?.map((inst) => {
-                    return <GenericTag tag={inst} />;
+                    return <GenericTag tag={inst} key={inst.name} />;
                   })}
                 </>
               ) : null}
@@ -150,7 +150,7 @@ class PreviewUserCard extends React.Component {
                   <b>Top Artists: </b>
                   <div className="card-artists-container">
                     {this.state.spotify_tags.map((tag) => {
-                      return <SpotifyArtistTag tag={tag} />;
+                      return <SpotifyArtistTag tag={tag} key={tag.name} />;
                     })}
                   </div>
                 </div>
@@ -163,7 +163,7 @@ class PreviewUserCard extends React.Component {
                 <>
                   <b>Genres: </b>
                   {this.state.genres?.map((genre) => {
-                    return <GenericTag tag={genre} />;
+                    return <GenericTag tag={genre} key={genre.name} />;
                   })}
                   <br />
                 </>
@@ -174,7 +174,7 @@ class PreviewUserCard extends React.Component {
               <div className="card-interests card-tags">
                 <b>Other Interests:</b>
                 {this.state.generic_tags.map((tag) => {
-                  return <GenericTag tag={tag.name} />;
+                  return <GenericTag tag={tag.name} key={tag.name} />;
                 })}
               </div>
             ) : null}
