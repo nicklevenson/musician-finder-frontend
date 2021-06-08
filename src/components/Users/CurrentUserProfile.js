@@ -6,7 +6,7 @@ import UserNotification from "./UserNotification";
 import UserTag from "./UserTag";
 import BackDrop from "../BackDrop";
 import UserEditorModal from "./UserEditorModal/UserEditorModal";
-// import { uploadPhoto } from "../../actions/useractions";
+import { fetchUser } from "../../actions/useractions";
 import helpers from "../../globalHelpers";
 
 class CurrentUserProfile extends Component {
@@ -87,15 +87,20 @@ class CurrentUserProfile extends Component {
   handlePhotoUpload = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
-    if (file.size < 3000000) {
-      this.setState({ photo: file });
+    if (file) {
+      if (file.size < 3000000) {
+        this.setState({ photo: file });
+        this.setState({ photoError: null });
+      } else {
+        this.setState({ photoError: "Photo Too Large" });
+      }
     }
   };
 
   updatePhoto = (e) => {
     e.preventDefault();
     if (this.state.photo) {
-      console.log(this.state.photo);
+      this.setState({ uploading: true });
       const formData = new FormData();
       formData.append("photo", this.state.photo);
       const userId = sessionStorage.userId;
@@ -114,10 +119,13 @@ class CurrentUserProfile extends Component {
       )
         .then((res) => res.json())
         .then((json) => {
-          // dispatch(fetchUser());
+          this.setState({ uploading: false });
+          this.setState({ photoEdit: false });
+          this.props.fetchUser();
         })
         .catch((error) => {
-          console.warn("Error requesting connection: \n", error);
+          console.warn("Error uploading: \n", error);
+          this.setState({ photoError: "Error uploading please try again" });
         });
     }
   };
@@ -204,14 +212,23 @@ class CurrentUserProfile extends Component {
             <div className="user-editor-modal">
               <form>
                 <label htmlFor="img">Select image:</label>
+                {this.state.photoError ? <i>{this.state.photoError}</i> : null}
                 <input
                   type="file"
                   id="img"
                   name="img"
                   accept="image/*"
                   onChange={(e) => this.handlePhotoUpload(e)}
+                  disabled={this.state.uploading ? true : false}
                 />
-                <button onClick={(e) => this.updatePhoto(e)}>Upload</button>
+                {this.state.photo ? (
+                  <button
+                    onClick={(e) => this.updatePhoto(e)}
+                    disabled={this.state.uploading ? true : false}
+                  >
+                    {this.state.uploading ? "Uploading..." : "Upload"}
+                  </button>
+                ) : null}
               </form>
             </div>
           </>
@@ -229,7 +246,7 @@ CurrentUserProfile.defaultProps = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // uploadPhoto: (formData) => dispatch(uploadPhoto(formData)),
+    fetchUser: () => dispatch(fetchUser()),
   };
 };
 
