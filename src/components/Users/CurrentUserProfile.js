@@ -6,7 +6,7 @@ import UserNotification from "./UserNotification";
 import UserTag from "./UserTag";
 import BackDrop from "../BackDrop";
 import UserEditorModal from "./UserEditorModal/UserEditorModal";
-
+// import { uploadPhoto } from "../../actions/useractions";
 import helpers from "../../globalHelpers";
 
 class CurrentUserProfile extends Component {
@@ -17,6 +17,8 @@ class CurrentUserProfile extends Component {
       notificationsExpanded: false,
       tagsExpanded: false,
       showUserEditorModal: false,
+      photoEdit: false,
+      photo: null,
     };
 
     this.toggleUserEditorModal = this.toggleUserEditorModal.bind(this);
@@ -77,6 +79,49 @@ class CurrentUserProfile extends Component {
     });
   }
 
+  togglePhotoEdit = (e) => {
+    e.preventDefault();
+    this.setState({ photoEdit: true });
+  };
+
+  handlePhotoUpload = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    if (file.size < 3000000) {
+      this.setState({ photo: file });
+    }
+  };
+
+  updatePhoto = (e) => {
+    e.preventDefault();
+    if (this.state.photo) {
+      console.log(this.state.photo);
+      const formData = new FormData();
+      formData.append("photo", this.state.photo);
+      const userId = sessionStorage.userId;
+      const configObj = {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.jwt} ${userId}`,
+          Accept: "application/json",
+          enctype: "multipart/form-data",
+        },
+        body: formData,
+      };
+      fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/upload_photo`,
+        configObj
+      )
+        .then((res) => res.json())
+        .then((json) => {
+          // dispatch(fetchUser());
+        })
+        .catch((error) => {
+          console.warn("Error requesting connection: \n", error);
+        });
+    }
+  };
+
   render() {
     let modal = this.renderUserEditorModal();
     return (
@@ -128,7 +173,10 @@ class CurrentUserProfile extends Component {
           >
             <Icon fitted name="edit" />
           </button>
-          <div className="user-profile-image-container">
+          <div
+            className="user-profile-image-container"
+            onClick={(e) => this.togglePhotoEdit(e)}
+          >
             <img
               src={this.props.user.photo || this.props.user.providerImage}
               alt="user-profile"
@@ -149,6 +197,25 @@ class CurrentUserProfile extends Component {
           </div>
         </div>
         {modal}
+
+        {this.state.photoEdit ? (
+          <>
+            <BackDrop zIndex="10" />
+            <div className="user-editor-modal">
+              <form>
+                <label htmlFor="img">Select image:</label>
+                <input
+                  type="file"
+                  id="img"
+                  name="img"
+                  accept="image/*"
+                  onChange={(e) => this.handlePhotoUpload(e)}
+                />
+                <button onClick={(e) => this.updatePhoto(e)}>Upload</button>
+              </form>
+            </div>
+          </>
+        ) : null}
       </div>
     );
   }
@@ -160,6 +227,12 @@ CurrentUserProfile.defaultProps = {
   },
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // uploadPhoto: (formData) => dispatch(uploadPhoto(formData)),
+  };
+};
+
 const mapStateToProps = (state) => {
   return {
     user: state.currentUser.currentUser,
@@ -167,4 +240,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(CurrentUserProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentUserProfile);

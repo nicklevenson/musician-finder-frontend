@@ -50,7 +50,7 @@ export const fetchUser = () => {
         dispatch(fetchUserNotifications());
       })
       .catch(function (error) {
-        console.warn('error getting user: \n', error)
+        console.warn("error getting user: \n", error);
       });
   };
 };
@@ -104,7 +104,7 @@ export const fetchUserRecs = (filterParamsObject) => {
         }
       })
       .catch(function (error) {
-        console.warn('error getting user recommendations: \n', error)
+        console.warn("error getting user recommendations: \n", error);
       });
   };
 };
@@ -124,7 +124,7 @@ export const fetchConnections = (userId) => {
         dispatch(setConnections(json));
       })
       .catch(function (error) {
-        console.warn('error getting user connections: \n', error)
+        console.warn("error getting user connections: \n", error);
       });
   };
 };
@@ -145,8 +145,8 @@ export const fetchIncomingRequests = () => {
       .then((json) => {
         dispatch(setIncomingRequests(json));
       })
-      .catch(error =>  {
-        console.warn('error getting user: \n', error)
+      .catch((error) => {
+        console.warn("error getting user: \n", error);
       });
   };
 };
@@ -246,7 +246,7 @@ export const fetchUserNotifications = () => {
         dispatch(setUserNotifications(json));
       })
       .catch(function (error) {
-        console.warn('error getting notifications: \n', error);
+        console.warn("error getting notifications: \n", error);
       });
   };
 };
