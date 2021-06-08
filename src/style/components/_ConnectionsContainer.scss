@@ -1,0 +1,24 @@
+@use "../variables" as v;
+
+.connections-container {
+  text-align: center;
+  .minimal-user-card {
+    height: 100% !important;
+    max-height: 300px !important;
+    width: 80vw !important;
+    max-width: 200px !important;
+    display: inline-block;
+    margin: 1rem;
+  }
+  .incoming-requests-container {
+    width: 95%;
+
+    margin: 2rem auto 2rem auto;
+    .incoming-requests {
+      max-height: min-content;
+      overflow-x: auto;
+      white-space: nowrap !important;
+      padding: 0 1rem 0 1rem;
+    }
+  }
+}

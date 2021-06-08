@@ -11,8 +11,8 @@
   margin-left: auto;
   margin-right: auto;
   display: grid;
-  grid-template-rows: 1fr 7%;
-  padding: 1rem;
+  grid-template-rows: 1fr min-content;
+  padding: 1rem 1rem 0.2rem 1rem;
 
   ::-webkit-scrollbar:horizontal {
     height: 1px;
