@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchUserChatrooms } from "../actions/useractions";
 import ChatroomPreview from "../components/Messages/ChatroomPreview";
 import Chatroom from "../components/Messages/Chatroom";
-
+import history from "../history";
 class MessagingContainer extends React.Component {
   state = {
     selectedChatroom: null,
@@ -35,6 +35,7 @@ class MessagingContainer extends React.Component {
 
   handleBackToPreview = () => {
     this.setState({ selectedChatroom: null });
+    history.push("/messaging");
   };
 
   orderChatrooms = (chatrooms) => {
