@@ -13,7 +13,8 @@
     overflow: hidden;
     white-space: nowrap;
   }
-  .card {
+  .card,
+  .inactive {
     grid-row: 2;
     display: inline-block;
     width: 100%;
