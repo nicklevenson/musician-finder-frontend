@@ -54,6 +54,7 @@ class App extends React.Component {
             component={ConnectionsContainer}
           ></Route>
           <Route exact path="/messaging" component={MessagingContainer}></Route>
+          <Route path="/messaging/:id" component={MessagingContainer}></Route>
           <Route
             exact
             path="/notifications"

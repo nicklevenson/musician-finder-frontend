@@ -17,12 +17,16 @@
     border-radius: 5px;
     width: 95%;
     max-width: 200px;
-    height: 80%;
+    height: 90%;
     &:hover {
       cursor: pointer;
       box-shadow: 1px 1px 5px v.$gray;
     }
     padding: 0.5rem;
+  }
+
+  .message-user-button {
+    grid-column: 1 / 3 !important;
   }
 
   .next-button {
