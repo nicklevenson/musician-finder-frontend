@@ -181,14 +181,19 @@ class CurrentUserProfile extends Component {
           >
             <Icon fitted name="edit" />
           </button>
-          <div
-            className="user-profile-image-container"
-            onClick={(e) => this.togglePhotoEdit(e)}
-          >
-            <img
-              src={this.props.user.photo || this.props.user.providerImage}
-              alt="user-profile"
-            />
+          <div className="user-profile-image-container">
+            <div className="image-container">
+              <div
+                className="edit-image-overlay"
+                onClick={(e) => this.togglePhotoEdit(e)}
+              >
+                Upload Image
+              </div>
+              <img
+                src={this.props.user.photo || this.props.user.providerImage}
+                alt="user-profile"
+              />
+            </div>
           </div>
           <div className="user-profile-text-container">
             <div className="username">{this.props.user.username}</div>
