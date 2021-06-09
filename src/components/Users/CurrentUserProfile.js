@@ -8,6 +8,7 @@ import BackDrop from "../BackDrop";
 import UserEditorModal from "./UserEditorModal/UserEditorModal";
 import { fetchUser } from "../../actions/useractions";
 import helpers from "../../globalHelpers";
+import EditPhotoModal from "./UserEditorModal/EditPhotoModal";
 
 class CurrentUserProfile extends Component {
   constructor(props) {
@@ -17,8 +18,6 @@ class CurrentUserProfile extends Component {
       notificationsExpanded: false,
       tagsExpanded: false,
       showUserEditorModal: false,
-      photoEdit: false,
-      photo: null,
     };
 
     this.toggleUserEditorModal = this.toggleUserEditorModal.bind(this);
@@ -79,57 +78,6 @@ class CurrentUserProfile extends Component {
     });
   }
 
-  togglePhotoEdit = (e) => {
-    e.preventDefault();
-    this.setState({ photoEdit: true });
-  };
-
-  handlePhotoUpload = (e) => {
-    e.preventDefault();
-    const file = e.target.files[0];
-    if (file) {
-      if (file.size < 3000000) {
-        this.setState({ photo: file });
-        this.setState({ photoError: null });
-      } else {
-        this.setState({ photoError: "Photo Too Large" });
-      }
-    }
-  };
-
-  updatePhoto = (e) => {
-    e.preventDefault();
-    if (this.state.photo) {
-      this.setState({ uploading: true });
-      const formData = new FormData();
-      formData.append("photo", this.state.photo);
-      const userId = sessionStorage.userId;
-      const configObj = {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${sessionStorage.jwt} ${userId}`,
-          Accept: "application/json",
-          enctype: "multipart/form-data",
-        },
-        body: formData,
-      };
-      fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/upload_photo`,
-        configObj
-      )
-        .then((res) => res.json())
-        .then((json) => {
-          this.setState({ uploading: false });
-          this.setState({ photoEdit: false });
-          this.props.fetchUser();
-        })
-        .catch((error) => {
-          console.warn("Error uploading: \n", error);
-          this.setState({ photoError: "Error uploading please try again" });
-        });
-    }
-  };
-
   render() {
     let modal = this.renderUserEditorModal();
     return (
@@ -183,16 +131,18 @@ class CurrentUserProfile extends Component {
           </button>
           <div className="user-profile-image-container">
             <div className="image-container">
-              <div
+              {/* <div
                 className="edit-image-overlay"
-                onClick={(e) => this.togglePhotoEdit(e)}
+                onClick={this.togglePhotoEdit}
               >
                 Upload Image
-              </div>
+              </div> */}
               <img
                 src={this.props.user.photo || this.props.user.providerImage}
                 alt="user-profile"
               />
+
+              <EditPhotoModal />
             </div>
           </div>
           <div className="user-profile-text-container">
@@ -210,34 +160,6 @@ class CurrentUserProfile extends Component {
           </div>
         </div>
         {modal}
-
-        {this.state.photoEdit ? (
-          <>
-            <BackDrop zIndex="10" />
-            <div className="user-editor-modal">
-              <form>
-                <label htmlFor="img">Select image:</label>
-                {this.state.photoError ? <i>{this.state.photoError}</i> : null}
-                <input
-                  type="file"
-                  id="img"
-                  name="img"
-                  accept="image/*"
-                  onChange={(e) => this.handlePhotoUpload(e)}
-                  disabled={this.state.uploading ? true : false}
-                />
-                {this.state.photo ? (
-                  <button
-                    onClick={(e) => this.updatePhoto(e)}
-                    disabled={this.state.uploading ? true : false}
-                  >
-                    {this.state.uploading ? "Uploading..." : "Upload"}
-                  </button>
-                ) : null}
-              </form>
-            </div>
-          </>
-        ) : null}
       </div>
     );
   }
