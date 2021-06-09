@@ -73,15 +73,6 @@ class EditPhotoModal extends React.Component {
               onChange={(e) => this.handlePhotoUpload(e)}
               disabled={this.state.uploading ? true : false}
             />
-
-            {/* {this.state.photo ? (
-              <button
-                onClick={(e) => this.updatePhoto(e)}
-                disabled={this.state.uploading ? true : false}
-              >
-                {this.state.uploading ? "Uploading..." : "Upload"}
-              </button>
-            ) : null} */}
           </form>
         </div>
       </>
