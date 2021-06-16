@@ -16,6 +16,7 @@
 @use "./components/PreviewUserCard";
 @use "./components/Tags";
 @use "./components/ConnectionsContainer";
+@use "./components/EditPhotoModal";
 .App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing
   min-height: 100vh;

@@ -64,12 +64,27 @@
       align-items: center;
       width: 100%;
       z-index: 1;
-      img {
-        border-radius: 20px;
-        box-shadow: v.$button-box-shadow;
-        width: 10rem;
-        height: auto;
-        margin-bottom: 1rem;
+
+      .image-container {
+        position: relative;
+        .edit-image-overlay {
+          background-color: transparent;
+          position: absolute;
+          z-index: 10;
+          height: 10rem;
+          width: 10rem;
+          line-height: 10rem;
+          border-radius: 20px;
+          color: v.$white;
+          text-align: center !important;
+        }
+        img {
+          border-radius: 20px;
+          box-shadow: v.$button-box-shadow;
+          width: 10rem;
+          height: auto;
+          margin-bottom: 1rem;
+        }
       }
     }
     .user-profile-text-container {
