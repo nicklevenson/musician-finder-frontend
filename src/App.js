@@ -18,7 +18,7 @@ import {
   fetchUserNotifications,
 } from "./actions/useractions";
 import { fetchAllLists } from "./actions/listactions";
-import LoginContainer from "./containers/LoginContainer";
+import LoginCard from "./components/Navigation/LoginCard";
 
 class App extends React.Component {
   componentDidMount() {
@@ -74,7 +74,7 @@ class App extends React.Component {
             ></Route>
             <Route exact path="/profile" component={ProfileContainer}></Route>
             <Route exact path="/users/:id" component={UserShow}></Route>
-            <Route exact path="/login" component={LoginContainer}></Route>
+            <Route exact path="/login" component={LoginCard}></Route>
             <Route exact path="/logout" component={Logout}></Route>
           </Switch>
         </div>

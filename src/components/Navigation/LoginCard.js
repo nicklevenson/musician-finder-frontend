@@ -4,7 +4,7 @@ import facebookLogin from "../../assets/facebook-login.png";
 import { connect } from "react-redux";
 import { fetchUser } from "../../actions/useractions.js";
 import { Redirect } from "react-router-dom";
-import { Card } from "semantic-ui-react";
+
 class LoginCard extends React.Component {
   componentDidMount() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -19,51 +19,38 @@ class LoginCard extends React.Component {
   }
   render() {
     return (
-      <Card fluid>
-        <br></br>
+      <div className="login-page">
         <div style={{ margin: "auto" }}>
-          <Card.Header>
-            <h2>Login/Signup</h2>
-          </Card.Header>
-
+          <h2>Login/Signup</h2>
           {this.props.heading ? (
-            <Card.Content>
-              <h5>
-                <i>{this.props.heading}</i>
-              </h5>
-            </Card.Content>
+            <h5>
+              <i>{this.props.heading}</i>
+            </h5>
           ) : null}
-          <br></br>
-          <Card.Content textAlign="center">
-            <a
-              href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-google`}
-            >
-              <img
-                src={googleLogin}
-                alt="Login with Google"
-                style={{ width: "200px" }}
-              />
-            </a>
-            <br></br> <br></br>
-            <a
-              href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-facebook`}
-            >
-              <img
-                src={facebookLogin}
-                alt="Login with Facebook"
-                style={{ width: "193px", height: "37px" }}
-              ></img>
-            </a>{" "}
-            <br></br> <br></br>
-            <a
-              href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-spotify`}
-            >
-              Login spotify
-            </a>
-          </Card.Content>
+          <i>Recommended To Use Spotify</i>
+          <br />
+          <i>(you'll be matched with folks based on your music taste)</i>
+          <br /> <br />
+          <a href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-spotify`}>
+            <div className="login spotify">
+              <div>Continue With Spotify</div>
+            </div>
+          </a>
+          <a href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-google`}>
+            <div className="login google">
+              <div>Continue With Google</div>
+            </div>
+          </a>
+          <a
+            href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-facebook`}
+          >
+            <div className="login facebook">
+              <div>Continue With Facebook</div>
+            </div>
+          </a>{" "}
           {sessionStorage.jwt ? <Redirect to="/swipe" /> : null}
         </div>
-      </Card>
+      </div>
     );
   }
 }
