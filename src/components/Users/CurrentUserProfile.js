@@ -6,8 +6,9 @@ import UserNotification from "./UserNotification";
 import UserTag from "./UserTag";
 import BackDrop from "../BackDrop";
 import UserEditorModal from "./UserEditorModal/UserEditorModal";
-
+import { fetchUser } from "../../actions/useractions";
 import helpers from "../../globalHelpers";
+import EditPhotoModal from "./UserEditorModal/EditPhotoModal";
 
 class CurrentUserProfile extends Component {
   constructor(props) {
@@ -129,10 +130,20 @@ class CurrentUserProfile extends Component {
             <Icon fitted name="edit" />
           </button>
           <div className="user-profile-image-container">
-            <img
-              src={this.props.user.photo || this.props.user.providerImage}
-              alt="user-profile"
-            />
+            <div className="image-container">
+              {/* <div
+                className="edit-image-overlay"
+                onClick={this.togglePhotoEdit}
+              >
+                Upload Image
+              </div> */}
+              <img
+                src={this.props.user.photo || this.props.user.providerImage}
+                alt="user-profile"
+              />
+
+              <EditPhotoModal />
+            </div>
           </div>
           <div className="user-profile-text-container">
             <div className="username">{this.props.user.username}</div>
@@ -160,6 +171,12 @@ CurrentUserProfile.defaultProps = {
   },
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUser: () => dispatch(fetchUser()),
+  };
+};
+
 const mapStateToProps = (state) => {
   return {
     user: state.currentUser.currentUser,
@@ -167,4 +184,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(CurrentUserProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentUserProfile);
