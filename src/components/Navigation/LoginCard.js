@@ -27,13 +27,16 @@ class LoginCard extends React.Component {
               <i>{this.props.heading}</i>
             </h5>
           ) : null}
-          <i>Recommended To Use Spotify</i>
-          <br />
-          <i>(you'll be matched with folks based on your music taste)</i>
+          <i>
+            (Use Spotify to instantly be matched with folks based on your music
+            taste)
+          </i>
           <br /> <br />
           <a href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-spotify`}>
             <div className="login spotify">
-              <div>Continue With Spotify</div>
+              <div>
+                Continue With Spotify <i>(Recommended)</i>
+              </div>
             </div>
           </a>
           <a href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-google`}>
