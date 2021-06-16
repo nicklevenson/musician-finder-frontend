@@ -4,7 +4,6 @@ import "./App.css";
 import "./style/index.scss";
 import { Route, Switch } from "react-router-dom";
 import Nav from "./components/Navigation/Nav";
-import HomeContainer from "./containers/HomeContainer";
 import ConnectionsContainer from "./containers/ConnectionsContainer";
 import MessagingContainer from "./containers/MessagingContainer";
 import NotificationsContainer from "./containers/NotificationsContainer";
@@ -43,7 +42,7 @@ class App extends React.Component {
         {/* <LocationSearch /> */}
 
         <Switch>
-          <Route exact path="/home" component={HomeContainer}></Route>
+          <Route exact path="/swipe" component={RecommendedUsers}></Route>
           <Route
             exact
             path="/recommended-users"
@@ -55,6 +54,7 @@ class App extends React.Component {
             component={ConnectionsContainer}
           ></Route>
           <Route exact path="/messaging" component={MessagingContainer}></Route>
+          <Route path="/messaging/:id" component={MessagingContainer}></Route>
           <Route
             exact
             path="/notifications"

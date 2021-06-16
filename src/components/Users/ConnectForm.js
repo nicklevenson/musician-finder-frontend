@@ -6,6 +6,7 @@ import {
   acceptConnection,
   rejectConnection,
 } from "../../actions/useractions.js";
+import history from "../../history";
 class ConnectForm extends React.Component {
   handleConnectionRequest = () => {
     //we need to send current user id and the requested id
@@ -23,6 +24,9 @@ class ConnectForm extends React.Component {
   // handleRemoveConnection = () => {
   //   this.props.removeConnection(thi)
   // }
+  handleMessageLink = () => {
+    history.push(`/messaging/${this.props.focusedUser.id}`);
+  };
 
   render() {
     if (sessionStorage.userId) {
@@ -64,11 +68,12 @@ class ConnectForm extends React.Component {
           .includes(this.props.focusedUser.id)
       ) {
         return (
-          <Button size="tiny" disabled>
-            <Button.Content>
-              You and {this.props.focusedUser.username} are connected
-            </Button.Content>
-          </Button>
+          <button
+            className="message-user-button connect-button"
+            onClick={this.handleMessageLink}
+          >
+            Message
+          </button>
         );
       } else if (this.props.currentUser.id === this.props.focusedUser.id) {
         return null;

@@ -1,11 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { Grid } from "semantic-ui-react";
-import PreviewUserCard from "../components/Users/PreviewUserCard";
-import IncomingRequestsContainer from "./IncomingRequestsContainer";
-
 import { fetchConnections } from "../actions/useractions";
+import MiminalUserCard from "../components/Users/MinimalUserCard";
 class ConnectionsContainer extends React.Component {
   componentDidMount = () => {
     this.props.fetchConnections(this.props.currentUser.id);
@@ -13,42 +10,26 @@ class ConnectionsContainer extends React.Component {
   render() {
     if (sessionStorage.jwt) {
       return (
-        <div style={{ width: "90%", margin: "auto" }}>
-          <Grid relaxed padded centered columns={1}>
-            <Grid.Column>
-              
-              <div className="side-swipe">
-                {this.props.currentUser.username ? (
-                  <IncomingRequestsContainer />
-                ) : null}
+        <div className="connections-container">
+          {this.props.incomingRequests.length > 0 ? (
+            <div className="incoming-requests-container">
+              <h3>Incoming Requests</h3>
+              <div className="incoming-requests">
+                {this.props.incomingRequests.map((user) => {
+                  return <MiminalUserCard key={user.id} user={user} />;
+                })}
               </div>
-            </Grid.Column>
+            </div>
+          ) : null}
 
-            <Grid.Row columns={1}>
-              <Grid.Column>
-                <>
-                  <div className="fixed-heading">
-                    <i>Your connections</i>
-                  </div>
-                  <br />
-
-                  {this.props.connectedUsers.length > 0 ? (
-                    <div className="down-swipe">
-                      {this.props.connectedUsers.map((user) => (
-                        <PreviewUserCard
-                          user={user}
-                          shownUserId={user.id}
-                          key={user.id + "previewcardconnections"}
-                        />
-                      ))}
-                    </div>
-                  ) : (
-                    "No connected users. Go connect with some lovely people!"
-                  )}
-                </>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+          <div className="my-connections">
+            <h3>My Connections</h3>
+            {this.props.connectedUsers.length > 0
+              ? this.props.connectedUsers.map((user) => {
+                  return <MiminalUserCard key={user.id} user={user} />;
+                })
+              : null}
+          </div>
         </div>
       );
     } else {
@@ -66,6 +47,7 @@ const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser.currentUser,
     connectedUsers: state.currentUser.connectedUsers,
+    incomingRequests: state.currentUser.incomingRequests,
   };
 };
 

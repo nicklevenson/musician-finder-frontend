@@ -11,7 +11,7 @@ class Nav extends Component {
     super(props);
     this.state = {
       isActive: false,
-      activeItem: "home",
+      activeItem: "swipe",
     };
   }
 
@@ -145,11 +145,19 @@ class Nav extends Component {
         <div className="main-nav-dropdown-menu">
           <>
             <button
-              name="home"
+              name="swipe"
               onClick={(e) => this.handleItemClick(e)}
-              aria-label="navigate home"
+              aria-label="navigate to swipe"
             >
               <Icon name="home" size="large" />
+            </button>
+
+            <button
+              name="connections"
+              onClick={(e) => this.handleItemClick(e)}
+              aria-label="navigate to connections"
+            >
+              <Icon name="users" size="large" />
             </button>
 
             <button

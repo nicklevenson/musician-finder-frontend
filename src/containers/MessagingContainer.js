@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchUserChatrooms } from "../actions/useractions";
 import ChatroomPreview from "../components/Messages/ChatroomPreview";
 import Chatroom from "../components/Messages/Chatroom";
-
+import history from "../history";
 class MessagingContainer extends React.Component {
   state = {
     selectedChatroom: null,
@@ -12,6 +12,15 @@ class MessagingContainer extends React.Component {
   componentDidMount = () => {
     if (sessionStorage.jwt) {
       this.timer = setInterval(() => this.props.fetchUserChatrooms(), 10000);
+      const q = parseInt(this.props.match.params.id);
+      if (q) {
+        const chatroom = this.props.chatrooms.find((chatroom) =>
+          chatroom.users.map((u) => u.id).includes(q)
+        );
+        if (chatroom) {
+          this.setState({ selectedChatroom: chatroom });
+        }
+      }
     }
   };
   componentWillUnmount = () => {
@@ -26,6 +35,7 @@ class MessagingContainer extends React.Component {
 
   handleBackToPreview = () => {
     this.setState({ selectedChatroom: null });
+    history.push("/messaging");
   };
 
   orderChatrooms = (chatrooms) => {
