@@ -7,19 +7,17 @@ class LandingPage extends React.Component {
       <div className="landing-page-container">
         <h1>Welcome to Peanut Butter and Jam!</h1>
         <div className="brochure">
+          <h3>A place for musicians to...</h3>
           <div>
-            A place for musicians to connect based on similar interests,
-            location, and other preferences
-          </div>
-          <br />
-          <div>
-            Find band chemistry quick by swiping through musicians sorted by how
-            much they have in common with you
+            Find band chemistry quick by swiping through other musicians sorted
+            by how much they have in common with you
           </div>
           <br />
           <div>Start a conversation with your connected musicians</div>
           <br />
-          <div>Build a network of like-minded musicians</div>
+          <div>
+            Build a network of like-minded musicians who are ready to jam
+          </div>
         </div>
         <LoginCard />
       </div>
