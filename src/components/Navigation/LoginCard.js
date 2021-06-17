@@ -21,7 +21,7 @@ class LoginCard extends React.Component {
     return (
       <div className="login-page">
         <div style={{ margin: "auto" }}>
-          <h2>Login/Signup</h2>
+          <h3>Login/Signup</h3>
           {this.props.heading ? (
             <h5>
               <i>{this.props.heading}</i>

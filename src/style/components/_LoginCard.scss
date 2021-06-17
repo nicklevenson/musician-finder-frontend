@@ -2,11 +2,12 @@
 
 .login-page {
   text-align: center;
-  background-color: v.$light-gray;
-  padding: 3rem;
-  height: max-content;
-  width: max-content;
-  margin: auto;
+  // background-color: v.$light-gray;
+  padding: 1rem;
+  height: min-content;
+  max-width: 600px;
+  width: 90vw;
+  margin: 0 auto 0 auto;
 
   .login {
     width: 80%;
