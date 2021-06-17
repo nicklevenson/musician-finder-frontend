@@ -1,6 +1,7 @@
 @use "../variables" as v;
 
 .login-page {
+  align-self: center;
   text-align: center;
   background-color: v.$light-gray;
   padding: 3rem;
