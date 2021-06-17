@@ -1,6 +1,7 @@
 @use "variables" as v;
 @use "home";
 @use "nav";
+@use "landing";
 @use "./components/CurrentUserProfile";
 @use "./components/UserNotification";
 @use "./components//UserTag";
@@ -17,6 +18,7 @@
 @use "./components/Tags";
 @use "./components/ConnectionsContainer";
 @use "./components/EditPhotoModal";
+@use "./components/LoginCard";
 .App {
   font-size: 17px; // change this to variably increase the size of all the child rem sizing
   min-height: 100vh;

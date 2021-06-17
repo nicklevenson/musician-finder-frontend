@@ -1,0 +1,37 @@
+@use "../variables" as v;
+
+.login-page {
+  text-align: center;
+  background-color: v.$light-gray;
+  padding: 1rem;
+  height: min-content;
+  max-width: 600px;
+  width: 90vw;
+  margin: 0 auto 0 auto;
+
+  .login {
+    width: 80%;
+    margin: 1rem auto 1rem auto;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+
+    &:hover {
+      box-shadow: 1px 1px 7px v.$gray;
+    }
+  }
+
+  .spotify {
+    background-color: v.$green;
+    color: v.$white;
+  }
+
+  .google {
+    background-color: v.$gray;
+  }
+
+  .facebook {
+    background-color: v.$blue;
+    color: v.$gray;
+  }
+}
