@@ -23,6 +23,7 @@ class PreviewUserCard extends React.Component {
   componentDidMount() {
     if (this.props.shownUserId === this.props.user.id) {
       this.fetchSupportingInfo();
+      this.fetchConnections();
     }
   }
 
