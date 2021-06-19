@@ -5,6 +5,7 @@ import SimilarTag from "../Tags/SimilarTag";
 import SpotifyArtistTag from "../Tags/SpotifyArtistTag";
 import ConnectForm from "./ConnectForm";
 import ConnectionsModal from "./ConnectionsModal";
+import history from "../../history";
 class PreviewUserCard extends React.Component {
   state = {
     similarTags: [],
@@ -107,6 +108,11 @@ class PreviewUserCard extends React.Component {
     }
   };
 
+  handleProfileClick = (e) => {
+    e.preventDefault();
+    history.push(`/users/${this.props.user.id}`);
+  };
+
   render() {
     return (
       <div className="preview-user-card">
@@ -128,9 +134,13 @@ class PreviewUserCard extends React.Component {
 
           <div className="card-info">
             <div className="card-header">
-              <a href={`users/${this.props.user.id}`}>
+              <div
+                onClick={this.handleProfileClick}
+                aria-label="go to user profile"
+                className="user-profile-link"
+              >
                 {this.props.user.username}
-              </a>
+              </div>
             </div>
 
             <div className="card-connections">

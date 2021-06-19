@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import CurrentUserProfile from "./CurrentUserProfile";
-import OtherUserProfile from "./OtherUserProfile";
+import PreviewUserCard from "./PreviewUserCard";
 
 class UserShow extends React.Component {
   state = {
@@ -70,7 +70,10 @@ class UserShow extends React.Component {
           {this.state.shownUser.id === this.props.currentUser.id ? (
             <CurrentUserProfile />
           ) : (
-            <OtherUserProfile user={this.state.shownUser} similar_tags={this.state.similar_tags}/>
+            <PreviewUserCard
+              user={this.state.shownUser}
+              shownUserId={this.state.shownUser.id}
+            />
           )}
         </>
       );

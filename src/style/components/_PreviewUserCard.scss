@@ -51,6 +51,12 @@
     color: v.$dark;
     font-size: 1.5rem;
     line-height: 2rem;
+    .user-profile-link {
+      &:hover {
+        cursor: pointer;
+        color: v.$blue;
+      }
+    }
   }
 
   .card-location {
