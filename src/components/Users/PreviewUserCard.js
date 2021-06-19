@@ -4,7 +4,7 @@ import GenericTag from "../Tags/GenericTag";
 import SimilarTag from "../Tags/SimilarTag";
 import SpotifyArtistTag from "../Tags/SpotifyArtistTag";
 import ConnectForm from "./ConnectForm";
-
+import ConnectionsModal from "./ConnectionsModal";
 class PreviewUserCard extends React.Component {
   state = {
     similarTags: [],
@@ -13,6 +13,7 @@ class PreviewUserCard extends React.Component {
     connections: [],
     generic_tags: [],
     spotify_tags: [],
+    connectionsModalDisplay: false,
   };
 
   static defaultProps = {
@@ -96,9 +97,24 @@ class PreviewUserCard extends React.Component {
     }
   };
 
+  toggleConnectionsModal = (e) => {
+    e.preventDefault();
+    if (this.state.connectionsModalDisplay === false) {
+      this.setState({ connectionsModalDisplay: true });
+    } else {
+      this.setState({ connectionsModalDisplay: false });
+    }
+  };
+
   render() {
     return (
       <div className="preview-user-card">
+        {this.state.connectionsModalDisplay ? (
+          <ConnectionsModal
+            toggleModal={this.toggleConnectionsModal}
+            connections={this.state.connections}
+          />
+        ) : null}
         <div className="card-content">
           <div className="user-photo-container">
             <img
@@ -116,7 +132,7 @@ class PreviewUserCard extends React.Component {
             </div>
 
             <div className="card-connections">
-              <button>
+              <button onClick={this.toggleConnectionsModal}>
                 <Icon name="user" />
                 {this.state.connections.length || "0"} Connections
               </button>
