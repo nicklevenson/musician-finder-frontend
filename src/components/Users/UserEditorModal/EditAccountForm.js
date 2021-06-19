@@ -4,6 +4,9 @@ import LocationSearch from "../../Misc/LocationSearch";
 import { updateUser } from "../../../actions/useractions";
 class EditAccountForm extends Component {
   state = {
+    username: this.props.user.username,
+    email: this.props.user.email,
+    bio: this.props.user.bio,
     location: this.props.user.location,
     lat: this.props.user.lat,
     lng: this.props.user.lng,
@@ -20,6 +23,9 @@ class EditAccountForm extends Component {
   handleUpdate = () => {
     if (this.state.location && this.state.lat && this.state.lng) {
       this.props.updateUser({
+        username: this.state.username,
+        email: this.state.email,
+        bio: this.state.bio,
         location: this.state.location,
         lat: this.state.lat,
         lng: this.state.lng,
@@ -48,6 +54,9 @@ class EditAccountForm extends Component {
     const prevUser = prevProps.user;
     const user = this.props.user;
     if (
+      prevUser.username !== user.username ||
+      prevUser.email !== user.email ||
+      prevUser.bio !== user.bio ||
       prevUser.location !== user.location ||
       prevUser.lat !== user.lat ||
       prevUser.lng !== user.lng ||
@@ -66,6 +75,9 @@ class EditAccountForm extends Component {
 
   userCanUpdate = (prevState) => {
     if (
+      prevState.username !== this.state.username ||
+      prevState.email !== this.state.email ||
+      prevState.bio !== this.state.bio ||
       prevState.location !== this.state.location ||
       prevState.lat !== this.state.lat ||
       prevState.lng !== this.state.lng ||
@@ -79,6 +91,20 @@ class EditAccountForm extends Component {
       return true;
     } else {
       return false;
+    }
+  };
+
+  handleInputChange = (e) => {
+    const value = e.target.value;
+    switch (e.target.name) {
+      case "username":
+        return this.setState({ username: value });
+      case "email":
+        return this.setState({ email: value });
+      case "bio":
+        return this.setState({ bio: value });
+      default:
+        return null;
     }
   };
 
@@ -115,10 +141,9 @@ class EditAccountForm extends Component {
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input
-            disabled={true}
             name="username"
-            onChange={this.props.handleInputChange}
-            value={this.props.user.username}
+            onChange={(e) => this.handleInputChange(e)}
+            value={this.state.username}
             type="text"
             placeholder="username"
           />
@@ -126,11 +151,21 @@ class EditAccountForm extends Component {
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
-            disabled={true}
+            name="email"
             type="text"
-            onChange={this.props.handleInputChange}
-            value={this.props.user.email}
+            onChange={(e) => this.handleInputChange(e)}
+            value={this.state.email}
             placeholder="email"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="bio">Bio</label>
+          <input
+            name="bio"
+            type="text"
+            onChange={(e) => this.handleInputChange(e)}
+            value={this.state.bio}
+            placeholder="I'm a musician..."
           />
         </div>
         <div className="form-group">

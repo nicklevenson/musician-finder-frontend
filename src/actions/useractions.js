@@ -99,7 +99,7 @@ export const fetchUserRecs = (filterParamsObject) => {
     )
       .then((res) => res.json())
       .then((json) => {
-        if (json[0]) {
+        if (json) {
           dispatch(setRecommendedUsers(json));
         }
       })

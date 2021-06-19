@@ -13,29 +13,12 @@ class UserEditorModal extends Component {
     this.state = {
       activeForm: EditAccountForm,
     };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {}
 
   getActiveForm() {
-    return (
-      <this.state.activeForm
-        user={this.props.user}
-        handleInputChange={this.handleInputChange}
-      />
-    );
-  }
-
-  handleInputChange(e) {
-    e.preventDefault();
-    const target = e.target;
-    // const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-    let user = this.props.user;
-    user[name] = target.value;
-    this.setState({ user }, () => console.log(this.state));
+    return <this.state.activeForm user={this.props.user} />;
   }
 
   handleFormToggleClick(e) {
