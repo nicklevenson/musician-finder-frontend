@@ -114,6 +114,7 @@ class PreviewUserCard extends React.Component {
           <ConnectionsModal
             toggleModal={this.toggleConnectionsModal}
             connections={this.state.connections}
+            user={this.props.user}
           />
         ) : null}
         <div className="card-content">

@@ -12,12 +12,14 @@ class ConnectionsModal extends React.Component {
         >
           <Icon name="close" />
         </button>
-        Connections
-        {this.props.connections.length > 0
-          ? this.props.connections.map((user) => {
-              return <MiminalUserCard key={user.id} user={user} />;
-            })
-          : null}
+        <div className="connections-container">
+          <h3>{this.props.user.username}'s Connections</h3>
+          {this.props.connections.length > 0
+            ? this.props.connections.map((user) => {
+                return <MiminalUserCard key={user.id} user={user} />;
+              })
+            : null}
+        </div>
       </div>
     );
   }
