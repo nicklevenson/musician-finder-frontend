@@ -6,7 +6,9 @@
   width: 100%;
 
   display: grid;
-  grid-template-columns: 50% 50%;
+  // grid-template-columns: 50% 50%;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
 
   .connect-button,
   .next-button {
