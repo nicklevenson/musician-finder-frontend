@@ -1,6 +1,6 @@
 import React from "react";
 import ConnectForm from "./ConnectForm";
-
+import history from "../../history";
 class MinimalUserCard extends React.Component {
   state = {
     similarTags: [],
@@ -9,6 +9,11 @@ class MinimalUserCard extends React.Component {
     connections: [],
     generic_tags: [],
     spotify_tags: [],
+  };
+
+  handleProfileClick = (e) => {
+    e.preventDefault();
+    window.location = `/users/${this.props.user.id}`;
   };
 
   render() {
@@ -25,9 +30,13 @@ class MinimalUserCard extends React.Component {
 
           <div className="card-info">
             <div className="card-header">
-              <a href={`users/${this.props.user.id}`}>
+              <div
+                onClick={this.handleProfileClick}
+                aria-label="go to user profile"
+                className="user-profile-link"
+              >
                 {this.props.user.username}
-              </a>
+              </div>
             </div>
 
             <div className="card-location">

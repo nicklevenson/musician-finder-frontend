@@ -4,7 +4,8 @@ import GenericTag from "../Tags/GenericTag";
 import SimilarTag from "../Tags/SimilarTag";
 import SpotifyArtistTag from "../Tags/SpotifyArtistTag";
 import ConnectForm from "./ConnectForm";
-
+import ConnectionsModal from "./ConnectionsModal";
+import history from "../../history";
 class PreviewUserCard extends React.Component {
   state = {
     similarTags: [],
@@ -13,6 +14,7 @@ class PreviewUserCard extends React.Component {
     connections: [],
     generic_tags: [],
     spotify_tags: [],
+    connectionsModalDisplay: false,
   };
 
   static defaultProps = {
@@ -22,6 +24,7 @@ class PreviewUserCard extends React.Component {
   componentDidMount() {
     if (this.props.shownUserId === this.props.user.id) {
       this.fetchSupportingInfo();
+      this.fetchConnections();
     }
   }
 
@@ -96,9 +99,30 @@ class PreviewUserCard extends React.Component {
     }
   };
 
+  toggleConnectionsModal = (e) => {
+    e.preventDefault();
+    if (this.state.connectionsModalDisplay === false) {
+      this.setState({ connectionsModalDisplay: true });
+    } else {
+      this.setState({ connectionsModalDisplay: false });
+    }
+  };
+
+  handleProfileClick = (e) => {
+    e.preventDefault();
+    history.push(`/users/${this.props.user.id}`);
+  };
+
   render() {
     return (
       <div className="preview-user-card">
+        {this.state.connectionsModalDisplay ? (
+          <ConnectionsModal
+            toggleModal={this.toggleConnectionsModal}
+            connections={this.state.connections}
+            user={this.props.user}
+          />
+        ) : null}
         <div className="card-content">
           <div className="user-photo-container">
             <img
@@ -110,13 +134,17 @@ class PreviewUserCard extends React.Component {
 
           <div className="card-info">
             <div className="card-header">
-              <a href={`users/${this.props.user.id}`}>
+              <div
+                onClick={this.handleProfileClick}
+                aria-label="go to user profile"
+                className="user-profile-link"
+              >
                 {this.props.user.username}
-              </a>
+              </div>
             </div>
 
             <div className="card-connections">
-              <button>
+              <button onClick={this.toggleConnectionsModal}>
                 <Icon name="user" />
                 {this.state.connections.length || "0"} Connections
               </button>
