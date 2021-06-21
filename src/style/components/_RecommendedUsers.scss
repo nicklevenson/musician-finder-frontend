@@ -12,6 +12,10 @@
     height: 100%;
     overflow: hidden;
     white-space: nowrap;
+
+    .preview-user-card {
+      max-width: 500px;
+    }
   }
   .card,
   .inactive {

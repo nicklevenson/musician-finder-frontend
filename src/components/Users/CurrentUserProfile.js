@@ -182,25 +182,34 @@ class CurrentUserProfile extends Component {
           />
         ) : null}
         <div className="card-content">
-          <h2>My Profile</h2>
-          <div className="user-photo-container">
-            <img
-              className="user-photo"
-              src={this.props.user.photo || this.props.user.providerImage}
-              alt="User"
-            />
+          <div className="edit-profile">
+            <h2>My Profile</h2>
+            <div className="buttons">
+              <Link className="logout-btn" to="/logout">
+                <Icon fitted name="sign-out" />
+              </Link>
+              <button
+                type="button"
+                onClick={(e) => this.toggleUserEditorModal(e)}
+                className="edit-profile-btn"
+              >
+                <Icon fitted name="edit" />
+              </button>
+            </div>
           </div>
 
-          <Link className="logout-btn" to="/logout">
-            <Icon fitted name="sign-out" />
-          </Link>
-          <button
-            type="button"
-            onClick={(e) => this.toggleUserEditorModal(e)}
-            className="edit-profile-btn"
-          >
-            <Icon fitted name="edit" />
-          </button>
+          <div className="user-photo-container">
+            <div className="user-profile-image-container">
+              <div className="image-container">
+                <img
+                  src={this.props.user.photo || this.props.user.providerImage}
+                  alt="user-profile"
+                />
+
+                <EditPhotoModal />
+              </div>
+            </div>
+          </div>
 
           <div className="card-info">
             <div className="card-header">
