@@ -4,10 +4,10 @@ import LocationSearch from "../../Misc/LocationSearch";
 import { updateUser } from "../../../actions/useractions";
 class EditAccountForm extends Component {
   state = {
-    username: this.props.user.username,
-    email: this.props.user.email,
-    bio: this.props.user.bio,
-    location: this.props.user.location,
+    username: this.props.user.username || "",
+    email: this.props.user.email || "",
+    bio: this.props.user.bio || "",
+    location: this.props.user.location || "",
     lat: this.props.user.lat,
     lng: this.props.user.lng,
     soundCloudLink: this.props.user.soundcloud_link || "",
