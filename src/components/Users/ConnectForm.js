@@ -36,9 +36,9 @@ class ConnectForm extends React.Component {
           .includes(this.props.focusedUser.id)
       ) {
         return (
-          <Button size="tiny" disabled>
-            <Button.Content>Pending</Button.Content>
-          </Button>
+          <button disabled className="connect-button disabled">
+            Pending
+          </button>
         );
       } else if (
         this.props.incomingRequests
@@ -79,19 +79,19 @@ class ConnectForm extends React.Component {
         return null;
       } else {
         return (
-          <Button size="tiny" animated onClick={this.handleConnectionRequest}>
-            <Button.Content visible>Request Connection</Button.Content>
-            <Button.Content hidden>
-              Send? <Icon name="arrow right" />
-            </Button.Content>
-          </Button>
+          <button
+            onClick={this.handleConnectionRequest}
+            className="connect-button"
+          >
+            Let's Jam!
+          </button>
         );
       }
     } else {
       return (
-        <Button size="tiny" disabled>
-          <Button.Content>Login To Connect</Button.Content>
-        </Button>
+        <button disabled className="connect-button">
+          Login To Connect
+        </button>
       );
     }
   }

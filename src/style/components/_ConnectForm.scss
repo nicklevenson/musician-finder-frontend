@@ -14,7 +14,7 @@
   .next-button {
     justify-self: center;
     align-self: end;
-    background-color: black !important;
+    background-color: black;
     color: white;
     border-radius: 5px;
     width: 95%;
@@ -25,6 +25,10 @@
       box-shadow: 1px 1px 5px v.$gray;
     }
     padding: 0.5rem;
+  }
+
+  .disabled {
+    background-color: v.$gray !important;
   }
 
   .message-user-button {
