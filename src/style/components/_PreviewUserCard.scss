@@ -50,26 +50,31 @@
     overflow-y: auto;
 
     .user-photo-container {
+      position: relative;
       max-width: 350px;
       max-height: 350px;
+      width: 100%;
+      height: auto;
       margin: 1rem auto 1rem auto;
 
       .user-profile-image-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         width: 100%;
+        max-width: 350px;
+        max-height: 350px;
         z-index: 1;
 
         .image-container {
-          position: relative;
+          width: 100%;
+          height: 100%;
+
           .edit-image-overlay {
             background-color: transparent;
-            position: absolute;
+            // position: absolute;
             z-index: 10;
-            height: 100%;
+            height: auto;
             width: 100%;
-            line-height: 20rem;
+
+            line-height: 25rem;
             border-radius: 20px;
             color: v.$white;
             text-align: center !important;
@@ -78,6 +83,7 @@
       }
 
       .user-photo {
+        border-radius: 5px;
         width: 100%;
         height: auto;
       }

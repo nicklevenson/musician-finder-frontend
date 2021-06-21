@@ -21,6 +21,7 @@ class CurrentUserProfile extends Component {
       notificationsExpanded: false,
       tagsExpanded: false,
       showUserEditorModal: false,
+      connectionsModalDisplay: false,
     };
 
     this.toggleUserEditorModal = this.toggleUserEditorModal.bind(this);
@@ -34,13 +35,22 @@ class CurrentUserProfile extends Component {
     this.setState({ formattedDate });
   }
 
-  toggleNotifications(e) {
+  // toggleNotifications(e) {
+  //   e.preventDefault();
+  //   this.setState({
+  //     notificationsExpanded: !this.state.notificationsExpanded,
+  //     tagsExpanded: false,
+  //   });
+  // }
+
+  toggleConnectionsModal = (e) => {
     e.preventDefault();
-    this.setState({
-      notificationsExpanded: !this.state.notificationsExpanded,
-      tagsExpanded: false,
-    });
-  }
+    if (this.state.connectionsModalDisplay === false) {
+      this.setState({ connectionsModalDisplay: true });
+    } else {
+      this.setState({ connectionsModalDisplay: false });
+    }
+  };
 
   toggleUserEditorModal(e) {
     e.preventDefault();
@@ -202,6 +212,7 @@ class CurrentUserProfile extends Component {
             <div className="user-profile-image-container">
               <div className="image-container">
                 <img
+                  className="user-photo"
                   src={this.props.user.photo || this.props.user.providerImage}
                   alt="user-profile"
                 />
