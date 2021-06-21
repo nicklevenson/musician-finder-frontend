@@ -142,21 +142,21 @@ class PreviewUserCard extends React.Component {
                 {this.props.user.username}
               </div>
             </div>
-
             <div className="card-connections">
               <button onClick={this.toggleConnectionsModal}>
                 <Icon name="user" />
                 {this.state.connections.length || "0"} Connections
               </button>
             </div>
-
             <div className="card-location">
               <span className="location">
                 Location: {this.props.user.location || "Earth"}
               </span>
             </div>
-
             {this.renderSimilarTags()}
+            <div className="card-bio">
+              {this.props.user.bio ? this.props.user.bio : "I'm a musician!"}
+            </div>
 
             <div className="card-tags">
               {this.state.instruments.length > 0 ? (
@@ -167,14 +167,7 @@ class PreviewUserCard extends React.Component {
                   })}
                 </>
               ) : null}
-              <br />
             </div>
-
-            <div className="card-bio">
-              {this.props.user.bio ? this.props.user.bio : "I'm a musician!"}
-            </div>
-            <br />
-
             {this.state.spotify_tags.length > 0 ? (
               <>
                 <div className="card-artists">
@@ -188,7 +181,6 @@ class PreviewUserCard extends React.Component {
                 <br />
               </>
             ) : null}
-
             <div className="card-tags">
               {this.state.genres.length > 0 ? (
                 <>
@@ -200,7 +192,6 @@ class PreviewUserCard extends React.Component {
                 </>
               ) : null}
             </div>
-
             {this.state.generic_tags.length > 0 ? (
               <div className="card-interests card-tags">
                 <b>Other Interests:</b>

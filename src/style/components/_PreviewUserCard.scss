@@ -1,5 +1,10 @@
 @use "../variables" as v;
 
+.user-show-container {
+  display: flex;
+  align-items: center;
+  height: 90vh;
+}
 .preview-user-card {
   // border: solid thin;
   // // border-color: v.$gray;
@@ -8,7 +13,7 @@
   height: 100%;
   max-height: 700px;
   width: 80vw;
-  max-width: 350px;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
   display: grid;
@@ -26,55 +31,55 @@
     text-align: left;
     font-size: 1rem;
     overflow-y: auto;
-  }
 
-  .user-photo-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%;
+    .user-photo-container {
+      max-width: 350px;
+      max-height: 350px;
+      margin: 1rem auto 1rem auto;
 
-    .user-photo {
-      position: absolute;
-      top: 0;
-      grid-row: 1;
-      width: 100%;
-      height: auto;
-    }
-  }
-
-  .card-tags {
-    width: 100%;
-    white-space: pre-wrap;
-  }
-
-  .card-header {
-    color: v.$dark;
-    font-size: 1.5rem;
-    line-height: 2rem;
-    .user-profile-link {
-      &:hover {
-        cursor: pointer;
-        color: v.$blue;
+      .user-photo {
+        width: 100%;
+        height: auto;
       }
     }
-  }
 
-  .card-location {
-    color: v.$gray;
-  }
-  .card-connections button {
-    padding: 0;
-  }
+    .card-info {
+      line-height: 1.5rem;
+      .card-header {
+        color: v.$dark;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        .user-profile-link {
+          &:hover {
+            cursor: pointer;
+            color: v.$blue;
+          }
+        }
+      }
 
-  .card-bio {
-    font-style: italic;
-  }
+      .card-location {
+        color: v.$gray;
+      }
+      .card-connections button {
+        padding: 0;
+      }
 
-  .card-artists-container {
-    position: relative;
-    width: 100%;
-    height: 7rem;
-    overflow-x: auto;
+      .card-bio {
+        font-style: italic;
+      }
+
+      .card-artists-container {
+        position: relative;
+        width: 100%;
+        height: 7rem;
+        overflow-x: auto;
+      }
+    }
+
+    .card-tags {
+      width: 100%;
+      white-space: pre-wrap;
+    }
   }
 
   .connections-modal {

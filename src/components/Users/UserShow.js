@@ -70,10 +70,12 @@ class UserShow extends React.Component {
           {this.state.shownUser.id === this.props.currentUser.id ? (
             <CurrentUserProfile />
           ) : (
-            <PreviewUserCard
-              user={this.state.shownUser}
-              shownUserId={this.state.shownUser.id}
-            />
+            <div className="user-show-container">
+              <PreviewUserCard
+                user={this.state.shownUser}
+                shownUserId={this.state.shownUser.id}
+              />
+            </div>
           )}
         </>
       );
