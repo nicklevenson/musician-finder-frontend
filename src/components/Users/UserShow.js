@@ -67,16 +67,16 @@ class UserShow extends React.Component {
     } else {
       return (
         <>
-          {this.state.shownUser.id === this.props.currentUser.id ? (
-            <CurrentUserProfile />
-          ) : (
-            <div className="user-show-container">
+          <div className="user-show-container">
+            {this.state.shownUser.id === this.props.currentUser.id ? (
+              <CurrentUserProfile />
+            ) : (
               <PreviewUserCard
                 user={this.state.shownUser}
                 shownUserId={this.state.shownUser.id}
               />
-            </div>
-          )}
+            )}
+          </div>
         </>
       );
     }

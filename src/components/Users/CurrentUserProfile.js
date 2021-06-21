@@ -9,6 +9,9 @@ import UserEditorModal from "./UserEditorModal/UserEditorModal";
 import { fetchUser } from "../../actions/useractions";
 import helpers from "../../globalHelpers";
 import EditPhotoModal from "./UserEditorModal/EditPhotoModal";
+import ConnectionsModal from "../Users/ConnectionsModal";
+import GenericTag from "../Tags/GenericTag";
+import SpotifyArtistTag from "../Tags/SpotifyArtistTag";
 
 class CurrentUserProfile extends Component {
   constructor(props) {
@@ -80,45 +83,114 @@ class CurrentUserProfile extends Component {
 
   render() {
     let modal = this.renderUserEditorModal();
+    const instruments = this.props.user.instruments;
+    const genres = this.props.user.genres;
+    const spotify_tags = this.props.user.tags.filter(
+      (tag) => tag.tag_type === "spotify_artist"
+    );
+    const generic_tags = this.props.user.tags.filter(
+      (tag) => tag.tag_type !== "spotify_artist"
+    );
     return (
-      <div className="user-profile-container">
-        <div className="notifications-and-tags-container">
-          <div className="notifications">
-            <button
-              className="toggle-notifications-btn"
-              onClick={(e) => this.toggleNotifications(e)}
-              type="button"
-            >
-              Notifications
-              <Icon name="chevron down" />
-            </button>
-            <div className="notifications-container">
-              {this?.state?.notificationsExpanded
-                ? this?.props?.notifications?.map((notification, index) => {
-                    return <UserNotification info={notification} key={index} />;
-                  })
-                : ""}
-            </div>
+      // <div className="user-profile-container">
+      //   <div className="notifications-and-tags-container">
+      //     <div className="notifications">
+      //       <button
+      //         className="toggle-notifications-btn"
+      //         onClick={(e) => this.toggleNotifications(e)}
+      //         type="button"
+      //       >
+      //         Notifications
+      //         <Icon name="chevron down" />
+      //       </button>
+      //       <div className="notifications-container">
+      //         {this?.state?.notificationsExpanded
+      //           ? this?.props?.notifications?.map((notification, index) => {
+      //               return <UserNotification info={notification} key={index} />;
+      //             })
+      //           : ""}
+      //       </div>
+      //     </div>
+      //     <div className="tags">
+      //       <button
+      //         className="toggle-tags-btn"
+      //         onClick={(e) => this.toggleTags(e)}
+      //         type="button"
+      //       >
+      //         Tags
+      //         <Icon name="chevron down" />
+      //       </button>
+      //       <div className="tags-container">
+      //         {this?.state?.tagsExpanded
+      //           ? this?.props?.user?.tags.map((tag, index) => {
+      //               return <UserTag info={tag} key={index} />;
+      //             })
+      //           : ""}
+      //       </div>
+      //     </div>
+      //   </div>
+      //   <div className="user-profile">
+      //     <Link className="logout-btn" to="/logout">
+      //       <Icon fitted name="sign-out" />
+      //     </Link>
+      //     <button
+      //       type="button"
+      //       onClick={(e) => this.toggleUserEditorModal(e)}
+      //       className="edit-profile-btn"
+      //     >
+      //       <Icon fitted name="edit" />
+      //     </button>
+      //     <div className="user-profile-image-container">
+      //       <div className="image-container">
+      //         {/* <div
+      //           className="edit-image-overlay"
+      //           onClick={this.togglePhotoEdit}
+      //         >
+      //           Upload Image
+      //         </div> */}
+      //         <img
+      //           src={this.props.user.photo || this.props.user.providerImage}
+      //           alt="user-profile"
+      //         />
+
+      //         <EditPhotoModal />
+      //       </div>
+      //     </div>
+      //     <div className="user-profile-text-container">
+      //       <div className="username">{this.props.user.username}</div>
+      //       <a href={`mailto:${this.props.user.email}`} className="email">
+      //         {this.props.user.email}
+      //       </a>
+      //       <div>Member since {this.state.formattedDate}</div>
+      //       <div>
+      //         <span className="location">
+      //           Location: {this.props.user.location || "Earth"}
+      //         </span>
+      //       </div>
+      //       <div>{this.props.user.bio || "No bio given"}</div>
+      //     </div>
+      //   </div>
+      //   {modal}
+      // </div>
+
+      <div className="preview-user-card">
+        {this.state.connectionsModalDisplay ? (
+          <ConnectionsModal
+            toggleModal={this.toggleConnectionsModal}
+            connections={this.props.connections}
+            user={this.props.user}
+          />
+        ) : null}
+        <div className="card-content">
+          <h2>My Profile</h2>
+          <div className="user-photo-container">
+            <img
+              className="user-photo"
+              src={this.props.user.photo || this.props.user.providerImage}
+              alt="User"
+            />
           </div>
-          <div className="tags">
-            <button
-              className="toggle-tags-btn"
-              onClick={(e) => this.toggleTags(e)}
-              type="button"
-            >
-              Tags
-              <Icon name="chevron down" />
-            </button>
-            <div className="tags-container">
-              {this?.state?.tagsExpanded
-                ? this?.props?.user?.tags.map((tag, index) => {
-                    return <UserTag info={tag} key={index} />;
-                  })
-                : ""}
-            </div>
-          </div>
-        </div>
-        <div className="user-profile">
+
           <Link className="logout-btn" to="/logout">
             <Icon fitted name="sign-out" />
           </Link>
@@ -129,34 +201,75 @@ class CurrentUserProfile extends Component {
           >
             <Icon fitted name="edit" />
           </button>
-          <div className="user-profile-image-container">
-            <div className="image-container">
-              {/* <div
-                className="edit-image-overlay"
-                onClick={this.togglePhotoEdit}
-              >
-                Upload Image
-              </div> */}
-              <img
-                src={this.props.user.photo || this.props.user.providerImage}
-                alt="user-profile"
-              />
 
-              <EditPhotoModal />
+          <div className="card-info">
+            <div className="card-header">
+              <div
+                onClick={this.handleProfileClick}
+                aria-label="go to user profile"
+                className="user-profile-link"
+              >
+                {this.props.user.username}
+              </div>
             </div>
-          </div>
-          <div className="user-profile-text-container">
-            <div className="username">{this.props.user.username}</div>
-            <a href={`mailto:${this.props.user.email}`} className="email">
-              {this.props.user.email}
-            </a>
-            <div>Member since {this.state.formattedDate}</div>
-            <div>
+            <div className="card-connections">
+              <button onClick={this.toggleConnectionsModal}>
+                <Icon name="user" />
+                {this.props.connections.length || "0"} Connections
+              </button>
+            </div>
+            <div className="card-location">
               <span className="location">
                 Location: {this.props.user.location || "Earth"}
               </span>
             </div>
-            <div>{this.props.user.bio || "No bio given"}</div>
+
+            <div className="card-bio">
+              {this.props.user.bio ? this.props.user.bio : "I'm a musician!"}
+            </div>
+
+            <div className="card-tags">
+              {instruments?.length > 0 ? (
+                <>
+                  <b>Plays: </b>
+                  {instruments?.map((inst) => {
+                    return <GenericTag tag={inst.name} key={inst.name} />;
+                  })}
+                </>
+              ) : null}
+            </div>
+            {spotify_tags.length > 0 ? (
+              <>
+                <div className="card-artists">
+                  <b>Top Artists: </b>
+                  <div className="card-artists-container">
+                    {spotify_tags.map((tag) => {
+                      return <SpotifyArtistTag tag={tag} key={tag.name} />;
+                    })}
+                  </div>
+                </div>
+                <br />
+              </>
+            ) : null}
+            <div className="card-tags">
+              {genres.length > 0 ? (
+                <>
+                  <b>Genres: </b>
+                  {genres?.map((genre) => {
+                    return <GenericTag tag={genre.name} key={genre.name} />;
+                  })}
+                  <br />
+                </>
+              ) : null}
+            </div>
+            {generic_tags.length > 0 ? (
+              <div className="card-interests card-tags">
+                <b>Other Interests:</b>
+                {generic_tags.map((tag) => {
+                  return <GenericTag tag={tag.name} key={tag.name} />;
+                })}
+              </div>
+            ) : null}
           </div>
         </div>
         {modal}
@@ -180,7 +293,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     user: state.currentUser.currentUser,
-    notifications: state.currentUser.notifications,
+    connections: state.currentUser.connectedUsers,
   };
 };
 
