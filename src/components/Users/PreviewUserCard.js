@@ -170,6 +170,7 @@ class PreviewUserCard extends React.Component {
             </div>
             {this.state.spotify_tags.length > 0 ? (
               <>
+                <br />
                 <div className="card-artists">
                   <b>Top Artists: </b>
                   <div className="card-artists-container">

@@ -37,7 +37,7 @@ class App extends React.Component {
     this.timer = null;
   }
   render() {
-    if (!this.props.currentUser.id && !sessionStorage.jwt) {
+    if (!sessionStorage.userId && !sessionStorage.jwt) {
       return (
         <div className="App">
           <LandingPage />

@@ -3,8 +3,9 @@
 .connect-form {
   grid-row: 2;
   margin: auto;
+  padding: 0.5rem 0 0.5rem 0;
   width: 100%;
-
+  border-top: solid thin v.$dark;
   display: grid;
   // grid-template-columns: 50% 50%;
   grid-auto-columns: 1fr;
