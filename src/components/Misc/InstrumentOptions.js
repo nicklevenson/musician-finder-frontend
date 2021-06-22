@@ -27,7 +27,7 @@ class InstrumentOptions extends React.Component {
   render() {
     return (
       <div className="instruments-filter">
-        <label htmlFor="instruments filter">By Instruments</label>
+        <label htmlFor="instruments filter">Instruments</label>
         <br />
         <input
           name="instruments filter"

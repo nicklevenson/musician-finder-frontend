@@ -80,7 +80,7 @@ class Filter extends React.Component {
           className="filter-toggle"
           onClick={(e) => this.handleVisibilityToggle()}
         >
-          Filter Users
+          <h3>Apply Filters</h3>
         </div>
 
         {!this.state.hidden ? (
@@ -144,7 +144,7 @@ class Filter extends React.Component {
                 onClick={this.sendFilters}
                 aria-label="apply filters"
               >
-                Apply Filters
+                Apply
               </button>
             </div>
           </div>
