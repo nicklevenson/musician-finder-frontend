@@ -12,7 +12,7 @@ import EditPhotoModal from "./UserEditorModal/EditPhotoModal";
 import ConnectionsModal from "../Users/ConnectionsModal";
 import GenericTag from "../Tags/GenericTag";
 import SpotifyArtistTag from "../Tags/SpotifyArtistTag";
-
+import { Links } from "./Links";
 class CurrentUserProfile extends Component {
   constructor(props) {
     super(props);
@@ -231,6 +231,7 @@ class CurrentUserProfile extends Component {
               >
                 {this.props.user.username}
               </div>
+              <Links user={this.props.user} />
             </div>
             <div className="card-connections">
               <button onClick={this.toggleConnectionsModal}>

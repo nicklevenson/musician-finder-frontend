@@ -5,6 +5,7 @@ import SimilarTag from "../Tags/SimilarTag";
 import SpotifyArtistTag from "../Tags/SpotifyArtistTag";
 import ConnectForm from "./ConnectForm";
 import ConnectionsModal from "./ConnectionsModal";
+import { Links } from "./Links";
 import history from "../../history";
 class PreviewUserCard extends React.Component {
   state = {
@@ -141,6 +142,7 @@ class PreviewUserCard extends React.Component {
               >
                 {this.props.user.username}
               </div>
+              <Links user={this.props.user} />
             </div>
             <div className="card-connections">
               <button onClick={this.toggleConnectionsModal}>
