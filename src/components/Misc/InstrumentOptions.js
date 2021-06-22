@@ -37,6 +37,7 @@ class InstrumentOptions extends React.Component {
           onInput={(e) => this.setInputQuery(e)}
           aria-label="instrument search"
           autoComplete="off"
+          type="text"
         />
 
         <div

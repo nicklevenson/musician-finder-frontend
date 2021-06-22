@@ -37,6 +37,7 @@ class GenreOptions extends React.Component {
           onInput={(e) => this.setInputQuery(e)}
           aria-label="genre search"
           autoComplete="off"
+          type="text"
         />
 
         <div
