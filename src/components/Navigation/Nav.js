@@ -3,6 +3,7 @@ import { Icon } from "semantic-ui-react";
 import ProfileImage from "../Users/ProfileImage";
 import NotificationIcon from "../Notifications/NotificationIcon";
 import MessageIcon from "../Messages/MessageIcon";
+import { LogoSvg } from "./LogoSvg";
 import anime from "animejs";
 import history from "../../history";
 
@@ -126,9 +127,8 @@ class Nav extends Component {
           </div>
 
           <div className="main-logo-container">
-            <button target="/home">
-              <Icon name="music" size="large" />
-              <i>PB&Jam</i>
+            <button>
+              <LogoSvg />
             </button>
           </div>
 

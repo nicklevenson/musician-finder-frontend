@@ -37,6 +37,11 @@
       @include v.flexbox-col;
     }
 
+    .logo-brand {
+      height: 3rem;
+      width: auto;
+    }
+
     .notification-link {
       position: relative;
       height: 100%;
