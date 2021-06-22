@@ -16,6 +16,10 @@ class Nav extends Component {
     };
   }
 
+  goHome = () => {
+    history.push(`/swipe`);
+  };
+
   handleNotificationClick = (e) => {
     e.preventDefault();
     history.push(`/notifications`);
@@ -127,7 +131,7 @@ class Nav extends Component {
           </div>
 
           <div className="main-logo-container">
-            <button>
+            <button onClick={this.goHome}>
               <LogoSvg />
             </button>
           </div>
