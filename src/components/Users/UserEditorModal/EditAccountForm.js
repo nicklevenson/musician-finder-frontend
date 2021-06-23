@@ -21,7 +21,10 @@ class EditAccountForm extends Component {
   };
 
   handleUpdate = () => {
-    if (this.state.location && this.state.lat && this.state.lng) {
+    if (
+      (this.state.location && this.state.lat && this.state.lng) ||
+      this.state.location === "Earth"
+    ) {
       this.props.updateUser({
         username: this.state.username,
         email: this.state.email,

@@ -41,8 +41,8 @@ class App extends React.Component {
     if (!sessionStorage.userId && !sessionStorage.jwt) {
       return (
         <div className="App">
-          <Route exact path="/" component={LandingPage}></Route>
           <Route exact path="/unsubscribed" component={Unsubscribed}></Route>
+          <Route path="/" component={LandingPage}></Route>
         </div>
       );
     } else {
