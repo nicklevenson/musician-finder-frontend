@@ -2,8 +2,11 @@
 
 .connections-container {
   text-align: center;
+  overflow-y: auto;
+  max-height: 90%;
   .minimal-user-card {
     height: min-content !important;
+
     // max-height: 350px !important;
     width: 40vw !important;
     max-width: 200px !important;
