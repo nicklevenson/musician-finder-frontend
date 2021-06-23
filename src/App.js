@@ -12,6 +12,7 @@ import UserShow from "./components/Users/UserShow";
 import ProfileContainer from "./containers/ProfileContainer";
 import Logout from "./components/Navigation/Logout";
 import LandingPage from "./containers/LandingPage";
+import { Unsubscribed } from "./components/Misc/Unsubscribed";
 import {
   fetchUser,
   fetchUserChatrooms,
@@ -40,7 +41,8 @@ class App extends React.Component {
     if (!sessionStorage.userId && !sessionStorage.jwt) {
       return (
         <div className="App">
-          <LandingPage />
+          <Route exact path="/" component={LandingPage}></Route>
+          <Route exact path="/unsubscribed" component={Unsubscribed}></Route>
         </div>
       );
     } else {
@@ -76,6 +78,7 @@ class App extends React.Component {
             <Route exact path="/users/:id" component={UserShow}></Route>
             <Route exact path="/login" component={LoginCard}></Route>
             <Route exact path="/logout" component={Logout}></Route>
+            <Route exact path="/unsubscribed" component={Unsubscribed}></Route>
           </Switch>
         </div>
       );
