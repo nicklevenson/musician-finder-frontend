@@ -46,8 +46,6 @@ export const fetchUser = () => {
         dispatch(setUser(json));
         dispatch(fetchConnections(userId));
         dispatch(fetchIncomingRequests());
-        dispatch(fetchUserChatrooms());
-        dispatch(fetchUserNotifications());
       })
       .catch(function (error) {
         console.warn("error getting user: \n", error);

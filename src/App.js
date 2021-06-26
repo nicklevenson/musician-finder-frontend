@@ -22,14 +22,19 @@ import { fetchAllLists } from "./actions/listactions";
 import LoginCard from "./components/Navigation/LoginCard";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    props.fetchAllLists();
+  }
   componentDidMount() {
     if (sessionStorage.userId) {
       this.props.fetchUser();
+      this.props.fetchUserChatrooms();
+      this.props.fetchUserNotifications();
       this.timer = setInterval(() => {
         this.props.fetchUserChatrooms();
         this.props.fetchUserNotifications();
       }, 100000);
-      this.props.fetchAllLists();
     }
   }
 
