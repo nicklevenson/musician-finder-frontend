@@ -11,11 +11,12 @@ class NotificationsContainer extends React.Component {
   render() {
     if (sessionStorage.jwt) {
       return (
-        <div>
-          <h1>Notifications</h1>
+        <div style={{ textAlign: "center" }}>
+          <br />
+          <h3>Notifications</h3>
           <div className="feed">
             {this.props.notifications.map((n) => {
-              return <Notification notification={n} key={n.id}/>;
+              return <Notification notification={n} key={n.id} />;
             })}
           </div>
         </div>
@@ -35,7 +36,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     notifications: state.currentUser.notifications,
-    currentUser: state.currentUser.currentUser
+    currentUser: state.currentUser.currentUser,
   };
 };
 
