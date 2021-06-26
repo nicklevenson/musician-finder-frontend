@@ -24,11 +24,14 @@ class ConnectionsContainer extends React.Component {
 
           <div className="my-connections">
             <h3>My Connections</h3>
-            {this.props.connectedUsers.length > 0
-              ? this.props.connectedUsers.map((user) => {
-                  return <MiminalUserCard key={user.id} user={user} />;
-                })
-              : null}
+            <br />
+            {this.props.connectedUsers.length > 0 ? (
+              this.props.connectedUsers.map((user) => {
+                return <MiminalUserCard key={user.id} user={user} />;
+              })
+            ) : (
+              <>Go connect with some people!</>
+            )}
           </div>
         </div>
       );

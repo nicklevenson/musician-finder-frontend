@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 
 class ProfileContainer extends React.Component {
   render() {
+    console.log();
     if (sessionStorage.jwt) {
       return <Redirect to={`users/${sessionStorage.userId}`}></Redirect>;
     } else {
@@ -10,6 +11,5 @@ class ProfileContainer extends React.Component {
     }
   }
 }
-
 
 export default ProfileContainer;

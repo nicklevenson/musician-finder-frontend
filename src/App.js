@@ -12,6 +12,7 @@ import UserShow from "./components/Users/UserShow";
 import ProfileContainer from "./containers/ProfileContainer";
 import Logout from "./components/Navigation/Logout";
 import LandingPage from "./containers/LandingPage";
+import Welcome from "./containers/Welcome";
 import { Unsubscribed } from "./components/Misc/Unsubscribed";
 import {
   fetchUser,
@@ -80,10 +81,12 @@ class App extends React.Component {
               component={NotificationsContainer}
             ></Route>
             <Route exact path="/profile" component={ProfileContainer}></Route>
+
             <Route exact path="/users/:id" component={UserShow}></Route>
             <Route exact path="/login" component={LoginCard}></Route>
             <Route exact path="/logout" component={Logout}></Route>
             <Route exact path="/unsubscribed" component={Unsubscribed}></Route>
+            <Route exact path="/welcome" component={Welcome}></Route>
           </Switch>
         </div>
       );

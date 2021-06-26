@@ -2,14 +2,23 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 class LoginCard extends React.Component {
+  state = {
+    redirect_swipe: false,
+    redirect_new: false,
+  };
   componentDidMount() {
     const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams.get("edit"));
     if (urlParams.get("token")) {
       const jwt = urlParams.get("token");
       const id = parseInt(urlParams.get("id"));
       sessionStorage.setItem("jwt", jwt);
       sessionStorage.setItem("userId", id);
-      this.setState({ redirect: true });
+      if (urlParams.get("new")) {
+        this.setState({ redirect_new: true });
+      } else {
+        this.setState({ redirect_swipe: true });
+      }
     }
   }
   render() {
@@ -46,7 +55,8 @@ class LoginCard extends React.Component {
               <div>Continue With Facebook</div>
             </div>
           </a>{" "}
-          {sessionStorage.jwt ? <Redirect to="/swipe" /> : null}
+          {this.state.redirect_swipe ? <Redirect to="/swipe" /> : null}
+          {this.state.redirect_new ? <Redirect to="/welcome" /> : null}
         </div>
       </div>
     );
