@@ -1,8 +1,4 @@
 import React from "react";
-import googleLogin from "../../assets/btn_google.png";
-import facebookLogin from "../../assets/facebook-login.png";
-import { connect } from "react-redux";
-import { fetchUser } from "../../actions/useractions.js";
 import { Redirect } from "react-router-dom";
 
 class LoginCard extends React.Component {
@@ -13,7 +9,6 @@ class LoginCard extends React.Component {
       const id = parseInt(urlParams.get("id"));
       sessionStorage.setItem("jwt", jwt);
       sessionStorage.setItem("userId", id);
-      this.props.fetchUser();
       this.setState({ redirect: true });
     }
   }
@@ -57,10 +52,5 @@ class LoginCard extends React.Component {
     );
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchUser: () => dispatch(fetchUser()),
-  };
-};
 
-export default connect(null, mapDispatchToProps)(LoginCard);
+export default LoginCard;
