@@ -71,23 +71,29 @@ class RecommendedUsers extends React.Component {
         <div className="recommended-users">
           <Filter resetIndexAndMargin={this.resetIndexAndMargin} />
           <div className="cards-container">
-            {this.props?.recommendedUsers?.map((u, index) => (
-              <div
-                className={
-                  this.state.activeIndex === index
-                    ? "active card"
-                    : "inactive card"
-                }
-                key={u.username + u.id}
-              >
-                <PreviewUserCard
-                  user={u}
-                  currentUser={this.props.currentUser}
-                  cardChange={this.cardChange}
-                  shownUserId={shownUserId}
-                />
+            {this.props.recommendedUsers.length > 0 ? (
+              this.props?.recommendedUsers?.map((u, index) => (
+                <div
+                  className={
+                    this.state.activeIndex === index
+                      ? "active card"
+                      : "inactive card"
+                  }
+                  key={u.username + u.id}
+                >
+                  <PreviewUserCard
+                    user={u}
+                    currentUser={this.props.currentUser}
+                    cardChange={this.cardChange}
+                    shownUserId={shownUserId}
+                  />
+                </div>
+              ))
+            ) : (
+              <div className="active card">
+                <h3>No results</h3>
               </div>
-            ))}
+            )}
           </div>
         </div>
       );
