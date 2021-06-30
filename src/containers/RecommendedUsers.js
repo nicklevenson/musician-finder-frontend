@@ -82,7 +82,10 @@ class RecommendedUsers extends React.Component {
                   key={u.username + u.id}
                 >
                   <PreviewUserCard
+<<<<<<< HEAD
                     testChange={"testChange"}
+=======
+>>>>>>> d1bb39e87c76439006be843e88de3c7628ef5074
                     user={u}
                     currentUser={this.props.currentUser}
                     cardChange={this.cardChange}
